@@ -1,0 +1,18 @@
+@use '@src/styles/vars' as *;
+
+.navigation {
+	padding: 24px 0;
+	border-bottom: 1px solid $border-light;
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.links {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+}
