@@ -1,6 +1,15 @@
-export const User = () => {
+import type { ComponentProps } from 'react';
+
+export const User = (props: ComponentProps<'svg'>) => {
 	return (
-		<svg fill="none" height="24" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24">
+		<svg
+			fill="none"
+			height="24"
+			width="25"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 25 24"
+			{...props}
+		>
 			<path
 				clipRule="evenodd"
 				d="M16.0938 8C16.0938 10.2091 14.3029 12 12.0938 12C9.88461 12 8.09375 10.2091 8.09375 8C8.09375 5.79086 9.88461 4 12.0938 4C14.3029 4 16.0938 5.79086 16.0938 8ZM14.5938 8C14.5938 9.38071 13.4745 10.5 12.0938 10.5C10.713 10.5 9.59375 9.38071 9.59375 8C9.59375 6.61929 10.713 5.5 12.0938 5.5C13.4745 5.5 14.5938 6.61929 14.5938 8Z"

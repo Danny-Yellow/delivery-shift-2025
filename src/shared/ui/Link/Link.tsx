@@ -16,11 +16,9 @@ export const Link = ({
 	children,
 	startIcon,
 	...props
-}: LinkProps) => {
-	return (
-		<RouterLink {...props} className={clsx(className, styles.link, styles[color])}>
-			{startIcon}
-			{children}
-		</RouterLink>
-	);
-};
+}: LinkProps) => (
+	<RouterLink {...props} className={clsx(className, styles.link, styles[color])}>
+		{startIcon}
+		{children}
+	</RouterLink>
+);

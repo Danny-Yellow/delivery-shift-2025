@@ -1,6 +1,15 @@
-export const Time = () => {
+import type { ComponentProps } from 'react';
+
+export const Time = (props: ComponentProps<'svg'>) => {
 	return (
-		<svg fill="none" height="24" width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 24">
+		<svg
+			fill="none"
+			height="24"
+			width="25"
+			xmlns="http://www.w3.org/2000/svg"
+			viewBox="0 0 25 24"
+			{...props}
+		>
 			<path
 				d="M16.0176 16.1238C16.3313 15.8386 16.3429 15.3492 16.0432 15.0494L12.7938 11.8V6.75C12.7938 6.33579 12.458 6 12.0438 6C11.6295 6 11.2938 6.33579 11.2938 6.75V11.9858C11.2938 12.251 11.3991 12.5054 11.5867 12.6929L14.9932 16.0994C15.2734 16.3796 15.7243 16.3904 16.0176 16.1238Z"
 				fill="#141C24"

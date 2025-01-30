@@ -1,6 +1,6 @@
-import { Layout } from '@src/components/Layout/Layout';
-import { TopNavigation } from '@src/modules/TopNavigation/components/TopNavigation/TopNavigation';
-import { RootPage } from '@src/pages/RootPage/components/RootPage';
+import { TopNavigation } from '@src/modules/index';
+import { CalculationPage } from '@src/pages/index';
+import { Layout } from '@src/shared/components/index';
 import { BrowserRouter, Route, Routes } from 'react-router';
 
 export const Router = () => {
@@ -8,7 +8,7 @@ export const Router = () => {
 		<BrowserRouter>
 			<Routes>
 				<Route element={<Layout header={<TopNavigation />} />}>
-					<Route element={<RootPage />} path="/" />
+					<Route element={<CalculationPage />} path="/" />
 				</Route>
 			</Routes>
 		</BrowserRouter>

@@ -1,6 +1,6 @@
-import { DeliveryIcon, Exit, Time, User } from '@src/components/Icons';
-import { Container } from '@src/ui/Container/Container';
-import { Link } from '@src/ui/index';
+import { DeliveryIcon, Exit, Time, User } from '@src/shared/components/Icons';
+import { ROUTES } from '@src/shared/constants';
+import { Container, Link } from '@src/shared/ui/index';
 
 import styles from './styles.module.scss';
 
@@ -13,15 +13,15 @@ export const TopNavigation = () => {
 						<Link to={'/'}>
 							<DeliveryIcon />
 						</Link>
-						<Link startIcon={<User />} to={''}>
+						<Link startIcon={<User />} to={ROUTES.PROFILE}>
 							Профиль
 						</Link>
-						<Link startIcon={<Time />} to={''}>
+						<Link startIcon={<Time />} to={ROUTES.HISTORY}>
 							История
 						</Link>
 					</div>
-					<Link startIcon={<Exit />} to={''}>
-						Выйти
+					<Link startIcon={<Exit />} to={ROUTES.SIGNIN}>
+						Войти
 					</Link>
 				</div>
 			</Container>

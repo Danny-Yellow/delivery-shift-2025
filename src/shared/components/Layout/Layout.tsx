@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import { Container } from '@src/ui/index';
+import { Container } from '@src/shared/ui/index';
 import { Outlet } from 'react-router';
 
 interface LayoutProps {
