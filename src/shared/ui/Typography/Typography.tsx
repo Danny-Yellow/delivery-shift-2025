@@ -25,9 +25,12 @@ export const Typography = <Tag extends TypographyTag = 'p'>({
 	tag = 'p',
 	variant,
 	color = 'primary',
+	className,
 	children,
 }: TypographyProps<Tag>) => {
 	const Component = tag;
 
-	return <Component className={clsx(styles[variant], styles[color])}>{children}</Component>;
+	return (
+		<Component className={clsx(className, styles[color], styles[variant])}>{children}</Component>
+	);
 };

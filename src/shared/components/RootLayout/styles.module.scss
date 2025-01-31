@@ -1,0 +1,13 @@
+@use '@src/styles/vars' as *;
+
+.main {
+	min-height: calc(100vh - $header-height);
+}
+
+.primary {
+	background-color: $bg-primary;
+}
+
+.secondary {
+	background-color: $bg-secondary;
+}

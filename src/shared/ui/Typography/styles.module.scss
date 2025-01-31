@@ -1,10 +1,9 @@
 @use '@src/styles/vars' as *;
 
 .h1 {
-	// font-size: $text-5xl;
-	// font-weight: $font-bold;
-	font-size: 48px;
-	font-weight: 700;
+	font-size: $text-5xl;
+	font-weight: $font-bold;
+	line-height: $lh-5xl;
 }
 
 .h2 {
@@ -20,6 +19,7 @@
 .p_12_regular {
 	font-size: $text-xs;
 	font-weight: $font-normal;
+	line-height: $lh-xs;
 }
 
 .p_14_regular {
@@ -30,21 +30,26 @@
 .p_16_medium {
 	font-size: $text-base;
 	font-weight: $font-medium;
+	line-height: $lh-base;
 }
 
 .p_16_regular {
 	font-size: $text-base;
 	font-weight: $font-normal;
+	line-height: $lh-base;
 }
 
 .p_24_light {
 	font-size: $text-2xl;
 	font-weight: $font-light;
+	line-height: $lh-2xl;
 }
 
 .p_24_regular {
+	background-color: #f00;
 	font-size: $text-2xl;
 	font-weight: $font-normal;
+	line-height: $lh-2xl;
 }
 
 .primary {

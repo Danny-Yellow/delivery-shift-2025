@@ -7,24 +7,26 @@ import styles from './styles.module.scss';
 export const TopNavigation = () => {
 	return (
 		<div className={styles.navigation}>
-			<Container>
-				<div className={styles.content}>
-					<div className={styles.links}>
-						<Link to={'/'}>
-							<DeliveryIcon />
-						</Link>
-						<Link startIcon={<User />} to={ROUTES.PROFILE}>
-							Профиль
-						</Link>
-						<Link startIcon={<Time />} to={ROUTES.HISTORY}>
-							История
+			<div className={styles.wrapper}>
+				<Container>
+					<div className={styles.content}>
+						<div className={styles.links}>
+							<Link to={'/'}>
+								<DeliveryIcon />
+							</Link>
+							<Link startIcon={<User />} to={ROUTES.PROFILE}>
+								Профиль
+							</Link>
+							<Link startIcon={<Time />} to={ROUTES.HISTORY}>
+								История
+							</Link>
+						</div>
+						<Link startIcon={<Exit />} to={ROUTES.SIGNIN}>
+							Войти
 						</Link>
 					</div>
-					<Link startIcon={<Exit />} to={ROUTES.SIGNIN}>
-						Войти
-					</Link>
-				</div>
-			</Container>
+				</Container>
+			</div>
 		</div>
 	);
 };

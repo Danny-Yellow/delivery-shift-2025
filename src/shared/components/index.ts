@@ -1,2 +1,2 @@
 export * from './Icons/index';
-export * from './Layout/Layout';
+export * from './RootLayout/RootLayout';

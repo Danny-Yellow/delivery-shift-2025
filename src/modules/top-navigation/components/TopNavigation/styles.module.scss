@@ -1,8 +1,14 @@
 @use '@src/styles/vars' as *;
 
 .navigation {
-	padding: 24px 0;
+	display: flex;
+	height: $header-height;
+	align-items: center;
 	border-bottom: 1px solid $border-light;
+}
+
+.wrapper {
+	flex-basis: 100vw;
 }
 
 .content {

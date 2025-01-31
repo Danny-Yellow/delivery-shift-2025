@@ -1,0 +1,22 @@
+@use '@src/styles/vars' as *;
+
+.card {
+	max-width: 380px;
+}
+
+.title {
+	margin-bottom: 1rem;
+}
+
+.paragraph {
+	margin-bottom: 2.5rem;
+}
+
+.qr {
+	display: flex;
+	align-items: center;
+	padding: 1rem;
+	border-radius: 16px;
+	background-color: $bg-primary;
+	gap: 1rem;
+}
