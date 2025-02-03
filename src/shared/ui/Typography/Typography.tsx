@@ -11,6 +11,8 @@ type TypographyVariant =
 	| 'h2'
 	| 'h3'
 	| 'p_12_regular'
+	| 'p_14_medium'
+	| 'p_14_regular'
 	| 'p_16_medium'
 	| 'p_16_regular'
 	| 'p_24_light';

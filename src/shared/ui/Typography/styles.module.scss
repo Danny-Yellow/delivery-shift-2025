@@ -22,9 +22,16 @@
 	line-height: $lh-xs;
 }
 
+.p_14_medium {
+	font-size: $text-sm;
+	font-weight: $font-medium;
+	line-height: $lh-sm;
+}
+
 .p_14_regular {
 	font-size: $text-sm;
 	font-weight: $font-normal;
+	line-height: $lh-sm;
 }
 
 .p_16_medium {
@@ -46,7 +53,6 @@
 }
 
 .p_24_regular {
-	background-color: #f00;
 	font-size: $text-2xl;
 	font-weight: $font-normal;
 	line-height: $lh-2xl;

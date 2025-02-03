@@ -1,0 +1,36 @@
+@use '@src/styles/vars' as *;
+
+.root {
+	margin-top: -4px;
+	background-color: transparent;
+}
+
+.list {
+	display: flex;
+	padding: 0.125rem;
+	border-radius: 16px;
+	background-color: $bg-secondary;
+	font-size: $text-sm;
+}
+
+.trigger {
+	width: 100%;
+	padding: 0.625rem 1rem;
+	border-radius: 14px;
+	margin-top: 0;
+	background-color: $bg-secondary;
+	color: $text-tertiary;
+	cursor: pointer;
+
+	&[data-state='active'] {
+		background-color: $bg-primary;
+		color: $text-primary;
+	}
+}
+
+.content {
+	padding: 0.5rem;
+	border-radius: 8px;
+	margin-top: 0.5rem;
+	background-color: $bg-primary;
+}
