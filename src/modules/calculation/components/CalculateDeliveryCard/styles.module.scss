@@ -1,0 +1,19 @@
+@use '@src/styles/vars' as *;
+
+.card {
+	max-width: 500px;
+	flex: 1 1 400px;
+	padding: 2rem 4.5rem;
+	border-radius: $card-radius;
+	background-color: $bg-primary;
+}
+
+.header {
+	text-align: center;
+}
+
+.content {
+	display: grid;
+	margin-top: 24px;
+	gap: 1.5rem;
+}

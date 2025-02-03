@@ -1,0 +1,53 @@
+@use '@src/styles/vars' as *;
+
+.trigger {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+	border: 1px solid $border-light;
+	border-radius: 8px;
+	background-color: $bg-primary;
+	color: $text-secondary;
+	cursor: pointer;
+	font-size: $text-base;
+	outline: none;
+}
+
+.trigger_content {
+	display: flex;
+	gap: 0.25rem;
+}
+
+.value_placeholder {
+	display: flex;
+	align-items: center;
+	gap: 0.25rem;
+}
+
+.viewport {
+	padding: 0.25rem;
+}
+
+.content {
+	width: var(--radix-select-trigger-width);
+	border: 1px solid $border-light;
+	border-radius: 8px;
+	margin-top: 0.5rem;
+	background-color: $bg-primary;
+	color: $text-secondary;
+	font-size: $text-sm;
+	font-weight: $font-light;
+}
+
+.item {
+	padding: 0.5rem;
+	border-radius: 4px;
+	cursor: pointer;
+	outline: none;
+
+	&:hover {
+		background: $bg-tertiary;
+	}
+}
