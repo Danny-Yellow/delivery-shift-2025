@@ -10,3 +10,6 @@ export const getSelectedPointsSelector = (state: RootState) => {
 };
 
 export const getPackageTypesSelector = (state: RootState) => state.calculationDelivery.packageTypes;
+
+export const getSelectedPackageTypeSelector = (state: RootState) =>
+	state.calculationDelivery.selectedPackageType;

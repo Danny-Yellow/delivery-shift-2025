@@ -19,16 +19,26 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
 import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
-import { getPointsSelector, getSelectedPointsSelector } from '../../store';
+import {
+	getPackageTypesSelector,
+	getPointsSelector,
+	getSelectedPackageTypeSelector,
+	getSelectedPointsSelector,
+} from '../../store';
 import { ApproximatePackageSizeList } from '../ApproximatePackageSizeList/ApproximatePackageSizeList';
+import { ExactPackageSizeForm } from '../ExactPackageSizeForm/ExactPackageSizeForm';
 
 import styles from './styles.module.scss';
 
 export const CalculateDeliveryForm = () => {
 	const { data: points } = useSelector(getPointsSelector);
-	const selectedPoints = useSelector(getSelectedPointsSelector);
+	const { data: packageTypes } = useSelector(getPackageTypesSelector);
 
-	const { handleSenderPointSelect, handleReiceiverPointSelect } = useCalculateDeliveryForm();
+	const selectedPoints = useSelector(getSelectedPointsSelector);
+	const selectedPackageType = useSelector(getSelectedPackageTypeSelector);
+
+	const { handleSenderPointSelect, handleReiceiverPointSelect, handlePackageTypeSelect } =
+		useCalculateDeliveryForm();
 
 	return (
 		<form className={styles.form}>
@@ -38,9 +48,9 @@ export const CalculateDeliveryForm = () => {
 			<div className={styles.content}>
 				<Label>
 					<Typography variant="p_14_medium">Размер посылки</Typography>
-					<Select>
+					<Select value={selectedPackageType?.id} onValueChange={handlePackageTypeSelect}>
 						<SelectTrigger startIcon={<Email />}>
-							<SelectValue placeholder="Конверт" />
+							<SelectValue placeholder="Выберите размер" />
 						</SelectTrigger>
 						<SelectContent>
 							<Tabs defaultValue="approximate">
@@ -49,9 +59,11 @@ export const CalculateDeliveryForm = () => {
 									<TabsTrigger value="exact">Точные</TabsTrigger>
 								</TabsList>
 								<TabsContent className={styles.tabs_content} value="approximate">
-									<ApproximatePackageSizeList />
+									<ApproximatePackageSizeList packageTypes={packageTypes} />
 								</TabsContent>
-								<TabsContent value="exact">Контент примерных размеров</TabsContent>
+								<TabsContent className={styles.tabs_content} value="exact">
+									<ExactPackageSizeForm />
+								</TabsContent>
 							</Tabs>
 						</SelectContent>
 					</Select>

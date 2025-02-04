@@ -11,6 +11,7 @@ import { getPackageTypesThunk, getPointsThunk } from './thunks';
 const initialState: CalculationDeliveryState = {
 	selectedReiceiverPoint: null,
 	selectedSenderPoint: null,
+	selectedPackageType: null,
 	points: {
 		isLoading: false,
 		error: '',
@@ -34,6 +35,12 @@ export const calculationDeliverySlice = createSlice({
 		changeSelectedReiceiverPoint: (state, { payload }: PayloadAction<{ pointId: string }>) => {
 			const selectedPoint = state.points.data.find((point) => point.id === payload.pointId);
 			state.selectedReiceiverPoint = selectedPoint;
+		},
+		changeSelectedPackageType: (state, { payload }: PayloadAction<{ packageTypeId: string }>) => {
+			const selectedPackageType = state.packageTypes.data.find(
+				(packageType) => packageType.id === payload.packageTypeId,
+			);
+			state.selectedPackageType = selectedPackageType;
 		},
 	},
 	extraReducers: (builder) => {
@@ -68,5 +75,8 @@ export const calculationDeliverySlice = createSlice({
 	},
 });
 
-export const { changeSelectedSenderPoint, changeSelectedReiceiverPoint } =
-	calculationDeliverySlice.actions;
+export const {
+	changeSelectedSenderPoint,
+	changeSelectedReiceiverPoint,
+	changeSelectedPackageType,
+} = calculationDeliverySlice.actions;

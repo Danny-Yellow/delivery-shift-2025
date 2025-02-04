@@ -1,6 +1,11 @@
+
 import { useDispatch } from '@src/store';
 
-import { changeSelectedReiceiverPoint, changeSelectedSenderPoint } from '../store';
+import {
+	changeSelectedPackageType,
+	changeSelectedReiceiverPoint,
+	changeSelectedSenderPoint,
+} from '../store';
 
 export const useCalculateDeliveryForm = () => {
 	const dispatch = useDispatch();
@@ -13,5 +18,9 @@ export const useCalculateDeliveryForm = () => {
 		dispatch(changeSelectedReiceiverPoint({ pointId }));
 	}
 
-	return { handleSenderPointSelect, handleReiceiverPointSelect };
+	function handlePackageTypeSelect(packageTypeId: string) {
+		dispatch(changeSelectedPackageType({ packageTypeId }));
+	}
+
+	return { handleSenderPointSelect, handleReiceiverPointSelect, handlePackageTypeSelect };
 };

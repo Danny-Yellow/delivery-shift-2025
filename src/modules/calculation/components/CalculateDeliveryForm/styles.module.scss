@@ -10,7 +10,7 @@
 
 .cities_content {
 	overflow: hidden;
-	height: 185px;
+	max-height: 185px;
 	border-radius: $rounded-sm;
 	box-shadow: 0 0 12px #0000001a;
 }
@@ -37,7 +37,7 @@
 
 .tabs_content {
 	overflow: scroll;
-	height: 372px;
+	max-height: 372px;
 	border-radius: $rounded-sm;
 	margin-top: 0.5rem;
 	background-color: $bg-primary;

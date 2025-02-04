@@ -1,6 +1,7 @@
 import type { PackageType, Point } from '@src/shared/types';
 
 export interface CalculationDeliveryState {
+	selectedPackageType: PackageType | null;
 	selectedReiceiverPoint: Point | null;
 	selectedSenderPoint: Point | null;
 	packageTypes: {
