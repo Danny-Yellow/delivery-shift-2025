@@ -1,4 +1,8 @@
-import { CalculateDeliveryForm, getPointsThunk } from '@src/modules/calculation';
+import {
+	CalculateDeliveryForm,
+	getPackageTypesThunk,
+	getPointsThunk,
+} from '@src/modules/calculation';
 import { useDispatch } from '@src/store';
 import { useEffect } from 'react';
 
@@ -11,6 +15,7 @@ export const CalculationPage = () => {
 
 	useEffect(() => {
 		dispatch(getPointsThunk());
+		dispatch(getPackageTypesThunk());
 	}, []);
 
 	return (

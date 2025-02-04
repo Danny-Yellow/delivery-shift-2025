@@ -19,16 +19,14 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
 import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
-import {
-	getPointsSelector,
-	getSelectedPoints,
-} from '../../store';
+import { getPointsSelector, getSelectedPointsSelector } from '../../store';
+import { ApproximatePackageSizeList } from '../ApproximatePackageSizeList/ApproximatePackageSizeList';
 
 import styles from './styles.module.scss';
 
 export const CalculateDeliveryForm = () => {
 	const { data: points } = useSelector(getPointsSelector);
-	const selectedPoints = useSelector(getSelectedPoints);
+	const selectedPoints = useSelector(getSelectedPointsSelector);
 
 	const { handleSenderPointSelect, handleReiceiverPointSelect } = useCalculateDeliveryForm();
 
@@ -45,16 +43,16 @@ export const CalculateDeliveryForm = () => {
 							<SelectValue placeholder="Конверт" />
 						</SelectTrigger>
 						<SelectContent>
-							<SelectViewport>
-								<Tabs defaultValue="approximate">
-									<TabsList>
-										<TabsTrigger value="approximate">Примерные</TabsTrigger>
-										<TabsTrigger value="exact">Точные</TabsTrigger>
-									</TabsList>
-									<TabsContent value="approximate">Контент точных размеров</TabsContent>
-									<TabsContent value="exact">Контент примерных размеров</TabsContent>
-								</Tabs>
-							</SelectViewport>
+							<Tabs defaultValue="approximate">
+								<TabsList className={styles.tabs_list}>
+									<TabsTrigger value="approximate">Примерные</TabsTrigger>
+									<TabsTrigger value="exact">Точные</TabsTrigger>
+								</TabsList>
+								<TabsContent className={styles.tabs_content} value="approximate">
+									<ApproximatePackageSizeList />
+								</TabsContent>
+								<TabsContent value="exact">Контент примерных размеров</TabsContent>
+							</Tabs>
 						</SelectContent>
 					</Select>
 				</Label>

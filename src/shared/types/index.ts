@@ -1,2 +1,2 @@
-export * from './entitites/packageTypes';
+export * from './entitites/packageType';
 export * from './entitites/point';

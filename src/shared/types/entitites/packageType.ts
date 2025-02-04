@@ -1,4 +1,4 @@
-export interface PackageTypes {
+export interface PackageType {
 	height: number;
 	id: string;
 	length: number;

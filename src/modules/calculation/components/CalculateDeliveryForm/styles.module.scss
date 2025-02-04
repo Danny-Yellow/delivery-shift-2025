@@ -11,11 +11,13 @@
 .cities_content {
 	overflow: hidden;
 	height: 185px;
+	border-radius: $rounded-sm;
+	box-shadow: 0 0 12px #0000001a;
 }
 
 .cities_viewport {
+	padding: 0.25rem;
 	border: 1px solid $border-light;
-	border-radius: $rounded-sm;
 	background-color: $bg-primary;
 }
 
@@ -27,4 +29,22 @@
 	display: grid;
 	margin-top: 24px;
 	gap: 1.5rem;
+}
+
+.tabs_list {
+	box-shadow: 0 -2px 8px #0000001f;
+}
+
+.tabs_content {
+	overflow: scroll;
+	height: 372px;
+	border-radius: $rounded-sm;
+	margin-top: 0.5rem;
+	background-color: $bg-primary;
+	box-shadow: 0 2px 8px #0000002b;
+
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
 }

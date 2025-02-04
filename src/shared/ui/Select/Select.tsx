@@ -48,12 +48,7 @@ export const SelectContent = ({
 	</RadixSelect.Portal>
 );
 
-export const SelectViewport = ({
-	className,
-	...props
-}: ComponentProps<typeof RadixSelect.Viewport>) => (
-	<RadixSelect.Viewport className={clsx(styles.viewport, className)} {...props} />
-);
+export const SelectViewport = RadixSelect.Viewport;
 
 export const SelectItem = ({
 	children,
