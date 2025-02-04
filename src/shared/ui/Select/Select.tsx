@@ -36,10 +36,15 @@ export const SelectTrigger = ({
 
 export const SelectContent = ({
 	position = 'popper',
+	className,
 	...props
 }: ComponentProps<typeof RadixSelect.Content>) => (
 	<RadixSelect.Portal>
-		<RadixSelect.Content className={styles.content} position={position} {...props} />
+		<RadixSelect.Content
+			className={clsx(styles.content, className)}
+			position={position}
+			{...props}
+		/>
 	</RadixSelect.Portal>
 );
 

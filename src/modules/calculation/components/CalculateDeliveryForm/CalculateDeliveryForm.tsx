@@ -13,12 +13,17 @@ import {
 	TabsTrigger,
 } from '@src/shared/ui';
 import { Typography } from '@src/shared/ui/Typography/Typography';
+import { useSelector } from '@src/store';
+
+import { getPointsSelector } from '../../store';
 
 import styles from './styles.module.scss';
 
-export const CalculateDeliveryCard = () => {
+export const CalculateDeliveryForm = () => {
+	const { data: points } = useSelector(getPointsSelector);
+
 	return (
-		<form className={styles.card}>
+		<form className={styles.form}>
 			<div className={styles.header}>
 				<Typography variant="h2">Рассчитать доставку</Typography>
 			</div>
@@ -48,13 +53,15 @@ export const CalculateDeliveryCard = () => {
 					<Typography variant="p_14_medium">Город отправки</Typography>
 					<Select>
 						<SelectTrigger startIcon={<Location />}>
-							<SelectValue placeholder="Москва" />
+							<SelectValue placeholder="Выберите город" />
 						</SelectTrigger>
-						<SelectContent>
+						<SelectContent className={styles.cities_content}>
 							<SelectViewport className={styles.cities_viewport}>
-								<SelectItem value="moscow">Москва</SelectItem>
-								<SelectItem value="spb">Санкт-Петербург</SelectItem>
-								<SelectItem value="nsk">Новосибирск</SelectItem>
+								{points.map((point) => (
+									<SelectItem key={point.id} value={point.id}>
+										{point.name}
+									</SelectItem>
+								))}
 							</SelectViewport>
 						</SelectContent>
 					</Select>
@@ -64,13 +71,15 @@ export const CalculateDeliveryCard = () => {
 					<Typography variant="p_14_medium">Город назначения</Typography>
 					<Select>
 						<SelectTrigger startIcon={<Travel />}>
-							<SelectValue placeholder="Москва" />
+							<SelectValue placeholder="Выберите город" />
 						</SelectTrigger>
-						<SelectContent>
+						<SelectContent className={styles.cities_content}>
 							<SelectViewport className={styles.cities_viewport}>
-								<SelectItem value="moscow">Москва</SelectItem>
-								<SelectItem value="spb">Санкт-Петербург</SelectItem>
-								<SelectItem value="nsk">Новосибирск</SelectItem>
+								{points.map((point) => (
+									<SelectItem key={point.id} value={point.id}>
+										{point.name}
+									</SelectItem>
+								))}
 							</SelectViewport>
 						</SelectContent>
 					</Select>

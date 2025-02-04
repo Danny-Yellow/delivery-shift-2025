@@ -1,5 +1,4 @@
-
-import { TopNavigation } from '@src/modules';
+import { TopNavigation } from '@src/modules/top-navigation';
 import { Container } from '@src/shared/ui/index';
 import clsx from 'clsx';
 import { Outlet } from 'react-router';

@@ -1,11 +1,16 @@
 @use '@src/styles/vars' as *;
 
-.card {
+.form {
 	max-width: 500px;
 	flex: 1 1 400px;
 	padding: 2rem 4.5rem;
 	border-radius: $card-radius;
 	background-color: $bg-primary;
+}
+
+.cities_content {
+	overflow: hidden;
+	height: 185px;
 }
 
 .cities_viewport {
