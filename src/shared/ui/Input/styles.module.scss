@@ -1,0 +1,20 @@
+@use '@src/styles/vars' as *;
+
+.input {
+	padding: 0.75rem 0.5rem 0.75rem 0.75rem;
+	border: 1px solid $border-light;
+	border-radius: $rounded-sm;
+    font-size: $text-base;
+
+	&::placeholder {
+		color: $text-tertiary;
+	}
+
+	&:focus {
+		outline: 1px solid ;
+	}
+}
+
+.full {
+	width: 100%;
+}
