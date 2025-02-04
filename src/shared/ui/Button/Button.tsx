@@ -9,6 +9,16 @@ interface ButtonProps extends ComponentProps<'button'> {
 	variant?: 'contained' | 'outlined';
 }
 
-export const Button = ({ className, variant = 'contained', size, ...props }: ButtonProps) => (
-	<button className={clsx(className, styles[variant], styles[size], styles.button)} {...props} />
+export const Button = ({
+	className,
+	type = 'button',
+	variant = 'contained',
+	size,
+	...props
+}: ButtonProps) => (
+	<button
+		className={clsx(className, styles[variant], styles[size], styles.button)}
+		type={type}
+		{...props}
+	/>
 );

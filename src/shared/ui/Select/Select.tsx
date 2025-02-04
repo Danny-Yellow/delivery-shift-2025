@@ -55,8 +55,25 @@ export const SelectViewport = ({
 	<RadixSelect.Viewport className={clsx(styles.viewport, className)} {...props} />
 );
 
-export const SelectItem = ({ children, ...props }: ComponentProps<typeof RadixSelect.Item>) => (
-	<RadixSelect.Item className={styles.item} {...props}>
+export const SelectItem = ({
+	children,
+	className,
+	...props
+}: ComponentProps<typeof RadixSelect.Item>) => (
+	<RadixSelect.Item className={clsx(className, styles.item)} {...props}>
 		<RadixSelect.ItemText>{children}</RadixSelect.ItemText>
 	</RadixSelect.Item>
+);
+
+export const SelectButtonGroup = ({ className, ...props }: ComponentProps<'div'>) => (
+	<div className={clsx(className, styles.button_group)} {...props} />
+);
+
+export const SelectButton = ({
+	className,
+	value,
+	type = 'button',
+	...props
+}: ComponentProps<'button'>) => (
+	<button className={clsx(className, styles.button)} type={type} {...props} />
 );

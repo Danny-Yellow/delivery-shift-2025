@@ -49,3 +49,17 @@
 		background: $bg-tertiary;
 	}
 }
+
+.button_group {
+	display: flex;
+	background: inherit;
+	gap: 0.5rem;
+}
+
+.button {
+	background: inherit;
+	color: $text-tertiary;
+	cursor: pointer;
+	font-size: $text-sm;
+	text-decoration-line: underline;
+}

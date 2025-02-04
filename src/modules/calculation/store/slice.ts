@@ -8,6 +8,8 @@ import type { CalculationDeliveryState } from './types';
 import { getPointsThunk } from './thunks';
 
 const initialState: CalculationDeliveryState = {
+	selectedReiceiverPoint: null,
+	selectedSenderPoint: null,
 	points: {
 		isLoading: false,
 		error: '',
@@ -18,7 +20,16 @@ const initialState: CalculationDeliveryState = {
 export const calculationDeliverySlice = createSlice({
 	name: 'calculationDelivery',
 	initialState,
-	reducers: {},
+	reducers: {
+		changeSelectedSenderPoint: (state, { payload }: PayloadAction<{ pointId: string }>) => {
+			const selectedPoint = state.points.data.find((point) => point.id === payload.pointId);
+			state.selectedSenderPoint = selectedPoint;
+		},
+		changeSelectedReiceiverPoint: (state, { payload }: PayloadAction<{ pointId: string }>) => {
+			const selectedPoint = state.points.data.find((point) => point.id === payload.pointId);
+			state.selectedReiceiverPoint = selectedPoint;
+		},
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(getPointsThunk.pending, (state) => {
@@ -35,4 +46,5 @@ export const calculationDeliverySlice = createSlice({
 	},
 });
 
-export const costCalculationSliceActions = calculationDeliverySlice.actions;
+export const { changeSelectedSenderPoint, changeSelectedReiceiverPoint } =
+	calculationDeliverySlice.actions;

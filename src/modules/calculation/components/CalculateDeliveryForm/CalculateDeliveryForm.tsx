@@ -2,6 +2,8 @@ import { Email, Location, Travel } from '@src/shared/components';
 import {
 	Label,
 	Select,
+	SelectButton,
+	SelectButtonGroup,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
@@ -16,12 +18,19 @@ import { Button } from '@src/shared/ui/Button/Button';
 import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
-import { getPointsSelector } from '../../store';
+import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
+import {
+	getPointsSelector,
+	getSelectedPoints,
+} from '../../store';
 
 import styles from './styles.module.scss';
 
 export const CalculateDeliveryForm = () => {
 	const { data: points } = useSelector(getPointsSelector);
+	const selectedPoints = useSelector(getSelectedPoints);
+
+	const { handleSenderPointSelect, handleReiceiverPointSelect } = useCalculateDeliveryForm();
 
 	return (
 		<form className={styles.form}>
@@ -51,7 +60,7 @@ export const CalculateDeliveryForm = () => {
 				</Label>
 				<Label>
 					<Typography variant="p_14_medium">Город отправки</Typography>
-					<Select>
+					<Select value={selectedPoints.senderPoint?.id} onValueChange={handleSenderPointSelect}>
 						<SelectTrigger startIcon={<Location />}>
 							<SelectValue placeholder="Выберите город" />
 						</SelectTrigger>
@@ -65,10 +74,24 @@ export const CalculateDeliveryForm = () => {
 							</SelectViewport>
 						</SelectContent>
 					</Select>
+					<SelectButtonGroup>
+						{points.slice(0, 3).map((point) => (
+							<SelectButton
+								key={point.id}
+								value={point.id}
+								onClick={() => handleSenderPointSelect(point.id)}
+							>
+								{point.name}
+							</SelectButton>
+						))}
+					</SelectButtonGroup>
 				</Label>
 				<Label>
 					<Typography variant="p_14_medium">Город назначения</Typography>
-					<Select>
+					<Select
+						value={selectedPoints.reiceiverPoint?.id}
+						onValueChange={handleReiceiverPointSelect}
+					>
 						<SelectTrigger startIcon={<Travel />}>
 							<SelectValue placeholder="Выберите город" />
 						</SelectTrigger>
@@ -82,8 +105,19 @@ export const CalculateDeliveryForm = () => {
 							</SelectViewport>
 						</SelectContent>
 					</Select>
+					<SelectButtonGroup>
+						{points.slice(0, 3).map((point) => (
+							<SelectButton
+								key={point.id}
+								value={point.id}
+								onClick={() => handleReiceiverPointSelect(point.id)}
+							>
+								{point.name}
+							</SelectButton>
+						))}
+					</SelectButtonGroup>
 				</Label>
-				<Button>Рассчитать</Button>
+				<Button type="submit">Рассчитать</Button>
 			</div>
 		</form>
 	);
