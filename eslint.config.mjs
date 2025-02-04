@@ -7,9 +7,9 @@ export default eslint(
 		jsx: true,
 	},
 	{
-		name: 'node',
 		rules: {
 			'node/prefer-global/process': 'off',
+			'react-dom/no-missing-button-type': 'off',
 		},
 	},
 );

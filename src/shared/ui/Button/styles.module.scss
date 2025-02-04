@@ -1,0 +1,24 @@
+@use '@src/styles/vars' as *;
+
+.button {
+	padding: 1rem 0;
+	border-radius: $rounded-m;
+	cursor: pointer;
+	font-size: $text-base;
+	font-weight: $font-normal;
+	text-align: center;
+}
+
+.contained {
+	background-color: $bg-brand;
+	color: $text-invert;
+}
+
+.outlined {
+	background-color: $bg-primary;
+	color: $text-secondary;
+}
+
+.full {
+	width: 100%;
+}

@@ -12,6 +12,7 @@ import {
 	TabsList,
 	TabsTrigger,
 } from '@src/shared/ui';
+import { Button } from '@src/shared/ui/Button/Button';
 import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
@@ -84,6 +85,7 @@ export const CalculateDeliveryForm = () => {
 						</SelectContent>
 					</Select>
 				</Label>
+				<Button>Рассчитать</Button>
 			</div>
 		</form>
 	);
