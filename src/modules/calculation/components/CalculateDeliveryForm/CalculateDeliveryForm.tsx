@@ -49,7 +49,6 @@ export const CalculateDeliveryForm = () => {
 						</SelectContent>
 					</Select>
 				</Label>
-
 				<Label>
 					<Typography variant="p_14_medium">Город отправки</Typography>
 					<Select>
@@ -67,7 +66,6 @@ export const CalculateDeliveryForm = () => {
 						</SelectContent>
 					</Select>
 				</Label>
-
 				<Label>
 					<Typography variant="p_14_medium">Город назначения</Typography>
 					<Select>

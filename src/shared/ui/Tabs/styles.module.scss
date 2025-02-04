@@ -8,7 +8,7 @@
 .list {
 	display: flex;
 	padding: 0.125rem;
-	border-radius: 16px;
+	border-radius: $rounded-m;
 	background-color: $bg-secondary;
 	font-size: $text-sm;
 }
@@ -16,7 +16,7 @@
 .trigger {
 	width: 100%;
 	padding: 0.625rem 1rem;
-	border-radius: 14px;
+	border-radius: calc($rounded-m - 0.125rem); // radius - list padding
 	margin-top: 0;
 	background-color: $bg-secondary;
 	color: $text-tertiary;
@@ -30,7 +30,7 @@
 
 .content {
 	padding: 0.5rem;
-	border-radius: 8px;
+	border-radius: $rounded-sm;
 	margin-top: 0.5rem;
 	background-color: $bg-primary;
 }
