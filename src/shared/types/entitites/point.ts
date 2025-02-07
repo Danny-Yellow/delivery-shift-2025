@@ -1,6 +1,9 @@
-export interface Point {
-	id: string;
+export interface PointCoordinates {
 	latitude: number;
-	longitude: string;
+	longitude: number;
+}
+
+export interface Point extends PointCoordinates {
+	id: string;
 	name: string;
 }

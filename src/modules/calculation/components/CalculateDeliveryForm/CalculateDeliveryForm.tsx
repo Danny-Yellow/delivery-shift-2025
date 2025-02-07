@@ -22,8 +22,6 @@ import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
 import {
 	getPackageTypesSelector,
 	getPointsSelector,
-	getSelectedPackageTypeSelector,
-	getSelectedPointsSelector,
 } from '../../store';
 import { ApproximatePackageSizeList } from '../ApproximatePackageSizeList/ApproximatePackageSizeList';
 import { ExactPackageSizeForm } from '../ExactPackageSizeForm/ExactPackageSizeForm';
@@ -34,23 +32,39 @@ export const CalculateDeliveryForm = () => {
 	const { data: points } = useSelector(getPointsSelector);
 	const { data: packageTypes } = useSelector(getPackageTypesSelector);
 
-	const selectedPoints = useSelector(getSelectedPointsSelector);
-	const selectedPackageType = useSelector(getSelectedPackageTypeSelector);
+	const {
+		isOpenPackageType,
+		selectedPackageType,
+		selectedPoints,
+		handleSenderPointSelect,
+		handleReiceiverPointSelect,
+		handlePackageTypeSelect,
+		handlePackageTypeOpenChange,
+		handleCalculateDeliverySubmit,
+	} = useCalculateDeliveryForm();
 
-	const { handleSenderPointSelect, handleReiceiverPointSelect, handlePackageTypeSelect } =
-		useCalculateDeliveryForm();
+	const buttonIsDisabled = [
+		selectedPackageType,
+		selectedPoints.reiceiverPoint,
+		selectedPoints.senderPoint,
+	].includes(null);
 
 	return (
-		<form className={styles.form}>
+		<form className={styles.form} onSubmit={handleCalculateDeliverySubmit}>
 			<div className={styles.header}>
 				<Typography variant="h2">Рассчитать доставку</Typography>
 			</div>
 			<div className={styles.content}>
 				<Label>
 					<Typography variant="p_14_medium">Размер посылки</Typography>
-					<Select value={selectedPackageType?.id} onValueChange={handlePackageTypeSelect}>
+					<Select
+						value={selectedPackageType?.id}
+						onOpenChange={(isOpen) => handlePackageTypeOpenChange(isOpen)}
+						onValueChange={handlePackageTypeSelect}
+						open={isOpenPackageType}
+					>
 						<SelectTrigger startIcon={<Email />}>
-							<SelectValue placeholder="Выберите размер" />
+							{selectedPackageType?.name ?? 'Выберите размер'}
 						</SelectTrigger>
 						<SelectContent>
 							<Tabs defaultValue="approximate">
@@ -62,7 +76,7 @@ export const CalculateDeliveryForm = () => {
 									<ApproximatePackageSizeList packageTypes={packageTypes} />
 								</TabsContent>
 								<TabsContent className={styles.tabs_content} value="exact">
-									<ExactPackageSizeForm />
+									<ExactPackageSizeForm onSubmit={() => handlePackageTypeOpenChange(false)} />
 								</TabsContent>
 							</Tabs>
 						</SelectContent>
@@ -127,7 +141,9 @@ export const CalculateDeliveryForm = () => {
 						))}
 					</SelectButtonGroup>
 				</Label>
-				<Button type="submit">Рассчитать</Button>
+				<Button disabled={buttonIsDisabled} type="submit">
+					Рассчитать
+				</Button>
 			</div>
 		</form>
 	);

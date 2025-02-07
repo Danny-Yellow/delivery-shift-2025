@@ -1,8 +1,11 @@
-export interface PackageType {
+export interface PackageSize {
 	height: number;
-	id: string;
 	length: number;
-	name: string;
 	weight: number;
 	width: number;
+}
+
+export interface PackageType extends PackageSize {
+	id: string;
+	name: string;
 }

@@ -1,17 +1,25 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { GetPointsResponse } from '@src/shared/api';
+import type { CalculateDeliveryResponse } from '@src/shared/api/actions/calculateDelivery';
 import type { GetPackageTypesResponse } from '@src/shared/api/entities/packageTypes';
+import type { PackageType } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { CalculationDeliveryState } from './types';
 
-import { getPackageTypesThunk, getPointsThunk } from './thunks';
+import { calculateDeliveryThunk, getPackageTypesThunk, getPointsThunk } from './thunks';
 
 const initialState: CalculationDeliveryState = {
 	selectedReiceiverPoint: null,
 	selectedSenderPoint: null,
 	selectedPackageType: null,
+	isOpenPackageType: false,
+	deliveryOptions: {
+		isLoading: false,
+		error: '',
+		data: [],
+	},
 	points: {
 		isLoading: false,
 		error: '',
@@ -42,6 +50,12 @@ export const calculationDeliverySlice = createSlice({
 			);
 			state.selectedPackageType = selectedPackageType;
 		},
+		setSelectedPackageType: (state, { payload }: PayloadAction<PackageType>) => {
+			state.selectedPackageType = payload;
+		},
+		setIsOpenPackageTypeSelecting: (state, { payload }: PayloadAction<boolean>) => {
+			state.isOpenPackageType = payload;
+		},
 	},
 	extraReducers: (builder) => {
 		builder
@@ -71,6 +85,21 @@ export const calculationDeliverySlice = createSlice({
 					state.packageTypes.isLoading = false;
 					state.packageTypes.data = action.payload.packages;
 				},
+			)
+			// Способы отправки
+			.addCase(calculateDeliveryThunk.pending, (state) => {
+				state.deliveryOptions.isLoading = true;
+			})
+			.addCase(calculateDeliveryThunk.rejected, (state, action) => {
+				state.deliveryOptions.isLoading = false;
+				state.deliveryOptions.error = action.error.message;
+			})
+			.addCase(
+				calculateDeliveryThunk.fulfilled,
+				(state, action: PayloadAction<CalculateDeliveryResponse>) => {
+					state.deliveryOptions.isLoading = false;
+					state.deliveryOptions.data = action.payload.options;
+				},
 			);
 	},
 });
@@ -79,4 +108,6 @@ export const {
 	changeSelectedSenderPoint,
 	changeSelectedReiceiverPoint,
 	changeSelectedPackageType,
+	setSelectedPackageType,
+	setIsOpenPackageTypeSelecting,
 } = calculationDeliverySlice.actions;

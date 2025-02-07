@@ -13,3 +13,6 @@ export const getPackageTypesSelector = (state: RootState) => state.calculationDe
 
 export const getSelectedPackageTypeSelector = (state: RootState) =>
 	state.calculationDelivery.selectedPackageType;
+
+export const getIsOpenPackageTypeSelector = (state: RootState) =>
+	state.calculationDelivery.isOpenPackageType;
