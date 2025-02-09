@@ -1,4 +1,6 @@
+import { ROUTES } from '@src/shared/constants';
 import { useDispatch, useSelector } from '@src/store';
+import { useNavigate } from 'react-router';
 
 import {
 	calculateDeliveryThunk,
@@ -13,6 +15,8 @@ import {
 
 export const useCalculateDeliveryForm = () => {
 	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
 
 	const selectedPoints = useSelector(getSelectedPointsSelector);
 	const selectedPackageType = useSelector(getSelectedPackageTypeSelector);
@@ -34,15 +38,19 @@ export const useCalculateDeliveryForm = () => {
 		dispatch(changeSelectedPackageType({ packageTypeId }));
 	}
 
-	function handleCalculateDeliverySubmit(event: React.FormEvent<HTMLFormElement>) {
+	async function handleCalculateDeliverySubmit(event: React.FormEvent<HTMLFormElement>) {
 		event.preventDefault();
-		dispatch(
+		const resultAction = await dispatch(
 			calculateDeliveryThunk({
 				package: selectedPackageType,
 				receiverPoint: selectedPoints.reiceiverPoint,
 				senderPoint: selectedPoints.senderPoint,
 			}),
 		);
+
+		if (calculateDeliveryThunk.fulfilled.match(resultAction)) {
+			navigate(ROUTES.PROCESSING);
+		}
 	}
 
 	return {

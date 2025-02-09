@@ -1,0 +1,50 @@
+@use '@src/styles/vars' as *;
+
+.form {
+	max-width: 500px;
+	flex: 1 1 400px;
+	padding: 2rem 4.5rem;
+	border-radius: $rounded-xl;
+	background-color: $bg-primary;
+}
+
+.cities_content {
+	overflow: hidden;
+	max-height: 185px;
+	border-radius: $rounded-sm;
+	box-shadow: 0 0 12px #0000001a;
+}
+
+.cities_viewport {
+	padding: 0.25rem;
+	border: 1px solid $border-light;
+	background-color: $bg-primary;
+}
+
+.header {
+	text-align: center;
+}
+
+.content {
+	display: grid;
+	margin-top: 24px;
+	gap: 1.5rem;
+}
+
+.tabs_list {
+	box-shadow: 0 -2px 8px #0000001f;
+}
+
+.tabs_content {
+	overflow: scroll;
+	max-height: 372px;
+	border-radius: $rounded-sm;
+	margin-top: 0.5rem;
+	background-color: $bg-primary;
+	box-shadow: 0 2px 8px #0000002b;
+
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+}
