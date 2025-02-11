@@ -1,0 +1,30 @@
+@use '@src/styles/vars' as *;
+
+.form {
+	max-width: 500px;
+	flex: 1 1 400px;
+	padding: 2rem 4.5rem;
+	border-radius: $rounded-xl;
+	background-color: $bg-primary;
+}
+
+.cities_content {
+	overflow: hidden;
+	height: 185px;
+}
+
+.cities_viewport {
+	border: 1px solid $border-light;
+	border-radius: $rounded-sm;
+	background-color: $bg-primary;
+}
+
+.header {
+	text-align: center;
+}
+
+.content {
+	display: grid;
+	margin-top: 24px;
+	gap: 1.5rem;
+}

@@ -1,0 +1,71 @@
+@use '@src/styles/vars' as *;
+
+.h1 {
+	font-size: $text-5xl;
+	font-weight: $font-bold;
+	line-height: $lh-5xl;
+}
+
+.h2 {
+	font-size: $text-2xl;
+	font-weight: $font-bold;
+}
+
+.h3 {
+	font-size: $text-xl;
+	font-weight: $font-semibold;
+}
+
+.p_12_regular {
+	font-size: $text-xs;
+	font-weight: $font-normal;
+	line-height: $lh-xs;
+}
+
+.p_14_medium {
+	font-size: $text-sm;
+	font-weight: $font-medium;
+	line-height: $lh-sm;
+}
+
+.p_14_regular {
+	font-size: $text-sm;
+	font-weight: $font-normal;
+	line-height: $lh-sm;
+}
+
+.p_16_medium {
+	font-size: $text-base;
+	font-weight: $font-medium;
+	line-height: $lh-base;
+}
+
+.p_16_regular {
+	font-size: $text-base;
+	font-weight: $font-normal;
+	line-height: $lh-base;
+}
+
+.p_24_light {
+	font-size: $text-2xl;
+	font-weight: $font-light;
+	line-height: $lh-2xl;
+}
+
+.p_24_regular {
+	font-size: $text-2xl;
+	font-weight: $font-normal;
+	line-height: $lh-2xl;
+}
+
+.primary {
+	color: $text-primary;
+}
+
+.secondary {
+	color: $text-secondary;
+}
+
+.tertiary {
+	color: $text-tertiary;
+}

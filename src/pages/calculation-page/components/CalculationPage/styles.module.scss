@@ -1,0 +1,9 @@
+@use '@src/styles/vars.scss' as *;
+
+.page {
+	display: flex;
+	height: 100%;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 5rem;
+}

@@ -1,18 +1,18 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "module": "CommonJS",
-    "moduleResolution": "node",
-    "paths": {
-      "@src/*": ["./src/*"]
-    },
-    "allowJs": true,
-    "noImplicitAny": true,
-    "outDir": "./dist/",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "plugins": [{ "name": "typescript-plugin-css-modules" }]
-  }
+	"compilerOptions": {
+		"target": "es5",
+		"jsx": "react-jsx",
+		"baseUrl": ".",
+		"module": "CommonJS",
+		"moduleResolution": "node",
+		"paths": {
+			"@src/*": ["./src/*"]
+		},
+		"allowJs": true,
+		"noImplicitAny": true,
+		"outDir": "./dist/",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"plugins": [{ "name": "typescript-plugin-css-modules" }]
+	}
 }

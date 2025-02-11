@@ -1,0 +1,24 @@
+@use '@src/styles/vars' as *;
+
+.navigation {
+	display: flex;
+	height: $header-height;
+	align-items: center;
+	border-bottom: 1px solid $border-light;
+}
+
+.wrapper {
+	flex-basis: 100vw;
+}
+
+.content {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.links {
+	display: flex;
+	align-items: center;
+	gap: 32px;
+}

@@ -1,0 +1,8 @@
+@use '@src/styles/vars' as *;
+
+.main {
+	display: flex;
+	min-height: calc(100vh - $header-height);
+	align-items: center;
+	background-color: $bg-secondary;
+}
