@@ -1,22 +1,31 @@
+import type { DeliveryOption } from '@src/shared/types';
+
 import { FreeDelivery } from '@src/shared/components';
 import { capitalizeFirstLetter, declensionWorkingDays } from '@src/shared/helpers';
 import { Typography } from '@src/shared/ui/Typography/Typography';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { dispatchMethodIconsMap } from '../../constants/dispatchMethodIconsMap';
-import { getDeliveryMethodsSelector } from '../../store';
+import { getDeliveryMethodsSelector, incrementStep, setDeliveryMethod } from '../../store';
 
 import styles from './styles.module.scss';
 
-export const DispatchMethods = () => {
+export const DeliveryMethods = () => {
+	const dispatch = useDispatch();
+
 	const { data } = useSelector(getDeliveryMethodsSelector);
+
+	function handleMethodClick(method: DeliveryOption) {
+		dispatch(setDeliveryMethod(method));
+		dispatch(incrementStep());
+	}
 
 	return (
 		<>
 			<ul className={styles.list}>
 				{data.map((method) => (
 					<li key={method.id}>
-						<button className={styles.method}>
+						<button className={styles.method} onClick={() => handleMethodClick(method)}>
 							{dispatchMethodIconsMap[method.type]}
 							<div>
 								<Typography variant="p_12_regular" color="tertiary">

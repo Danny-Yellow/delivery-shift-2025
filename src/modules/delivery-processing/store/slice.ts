@@ -1,14 +1,26 @@
+import type { PayloadAction } from '@reduxjs/toolkit';
+import type { DeliveryOption } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { DeliveryProcessingState } from './types';
 
-const initialState: DeliveryProcessingState = {};
+const initialState: DeliveryProcessingState = {
+	currentStep: 1,
+	selectedDeliveryMethod: null,
+};
 
 export const deliveryProcessingSlice = createSlice({
 	name: 'deliveryProcessing',
 	initialState,
-	reducers: {},
+	reducers: {
+		setDeliveryMethod: (state, { payload }: PayloadAction<DeliveryOption>) => {
+			state.selectedDeliveryMethod = payload;
+		},
+		incrementStep: (state) => {
+			state.currentStep += 1;
+		},
+	},
 	// extraReducers: (builder) => {
 	// 	builder
 	// 		// Способы отправки
@@ -29,4 +41,4 @@ export const deliveryProcessingSlice = createSlice({
 	// },
 });
 
-// export const {} = calculationDeliverySlice.actions;
+export const { setDeliveryMethod, incrementStep } = deliveryProcessingSlice.actions;

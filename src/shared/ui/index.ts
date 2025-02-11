@@ -1,5 +1,5 @@
 export * from './Container/Container';
-export * from './Label/Label';
+export * from './InputLabel/InputLabel';
 export * from './Link/Link';
 export * from './Progress/Progress';
 export * from './Select/Select';

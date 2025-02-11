@@ -1,1 +1,1 @@
-export * from './components/DispatchMethod/DispatchMethods';
+export * from './components/DispatchMethod/DeliveryMethods';

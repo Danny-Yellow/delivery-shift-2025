@@ -1,6 +1,6 @@
 import { Email, Location, Travel } from '@src/shared/components';
 import {
-	Label,
+	InputLabel,
 	Select,
 	SelectButton,
 	SelectButtonGroup,
@@ -19,10 +19,7 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
 import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
-import {
-	getPackageTypesSelector,
-	getPointsSelector,
-} from '../../store';
+import { getPackageTypesSelector, getPointsSelector } from '../../store';
 import { ApproximatePackageSizeList } from '../ApproximatePackageSizeList/ApproximatePackageSizeList';
 import { ExactPackageSizeForm } from '../ExactPackageSizeForm/ExactPackageSizeForm';
 
@@ -55,7 +52,7 @@ export const CalculateDeliveryForm = () => {
 				<Typography variant="h2">Рассчитать доставку</Typography>
 			</div>
 			<div className={styles.content}>
-				<Label>
+				<InputLabel>
 					<Typography variant="p_14_medium">Размер посылки</Typography>
 					<Select
 						value={selectedPackageType?.id}
@@ -81,8 +78,8 @@ export const CalculateDeliveryForm = () => {
 							</Tabs>
 						</SelectContent>
 					</Select>
-				</Label>
-				<Label>
+				</InputLabel>
+				<InputLabel>
 					<Typography variant="p_14_medium">Город отправки</Typography>
 					<Select value={selectedPoints.senderPoint?.id} onValueChange={handleSenderPointSelect}>
 						<SelectTrigger startIcon={<Location />}>
@@ -109,8 +106,8 @@ export const CalculateDeliveryForm = () => {
 							</SelectButton>
 						))}
 					</SelectButtonGroup>
-				</Label>
-				<Label>
+				</InputLabel>
+				<InputLabel>
 					<Typography variant="p_14_medium">Город назначения</Typography>
 					<Select
 						value={selectedPoints.reiceiverPoint?.id}
@@ -140,7 +137,7 @@ export const CalculateDeliveryForm = () => {
 							</SelectButton>
 						))}
 					</SelectButtonGroup>
-				</Label>
+				</InputLabel>
 				<Button disabled={buttonIsDisabled} type="submit">
 					Рассчитать
 				</Button>
