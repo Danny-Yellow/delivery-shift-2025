@@ -1,50 +1,31 @@
 @use '@src/styles/vars' as *;
 
-.form {
-	max-width: 500px;
-	flex: 1 1 400px;
-	padding: 2rem 4.5rem;
-	border-radius: $rounded-xl;
-	background-color: $bg-primary;
-}
-
-.cities_content {
-	overflow: hidden;
-	max-height: 185px;
-	border-radius: $rounded-sm;
-	box-shadow: 0 0 12px #0000001a;
-}
-
-.cities_viewport {
-	padding: 0.25rem;
-	border: 1px solid $border-light;
-	background-color: $bg-primary;
-}
-
-.header {
-	text-align: center;
-}
-
-.content {
+.list {
 	display: grid;
-	margin-top: 24px;
 	gap: 1.5rem;
 }
 
-.tabs_list {
-	box-shadow: 0 -2px 8px #0000001f;
+.method {
+	display: flex;
+	width: 100%;
+	padding: 1rem;
+	border: 1px solid $border-light;
+	border-radius: $rounded-xl;
+	background-color: transparent;
+	cursor: pointer;
+	gap: 1rem;
+	text-align: start;
+
+	&:hover {
+		background-color: $bg-tertiary;
+	}
 }
 
-.tabs_content {
-	overflow: scroll;
-	max-height: 372px;
-	border-radius: $rounded-sm;
+.price {
 	margin-top: 0.5rem;
-	background-color: $bg-primary;
-	box-shadow: 0 2px 8px #0000002b;
+	margin-bottom: 1.5rem;
+}
 
-	&::-webkit-scrollbar {
-		width: 0;
-		height: 0;
-	}
+.gifts {
+	position: relative;
 }

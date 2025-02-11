@@ -1,4 +1,4 @@
-import { DispatchMethod } from '@src/modules/delivery-processing';
+import { DispatchMethods } from '@src/modules/delivery-processing';
 import { Progress } from '@src/shared/ui';
 import { Typography } from '@src/shared/ui/Typography/Typography';
 
@@ -16,7 +16,7 @@ export const DeliveryProcessingPage = () => {
 				</Typography>
 				<Progress max={7} value={1} />
 			</div>
-			<DispatchMethod />
+			<DispatchMethods />
 		</div>
 	);
 };

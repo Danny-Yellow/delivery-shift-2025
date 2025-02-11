@@ -18,7 +18,7 @@ type TypographyVariant =
 	| 'p_24_light';
 
 type TypographyProps<Tag extends TypographyTag> = ComponentProps<Tag> & {
-	color?: 'primary' | 'secondary' | 'tertiary';
+	color?: 'invert' | 'primary' | 'secondary' | 'tertiary';
 	tag?: TypographyTag;
 	variant: TypographyVariant;
 };
