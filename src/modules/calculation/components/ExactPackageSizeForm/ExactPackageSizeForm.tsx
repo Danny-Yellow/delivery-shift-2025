@@ -6,7 +6,7 @@ import { useForm } from '@tanstack/react-form';
 
 import type { ExactPackageSizeField } from '../../types/ExactPackageSizeForm';
 
-import { exactPackageSizeFields } from '../../constants/ExactPackageSizeFields';
+import { exactPackageSizeFields } from '../../constants/exactPackageSizeFields';
 import { getSelectedPackageTypeSelector, setSelectedPackageType } from '../../store';
 
 import styles from './styles.module.scss';

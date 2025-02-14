@@ -1,25 +1,34 @@
+import type { Person } from '@src/shared/types';
+
 import { DeliveryMethods } from '@src/modules/delivery-processing';
-import { ReceiverForm } from '@src/modules/delivery-processing/components/ReceiverForm/ReceiverForm';
-import { getCurrentStep } from '@src/modules/delivery-processing/store';
+import { PersonalForm } from '@src/modules/delivery-processing/components/PersonalForm/PersonalForm';
+import { getCurrentStep, reset, setReceiver } from '@src/modules/delivery-processing/store';
 import { Progress } from '@src/shared/ui';
 import { Typography } from '@src/shared/ui/Typography/Typography';
-import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './styles.module.scss';
 
-const stepsMap = [
-	{
-		title: 'Способ отправки',
-		component: <DeliveryMethods />,
-	},
-	{
-		title: 'Получатель',
-		component: <ReceiverForm />,
-	},
-];
-
 export const DeliveryProcessingPage = () => {
+	const dispatch = useDispatch();
+
+	const stepsMap = [
+		{
+			title: 'Способ отправки',
+			component: <DeliveryMethods />,
+		},
+		{
+			title: 'Получатель',
+			component: <PersonalForm onSubmit={(value: Person) => dispatch(setReceiver(value))} />,
+		},
+	];
+
 	const currentStep = useSelector(getCurrentStep);
+
+	useEffect(() => {
+		dispatch(reset());
+	}, []);
 
 	return (
 		<div className={styles.page}>

@@ -4,17 +4,21 @@
 	padding: 0.75rem 0.5rem 0.75rem 0.75rem;
 	border: 1px solid $border-light;
 	border-radius: $rounded-sm;
-    font-size: $text-base;
+	font-size: $text-base;
 
 	&::placeholder {
 		color: $text-tertiary;
 	}
 
 	&:focus {
-		outline: 1px solid ;
+		outline: 1px solid;
 	}
 }
 
 .full {
 	width: 100%;
+}
+
+.error {
+	border: 1px solid $error-color;
 }

@@ -13,7 +13,7 @@ export const Button = ({
 	className,
 	type = 'button',
 	variant = 'contained',
-	size,
+	size = 'full',
 	...props
 }: ButtonProps) => (
 	<button
@@ -21,4 +21,8 @@ export const Button = ({
 		type={type}
 		{...props}
 	/>
+);
+
+export const ButtonGroup = ({ className, ...props }: ComponentProps<'div'>) => (
+	<div className={clsx(className, styles.group)} {...props} />
 );

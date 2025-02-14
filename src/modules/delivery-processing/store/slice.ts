@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { DeliveryOption } from '@src/shared/types';
+import type { DeliveryOption, Person } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -8,6 +8,7 @@ import type { DeliveryProcessingState } from './types';
 const initialState: DeliveryProcessingState = {
 	currentStep: 1,
 	selectedDeliveryMethod: null,
+	receiver: null,
 };
 
 export const deliveryProcessingSlice = createSlice({
@@ -20,6 +21,13 @@ export const deliveryProcessingSlice = createSlice({
 		incrementStep: (state) => {
 			state.currentStep += 1;
 		},
+		decrementStep: (state) => {
+			state.currentStep -= 1;
+		},
+		setReceiver: (state, { payload }: PayloadAction<Person>) => {
+			state.receiver = payload;
+		},
+		reset: () => initialState,
 	},
 	// extraReducers: (builder) => {
 	// 	builder
@@ -41,4 +49,5 @@ export const deliveryProcessingSlice = createSlice({
 	// },
 });
 
-export const { setDeliveryMethod, incrementStep } = deliveryProcessingSlice.actions;
+export const { setDeliveryMethod, incrementStep, setReceiver, decrementStep, reset } =
+	deliveryProcessingSlice.actions;
