@@ -1,8 +1,14 @@
-import type { Person } from '@src/shared/types';
+import type { Adress, AdressWithOptions, Person } from '@src/shared/types';
 
-import { DeliveryMethods } from '@src/modules/delivery-processing';
-import { PersonalForm } from '@src/modules/delivery-processing/components/PersonalForm/PersonalForm';
-import { getCurrentStep, reset, setReceiver } from '@src/modules/delivery-processing/store';
+import { AdressForm, DeliveryMethods, PersonalForm } from '@src/modules/delivery-processing';
+import {
+	getCurrentStep,
+	reset,
+	setReceiver,
+	setReceiverAdress,
+	setSender,
+	setSenderAdress,
+} from '@src/modules/delivery-processing/store';
 import { Progress } from '@src/shared/ui';
 import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useEffect } from 'react';
@@ -13,6 +19,12 @@ import styles from './styles.module.scss';
 export const DeliveryProcessingPage = () => {
 	const dispatch = useDispatch();
 
+	const currentStep = useSelector(getCurrentStep);
+
+	useEffect(() => {
+		dispatch(reset());
+	}, []);
+
 	const stepsMap = [
 		{
 			title: 'Способ отправки',
@@ -20,15 +32,30 @@ export const DeliveryProcessingPage = () => {
 		},
 		{
 			title: 'Получатель',
-			component: <PersonalForm onSubmit={(value: Person) => dispatch(setReceiver(value))} />,
+			component: (
+				<PersonalForm key={1} onSubmit={(value: Person) => dispatch(setReceiver(value))} />
+			),
+		},
+		{
+			title: 'Отправитель',
+			component: <PersonalForm key={2} onSubmit={(value: Person) => dispatch(setSender(value))} />,
+		},
+		{
+			title: 'Откуда забрать',
+			component: (
+				<AdressForm key={1} onSubmit={(value: Adress) => dispatch(setSenderAdress(value))} />
+			),
+		},
+		{
+			title: 'Куда доставить',
+			component: (
+				<AdressForm
+					key={2}
+					onSubmit={(value: AdressWithOptions) => dispatch(setReceiverAdress(value))}
+				/>
+			),
 		},
 	];
-
-	const currentStep = useSelector(getCurrentStep);
-
-	useEffect(() => {
-		dispatch(reset());
-	}, []);
 
 	return (
 		<div className={styles.page}>

@@ -63,9 +63,9 @@
 	},
 	"lint-staged": {
 		"*.{ts,tsx}": [
-			"prettier --write",
-			"eslint --fix"
+			"prettier --write --no-tty",
+			"eslint --fix --no-tty"
 		],
-		"*.scss": "stylelint --fix"
+		"*.scss": "stylelint --fix --no-tty"
 	}
 }

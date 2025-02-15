@@ -1,7 +1,5 @@
-import type { Person } from '@src/shared/types';
+import type { Field, Person } from '@src/shared/types';
 
-export interface ReceiverField {
-	label: string;
+export interface ReceiverField extends Field {
 	name: keyof Person;
-	placeholder: string;
 }

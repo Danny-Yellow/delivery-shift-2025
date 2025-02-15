@@ -1,14 +1,17 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { DeliveryOption, Person } from '@src/shared/types';
+import type { Adress, AdressWithOptions, DeliveryOption, Person } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { DeliveryProcessingState } from './types';
 
 const initialState: DeliveryProcessingState = {
-	currentStep: 1,
+	currentStep: 5,
 	selectedDeliveryMethod: null,
 	receiver: null,
+	sender: null,
+	receiverAdress: null,
+	senderAdress: null,
 };
 
 export const deliveryProcessingSlice = createSlice({
@@ -26,6 +29,15 @@ export const deliveryProcessingSlice = createSlice({
 		},
 		setReceiver: (state, { payload }: PayloadAction<Person>) => {
 			state.receiver = payload;
+		},
+		setSender: (state, { payload }: PayloadAction<Person>) => {
+			state.sender = payload;
+		},
+		setReceiverAdress: (state, { payload }: PayloadAction<AdressWithOptions>) => {
+			state.receiverAdress = payload;
+		},
+		setSenderAdress: (state, { payload }: PayloadAction<Adress>) => {
+			state.senderAdress = payload;
 		},
 		reset: () => initialState,
 	},
@@ -49,5 +61,13 @@ export const deliveryProcessingSlice = createSlice({
 	// },
 });
 
-export const { setDeliveryMethod, incrementStep, setReceiver, decrementStep, reset } =
-	deliveryProcessingSlice.actions;
+export const {
+	setDeliveryMethod,
+	incrementStep,
+	setReceiver,
+	decrementStep,
+	setSender,
+	setReceiverAdress,
+	setSenderAdress,
+	reset,
+} = deliveryProcessingSlice.actions;
