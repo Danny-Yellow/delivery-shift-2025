@@ -1,6 +1,7 @@
 import type { Adress, AdressWithOptions } from '@src/shared/types/entitites/adress';
 
 import { Button, ButtonGroup, Form, InputLabel, InputWithPrefix, Typography } from '@src/shared/ui';
+import { Checkbox, CheckboxLabel } from '@src/shared/ui/Checkbox/Checkbox';
 import { useForm } from '@tanstack/react-form';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
@@ -77,7 +78,12 @@ export const AdressForm = ({
 					name={name}
 				/>
 			))}
-			{isReceiverAdress && null}
+			{isReceiverAdress && (
+				<CheckboxLabel>
+					<Checkbox defaultChecked={false} />
+					<Typography variant="p_16_regular">Оставить заказ у двери</Typography>
+				</CheckboxLabel>
+			)}
 			<ButtonGroup>
 				<Button variant="outlined" onClick={() => dispatch(decrementStep())}>
 					Назад

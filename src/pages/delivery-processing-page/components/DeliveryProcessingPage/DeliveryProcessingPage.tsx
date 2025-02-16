@@ -50,6 +50,7 @@ export const DeliveryProcessingPage = () => {
 			title: 'Куда доставить',
 			component: (
 				<AdressForm
+					isReceiverAdress
 					key={2}
 					onSubmit={(value: AdressWithOptions) => dispatch(setReceiverAdress(value))}
 				/>

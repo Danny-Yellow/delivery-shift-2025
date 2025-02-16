@@ -1,4 +1,5 @@
 export * from './Box';
+export * from './Check';
 export * from './ChevronDown';
 export * from './DeliveryIcon';
 export * from './Email';

@@ -17,6 +17,10 @@ export const Input = ({ className, size = 'full', hasError = false, ...props }: 
 	/>
 );
 
+export const InputLabel = ({ className, ...props }: ComponentProps<'label'>) => (
+	<label className={clsx(className, styles.label)} {...props} />
+);
+
 export const InputWithPrefix = ({
 	prefix,
 	onChange,
