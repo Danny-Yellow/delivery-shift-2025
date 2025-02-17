@@ -5,6 +5,7 @@ export * from './Form/Form';
 export * from './Input/Input'; //!
 export * from './Link/Link';
 export * from './Progress/Progress';
+export * from './RadioGroup/RadioGroup';
 export * from './Select/Select';
 export * from './Tabs/Tabs';
 export * from './Tooltip/Tooltip';

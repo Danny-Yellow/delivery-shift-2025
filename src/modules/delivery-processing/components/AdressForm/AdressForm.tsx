@@ -1,4 +1,4 @@
-import type { Adress } from '@src/shared/types/entitites/adress';
+import type { Adress } from '@src/shared/types';
 import type { ReactNode } from 'react';
 
 import { Button, ButtonGroup, Form, InputLabel, InputWithPrefix, Typography } from '@src/shared/ui';

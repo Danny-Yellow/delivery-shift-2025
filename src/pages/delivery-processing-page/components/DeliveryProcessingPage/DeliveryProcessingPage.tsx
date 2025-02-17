@@ -1,7 +1,12 @@
 import type { Adress, Person, ReceiverAdress } from '@src/shared/types';
 
-import { AdressForm, DeliveryMethods, PersonalForm } from '@src/modules/delivery-processing';
-import { ReceiverAdressForm } from '@src/modules/delivery-processing/components/ReceiverAdressForm/ReceiverAdressForm';
+import {
+	AdressForm,
+	DeliveryMethods,
+	PayerSelection,
+	PersonalForm,
+	ReceiverAdressForm,
+} from '@src/modules/delivery-processing';
 import {
 	getCurrentStep,
 	reset,
@@ -10,8 +15,7 @@ import {
 	setSender,
 	setSenderAdress,
 } from '@src/modules/delivery-processing/store';
-import { Progress } from '@src/shared/ui';
-import { Typography } from '@src/shared/ui/Typography/Typography';
+import { Progress, Typography } from '@src/shared/ui';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -52,6 +56,10 @@ export const DeliveryProcessingPage = () => {
 					onSubmit={(value: ReceiverAdress) => dispatch(setReceiverAdress(value))}
 				/>
 			),
+		},
+		{
+			title: 'Оплата доставки',
+			component: <PayerSelection />,
 		},
 	];
 
