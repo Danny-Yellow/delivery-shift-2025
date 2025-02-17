@@ -1,36 +1,21 @@
-import type { Adress, AdressWithOptions } from '@src/shared/types/entitites/adress';
+import type { Adress } from '@src/shared/types/entitites/adress';
+import type { ReactNode } from 'react';
 
-import { Question } from '@src/shared/components';
-import {
-	Button,
-	ButtonGroup,
-	Form,
-	InputLabel,
-	InputWithPrefix,
-	Tooltip,
-	TooltipBody,
-	TooltipContent,
-	TooltipHeader,
-	TooltipTrigger,
-	Typography,
-} from '@src/shared/ui';
-import { Checkbox, CheckboxLabel } from '@src/shared/ui/Checkbox/Checkbox';
+import { Button, ButtonGroup, Form, InputLabel, InputWithPrefix, Typography } from '@src/shared/ui';
 import { useForm } from '@tanstack/react-form';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { adressFields } from '../../constants/adressFields';
-import { PersonalFormSchema } from '../../lib/ReceiverFormSchema';
+import { AdressFormSchema } from '../../lib/AdressFormSchema';
 import { decrementStep, incrementStep } from '../../store';
-
-import styles from './styles.module.scss';
 
 export const AdressForm = ({
 	onSubmit,
-	isReceiverAdress = false,
+	children,
 }: {
-	onSubmit: (value: Adress | AdressWithOptions) => void;
-	isReceiverAdress?: boolean;
+	onSubmit: (value: Adress) => void;
+	children?: ReactNode;
 }) => {
 	const [continueIsClicked, setContinueIsClicked] = useState(false);
 
@@ -51,7 +36,7 @@ export const AdressForm = ({
 			dispatch(incrementStep());
 		},
 		validators: {
-			onChange: PersonalFormSchema,
+			onChange: AdressFormSchema,
 		},
 	});
 
@@ -93,26 +78,7 @@ export const AdressForm = ({
 					name={name}
 				/>
 			))}
-			{isReceiverAdress && (
-				<CheckboxLabel>
-					<Checkbox defaultChecked={false} />
-					<div className={styles.helper}>
-						<Typography variant="p_16_regular">Оставить заказ у двери</Typography>
-						<Tooltip>
-							<TooltipTrigger>
-								<Question />
-							</TooltipTrigger>
-							<TooltipContent>
-								<TooltipHeader>Бесконтактная доставка</TooltipHeader>
-								<TooltipBody>
-									Курьер привозит заказ, оставляет его у двери и уходит, а вам приходит уведомление
-									на телефон о том, что заказ доставлен
-								</TooltipBody>
-							</TooltipContent>
-						</Tooltip>
-					</div>
-				</CheckboxLabel>
-			)}
+			{children}
 			<ButtonGroup>
 				<Button variant="outlined" onClick={() => dispatch(decrementStep())}>
 					Назад

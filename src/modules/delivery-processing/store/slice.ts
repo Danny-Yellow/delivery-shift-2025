@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Adress, AdressWithOptions, DeliveryOption, Person } from '@src/shared/types';
+import type { Adress, DeliveryOption, Person, ReceiverAdress } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -33,7 +33,7 @@ export const deliveryProcessingSlice = createSlice({
 		setSender: (state, { payload }: PayloadAction<Person>) => {
 			state.sender = payload;
 		},
-		setReceiverAdress: (state, { payload }: PayloadAction<AdressWithOptions>) => {
+		setReceiverAdress: (state, { payload }: PayloadAction<ReceiverAdress>) => {
 			state.receiverAdress = payload;
 		},
 		setSenderAdress: (state, { payload }: PayloadAction<Adress>) => {

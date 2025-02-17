@@ -5,6 +5,6 @@ export interface Adress {
 	street: string;
 }
 
-export interface AdressWithOptions extends Adress {
+export interface ReceiverAdress extends Adress {
 	isNonContact: boolean;
 }

@@ -1,7 +1,7 @@
-import { validHouseOrApartament, validInvalidChars, validStreet } from '@src/shared/helpers';
+import { validHouseOrApartament, validStreet } from '@src/shared/helpers';
 import * as v from 'valibot';
 
-export const PersonalFormSchema = v.object({
+export const AdressFormSchema = v.object({
 	street: v.pipe(
 		v.string('Некорректный формат'),
 		v.nonEmpty('Поле является обязательным'),
@@ -17,8 +17,8 @@ export const PersonalFormSchema = v.object({
 	),
 	apartment: v.pipe(
 		v.string('Некорректный формат'),
+		v.nonEmpty('Поле является обязательным'),
 		v.maxLength(30, 'Максимальная длина – 30 символов'),
-		v.check(validInvalidChars, 'Используются недопустимые символы'),
 		v.check(validHouseOrApartament, 'Некорректный формат'),
 	),
 	comment: v.pipe(

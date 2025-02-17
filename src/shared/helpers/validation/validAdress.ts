@@ -3,5 +3,5 @@ export function validStreet(value: string) {
 }
 
 export function validHouseOrApartament(value: string) {
-	return /^д\. \d[а-яА-ЯёЁ\-0-9]*(?:\/\d+)?$/.test(value);
+	return /^(?:д\.|кв\.) \d[а-яА-ЯёЁ\-0-9]*(?:\/\d+)?$/.test(value);
 }

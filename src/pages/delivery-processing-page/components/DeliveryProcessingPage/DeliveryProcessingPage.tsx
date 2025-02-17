@@ -1,6 +1,7 @@
-import type { Adress, AdressWithOptions, Person } from '@src/shared/types';
+import type { Adress, Person, ReceiverAdress } from '@src/shared/types';
 
 import { AdressForm, DeliveryMethods, PersonalForm } from '@src/modules/delivery-processing';
+import { ReceiverAdressForm } from '@src/modules/delivery-processing/components/ReceiverAdressForm/ReceiverAdressForm';
 import {
 	getCurrentStep,
 	reset,
@@ -42,17 +43,13 @@ export const DeliveryProcessingPage = () => {
 		},
 		{
 			title: 'Откуда забрать',
-			component: (
-				<AdressForm key={1} onSubmit={(value: Adress) => dispatch(setSenderAdress(value))} />
-			),
+			component: <AdressForm onSubmit={(value: Adress) => dispatch(setSenderAdress(value))} />,
 		},
 		{
 			title: 'Куда доставить',
 			component: (
-				<AdressForm
-					isReceiverAdress
-					key={2}
-					onSubmit={(value: AdressWithOptions) => dispatch(setReceiverAdress(value))}
+				<ReceiverAdressForm
+					onSubmit={(value: ReceiverAdress) => dispatch(setReceiverAdress(value))}
 				/>
 			),
 		},
