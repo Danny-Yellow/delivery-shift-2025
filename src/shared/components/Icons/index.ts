@@ -7,6 +7,7 @@ export * from './Exit';
 export * from './Location';
 export * from './Location';
 export * from './Plane';
+export * from './Question';
 export * from './Time';
 export * from './Train';
 export * from './Travel';

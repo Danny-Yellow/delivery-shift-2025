@@ -12,6 +12,7 @@ export default eslint(
 			'react-dom/no-missing-button-type': 'off',
 			'siberiacancode-react/no-children-prop': 'off',
 			'regexp/no-obscure-range': 'off',
+			'react/no-context-provider': 'off',
 		},
 	},
 );
