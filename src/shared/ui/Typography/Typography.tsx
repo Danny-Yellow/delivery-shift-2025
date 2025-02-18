@@ -15,7 +15,8 @@ type TypographyVariant =
 	| 'p_14_regular'
 	| 'p_16_medium'
 	| 'p_16_regular'
-	| 'p_24_light';
+	| 'p_24_light'
+	| 'p_24_medium';
 
 type TypographyProps<Tag extends TypographyTag> = ComponentProps<Tag> & {
 	color?: 'error' | 'invert' | 'primary' | 'secondary' | 'tertiary';

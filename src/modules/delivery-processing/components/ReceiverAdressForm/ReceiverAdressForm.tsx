@@ -12,19 +12,23 @@ import {
 	Typography,
 } from '@src/shared/ui';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { setReceiverAdress } from '../../store';
 import { AdressForm } from '../AdressForm/AdressForm';
 
 import styles from './styles.module.scss';
 
-export const ReceiverAdressForm = ({ onSubmit }: { onSubmit: (value: ReceiverAdress) => void }) => {
+export const ReceiverAdressForm = () => {
+	const dispatch = useDispatch();
+
 	const [options, setOptions] = useState<Omit<ReceiverAdress, keyof Adress>>({
 		isNonContact: false,
 	});
 
 	return (
 		<>
-			<AdressForm onSubmit={(value) => onSubmit({ ...value, ...options })}>
+			<AdressForm onSubmit={(value) => dispatch(setReceiverAdress({ ...value, ...options }))}>
 				<CheckboxLabel>
 					<Checkbox
 						checked={options.isNonContact}

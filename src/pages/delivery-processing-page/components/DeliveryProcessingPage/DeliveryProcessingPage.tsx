@@ -1,4 +1,4 @@
-import type { Adress, Person, ReceiverAdress } from '@src/shared/types';
+import type { Adress, Person } from '@src/shared/types';
 
 import {
 	AdressForm,
@@ -7,11 +7,11 @@ import {
 	PersonalForm,
 	ReceiverAdressForm,
 } from '@src/modules/delivery-processing';
+import { CheckOrderDetails } from '@src/modules/delivery-processing/components/CheckOrderDetails/CheckOrderDetails';
 import {
 	getCurrentStep,
 	reset,
 	setReceiver,
-	setReceiverAdress,
 	setSender,
 	setSenderAdress,
 } from '@src/modules/delivery-processing/store';
@@ -51,15 +51,15 @@ export const DeliveryProcessingPage = () => {
 		},
 		{
 			title: 'Куда доставить',
-			component: (
-				<ReceiverAdressForm
-					onSubmit={(value: ReceiverAdress) => dispatch(setReceiverAdress(value))}
-				/>
-			),
+			component: <ReceiverAdressForm />,
 		},
 		{
 			title: 'Оплата доставки',
 			component: <PayerSelection />,
+		},
+		{
+			title: 'Проверка данных заказа',
+			component: <CheckOrderDetails />,
 		},
 	];
 

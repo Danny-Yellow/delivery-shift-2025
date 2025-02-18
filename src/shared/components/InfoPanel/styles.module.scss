@@ -1,0 +1,29 @@
+@use '@src/styles/vars' as *;
+
+.panel {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	padding: 1.5rem 3rem;
+	border-radius: $rounded-xl;
+	background-color: $bg-secondary;
+}
+
+.title {
+    width: 100%;
+    max-width: 200px;
+    font-weight: $font-medium;
+}
+
+.element {
+    display: grid;
+	width: 100%;
+	max-width: 284px;
+    gap: .125rem;
+}
+
+.label { 
+    color: $text-tertiary;
+    font-size: $text-xs;
+}

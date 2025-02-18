@@ -6,6 +6,7 @@ export * from './Email';
 export * from './Exit';
 export * from './Location';
 export * from './Location';
+export * from './Pencil';
 export * from './Plane';
 export * from './Question';
 export * from './Time';
