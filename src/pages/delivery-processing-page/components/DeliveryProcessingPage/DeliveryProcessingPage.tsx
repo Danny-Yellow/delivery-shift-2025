@@ -9,7 +9,7 @@ import {
 } from '@src/modules/delivery-processing';
 import { CheckOrderDetails } from '@src/modules/delivery-processing/components/CheckOrderDetails/CheckOrderDetails';
 import {
-	getCurrentStep,
+	getCurrentStepSelector,
 	reset,
 	setReceiver,
 	setSender,
@@ -24,7 +24,7 @@ import styles from './styles.module.scss';
 export const DeliveryProcessingPage = () => {
 	const dispatch = useDispatch();
 
-	const currentStep = useSelector(getCurrentStep);
+	const currentStep = useSelector(getCurrentStepSelector);
 
 	useEffect(() => {
 		dispatch(reset());
@@ -59,7 +59,7 @@ export const DeliveryProcessingPage = () => {
 		},
 		{
 			title: 'Проверка данных заказа',
-			component: <CheckOrderDetails />,
+			component: <CheckOrderDetails onSubmit={() => {}} />,
 		},
 	];
 

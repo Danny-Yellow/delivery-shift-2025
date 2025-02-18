@@ -9,6 +9,7 @@
 			"@src/*": ["./src/*"]
 		},
 		"allowJs": true,
+		"strictNullChecks": true,
 		"noImplicitAny": true,
 		"outDir": "./dist/",
 		"allowSyntheticDefaultImports": true,

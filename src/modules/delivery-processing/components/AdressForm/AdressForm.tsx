@@ -60,7 +60,7 @@ export const AdressForm = ({
 									{label}
 								</Typography>
 								<InputWithPrefix
-									prefix={format}
+									prefix={format ?? ''}
 									value={state.value}
 									onChange={(event) => {
 										handleChange(event.target.value);

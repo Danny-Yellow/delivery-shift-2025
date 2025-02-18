@@ -2,6 +2,7 @@ import type { DeliveryOption } from '@src/shared/types';
 
 import { FreeDelivery } from '@src/shared/components';
 import { capitalizeFirstLetter, declensionWorkingDays } from '@src/shared/helpers';
+import { Form } from '@src/shared/ui';
 import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,7 +22,7 @@ export const DeliveryMethods = () => {
 	}
 
 	return (
-		<>
+		<Form>
 			<ul className={styles.list}>
 				{data.map((method) => (
 					<li key={method.id}>
@@ -43,6 +44,6 @@ export const DeliveryMethods = () => {
 				))}
 				<FreeDelivery />
 			</ul>
-		</>
+		</Form>
 	);
 };
