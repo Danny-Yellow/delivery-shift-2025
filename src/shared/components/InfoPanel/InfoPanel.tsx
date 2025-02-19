@@ -23,14 +23,15 @@ export const InfoPanelTitle = ({
 
 export const InfoPanelElement = ({
 	className,
-	children,
 	label,
+	children,
+	asChild = false,
 	...props
-}: ComponentProps<'div'> & { label?: string }) => {
+}: ComponentProps<'div'> & { label?: string; asChild?: boolean }) => {
 	return (
 		<div className={clsx(className, styles.element)} {...props}>
 			{label && <p className={styles.label}>{label}</p>}
-			{children}
+			{asChild ? children : <p className={styles.content}>{children}</p>}
 		</div>
 	);
 };

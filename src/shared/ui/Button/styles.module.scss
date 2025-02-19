@@ -6,6 +6,7 @@
 	cursor: pointer;
 	font-size: $text-base;
 	font-weight: $font-semibold;
+	line-height: $lh-base;
 	text-align: center;
 
 	&:disabled {
@@ -20,9 +21,9 @@
 }
 
 .outlined {
-	border: 1px solid $border-light;
 	background-color: $bg-primary;
 	color: $text-secondary;
+	outline: 1px solid $border-light;
 }
 
 .full {

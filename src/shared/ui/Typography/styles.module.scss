@@ -9,11 +9,13 @@
 .h2 {
 	font-size: $text-2xl;
 	font-weight: $font-bold;
+	line-height: $lh-2xl;
 }
 
 .h3 {
 	font-size: $text-xl;
 	font-weight: $font-semibold;
+	line-height: $lh-base;
 }
 
 .p_12_regular {
