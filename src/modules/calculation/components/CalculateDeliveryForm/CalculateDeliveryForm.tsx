@@ -42,7 +42,7 @@ export const CalculateDeliveryForm = () => {
 
 	const buttonIsDisabled = [
 		selectedPackageType,
-		selectedPoints.reiceiverPoint,
+		selectedPoints.receiverPoint,
 		selectedPoints.senderPoint,
 	].includes(null);
 
@@ -110,7 +110,7 @@ export const CalculateDeliveryForm = () => {
 				<InputLabel>
 					<Typography variant="p_14_medium">Город назначения</Typography>
 					<Select
-						value={selectedPoints.reiceiverPoint?.id}
+						value={selectedPoints.receiverPoint?.id}
 						onValueChange={handleReiceiverPointSelect}
 					>
 						<SelectTrigger startIcon={<Travel />}>

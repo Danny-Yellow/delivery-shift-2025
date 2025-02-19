@@ -1,23 +1,26 @@
-import type { Adress, Person } from '@src/shared/types';
+import type { Address, Person } from '@src/shared/types';
 
+import { getSelectedPointsSelector } from '@src/modules/calculation';
 import {
-	AdressForm,
+	AddressForm,
 	DeliveryMethods,
 	PayerSelection,
 	PersonalForm,
-	ReceiverAdressForm,
+	ReceiverAddressForm,
 } from '@src/modules/delivery-processing';
 import { CheckOrderDetails } from '@src/modules/delivery-processing/components/CheckOrderDetails/CheckOrderDetails';
 import {
 	getCurrentStepSelector,
+	getProcessingDetailsSelector,
 	reset,
 	setReceiver,
 	setSender,
-	setSenderAdress,
+	setSenderAddress,
 } from '@src/modules/delivery-processing/store';
+import { createDeliveryOrderThunk } from '@src/modules/order/store';
 import { Progress, Typography } from '@src/shared/ui';
+import { useDispatch, useSelector } from '@src/store';
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './styles.module.scss';
 
@@ -29,6 +32,9 @@ export const DeliveryProcessingPage = () => {
 	useEffect(() => {
 		dispatch(reset());
 	}, []);
+
+	const details = useSelector(getProcessingDetailsSelector);
+	const points = useSelector(getSelectedPointsSelector);
 
 	const stepsMap = [
 		{
@@ -47,11 +53,11 @@ export const DeliveryProcessingPage = () => {
 		},
 		{
 			title: 'Откуда забрать',
-			component: <AdressForm onSubmit={(value: Adress) => dispatch(setSenderAdress(value))} />,
+			component: <AddressForm onSubmit={(value: Address) => dispatch(setSenderAddress(value))} />,
 		},
 		{
 			title: 'Куда доставить',
-			component: <ReceiverAdressForm />,
+			component: <ReceiverAddressForm />,
 		},
 		{
 			title: 'Оплата доставки',
@@ -59,7 +65,13 @@ export const DeliveryProcessingPage = () => {
 		},
 		{
 			title: 'Проверка данных заказа',
-			component: <CheckOrderDetails onSubmit={() => {}} />,
+			component: (
+				<CheckOrderDetails
+					onSubmit={() => {
+						dispatch(createDeliveryOrderThunk({ ...details, ...points }));
+					}}
+				/>
+			),
 		},
 	];
 

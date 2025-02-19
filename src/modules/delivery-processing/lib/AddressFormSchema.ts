@@ -1,7 +1,7 @@
 import { validHouseOrApartament, validStreet } from '@src/shared/helpers';
 import * as v from 'valibot';
 
-export const AdressFormSchema = v.object({
+export const AddressFormSchema = v.object({
 	street: v.pipe(
 		v.string('Некорректный формат'),
 		v.nonEmpty('Поле является обязательным'),

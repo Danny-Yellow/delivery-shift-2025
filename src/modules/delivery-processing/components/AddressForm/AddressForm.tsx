@@ -1,4 +1,4 @@
-import type { Adress } from '@src/shared/types';
+import type { Address } from '@src/shared/types';
 import type { ReactNode } from 'react';
 
 import { Button, ButtonGroup, Form, InputLabel, InputWithPrefix, Typography } from '@src/shared/ui';
@@ -6,27 +6,27 @@ import { useForm } from '@tanstack/react-form';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { adressFields } from '../../constants/adressFields';
-import { AdressFormSchema } from '../../lib/AdressFormSchema';
+import { addressFields } from '../../constants/addressFields';
+import { AddressFormSchema } from '../../lib/AddressFormSchema';
 import { decrementStep, incrementStep } from '../../store';
 
-export const AdressForm = ({
+export const AddressForm = ({
 	onSubmit,
 	children,
 }: {
-	onSubmit: (value: Adress) => void;
+	onSubmit: (value: Address) => void;
 	children?: ReactNode;
 }) => {
 	const [continueIsClicked, setContinueIsClicked] = useState(false);
 
 	const dispatch = useDispatch();
 
-	const defaultValues = adressFields.reduce(
+	const defaultValues = addressFields.reduce(
 		(prevField, curField) => ({
 			...prevField,
 			[curField.name]: '',
 		}),
-		{} as Adress,
+		{} as Address,
 	);
 
 	const { Field, Subscribe, handleSubmit } = useForm({
@@ -36,7 +36,7 @@ export const AdressForm = ({
 			dispatch(incrementStep());
 		},
 		validators: {
-			onChange: AdressFormSchema,
+			onChange: AddressFormSchema,
 		},
 	});
 
@@ -47,7 +47,7 @@ export const AdressForm = ({
 				handleSubmit();
 			}}
 		>
-			{adressFields.map(({ label, name, placeholder, format }) => (
+			{addressFields.map(({ label, name, placeholder, format }) => (
 				<Field
 					key={name}
 					children={({ state, handleChange }) => {

@@ -1,5 +1,6 @@
 import type { Person } from '@src/shared/types';
 
+import { formatPhone } from '@src/shared/helpers';
 import { Button, ButtonGroup, Form, Input, InputLabel, Typography } from '@src/shared/ui';
 import { useForm } from '@tanstack/react-form';
 import { useState } from 'react';
@@ -26,7 +27,7 @@ export const PersonalForm = ({ onSubmit }: { onSubmit: (value: Person) => void }
 	const { Field, Subscribe, handleSubmit } = useForm({
 		defaultValues,
 		onSubmit: ({ value }) => {
-			onSubmit(value);
+			onSubmit({ ...value, phone: formatPhone(value.phone) });
 			dispatch(incrementStep());
 		},
 		validators: {

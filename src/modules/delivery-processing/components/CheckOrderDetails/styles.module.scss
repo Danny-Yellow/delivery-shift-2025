@@ -1,5 +1,5 @@
 .form {
-	width: 100%;
+	max-width: 100%;
 }
 
 .method {
@@ -7,4 +7,9 @@
 	width: 100%;
 	gap: 1rem;
 	text-align: right;
+}
+
+.button_group {
+	justify-content: space-between;
+	gap: 0;
 }

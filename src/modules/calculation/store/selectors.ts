@@ -4,7 +4,7 @@ export const getPointsSelector = (state: RootState) => state.calculationDelivery
 
 export const getSelectedPointsSelector = (state: RootState) => {
 	return {
-		reiceiverPoint: state.calculationDelivery.selectedReiceiverPoint,
+		receiverPoint: state.calculationDelivery.selectedReiceiverPoint,
 		senderPoint: state.calculationDelivery.selectedSenderPoint,
 	};
 };

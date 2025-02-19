@@ -43,7 +43,7 @@ export const useCalculateDeliveryForm = () => {
 		const resultAction = await dispatch(
 			calculateDeliveryThunk({
 				package: selectedPackageType,
-				receiverPoint: selectedPoints.reiceiverPoint,
+				receiverPoint: selectedPoints.receiverPoint,
 				senderPoint: selectedPoints.senderPoint,
 			}),
 		);

@@ -1,4 +1,4 @@
-import type { Adress, ReceiverAdress } from '@src/shared/types';
+import type { Address, ReceiverAddress } from '@src/shared/types';
 
 import { Question } from '@src/shared/components';
 import {
@@ -14,21 +14,21 @@ import {
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setReceiverAdress } from '../../store';
-import { AdressForm } from '../AdressForm/AdressForm';
+import { setReceiverAddress } from '../../store';
+import { AddressForm } from '../AddressForm/AddressForm';
 
 import styles from './styles.module.scss';
 
-export const ReceiverAdressForm = () => {
+export const ReceiverAddressForm = () => {
 	const dispatch = useDispatch();
 
-	const [options, setOptions] = useState<Omit<ReceiverAdress, keyof Adress>>({
+	const [options, setOptions] = useState<Omit<ReceiverAddress, keyof Address>>({
 		isNonContact: false,
 	});
 
 	return (
 		<>
-			<AdressForm onSubmit={(value) => dispatch(setReceiverAdress({ ...value, ...options }))}>
+			<AddressForm onSubmit={(value) => dispatch(setReceiverAddress({ ...value, ...options }))}>
 				<CheckboxLabel>
 					<Checkbox
 						checked={options.isNonContact}
@@ -58,7 +58,7 @@ export const ReceiverAdressForm = () => {
 						</Tooltip>
 					</div>
 				</CheckboxLabel>
-			</AdressForm>
+			</AddressForm>
 		</>
 	);
 };

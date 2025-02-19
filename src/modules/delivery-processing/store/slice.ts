@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { Adress, DeliveryOption, Payer, Person, ReceiverAdress } from '@src/shared/types';
+import type { Address, DeliveryOption, Payer, Person, ReceiverAddress } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -10,8 +10,8 @@ const initialState: DeliveryProcessingState = {
 	selectedDeliveryMethod: null,
 	receiver: null,
 	sender: null,
-	receiverAdress: null,
-	senderAdress: null,
+	receiverAddress: null,
+	senderAddress: null,
 	payer: null,
 };
 
@@ -34,11 +34,11 @@ export const deliveryProcessingSlice = createSlice({
 		setSender: (state, { payload }: PayloadAction<Person>) => {
 			state.sender = payload;
 		},
-		setReceiverAdress: (state, { payload }: PayloadAction<ReceiverAdress>) => {
-			state.receiverAdress = payload;
+		setReceiverAddress: (state, { payload }: PayloadAction<ReceiverAddress>) => {
+			state.receiverAddress = payload;
 		},
-		setSenderAdress: (state, { payload }: PayloadAction<Adress>) => {
-			state.senderAdress = payload;
+		setSenderAddress: (state, { payload }: PayloadAction<Address>) => {
+			state.senderAddress = payload;
 		},
 		setPayer: (state, { payload }: PayloadAction<Payer>) => {
 			state.payer = payload;
@@ -71,8 +71,8 @@ export const {
 	setReceiver,
 	decrementStep,
 	setSender,
-	setReceiverAdress,
-	setSenderAdress,
+	setReceiverAddress,
+	setSenderAddress,
 	setPayer,
 	reset,
 } = deliveryProcessingSlice.actions;

@@ -3,13 +3,14 @@ import { capitalizeFirstLetter, declensionWorkingDays } from '@src/shared/helper
 import { Button, ButtonGroup, Form, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 
-import { decrementStep, getOrderDetailsSelector } from '../../store';
+import { decrementStep, getProcessingDetailsSelector } from '../../store';
 
 import styles from './styles.module.scss';
 
 export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
-	const { method, receiver, receiverAdress, sender, senderAdress } =
-		useSelector(getOrderDetailsSelector);
+	const { option, receiver, receiverAddress, sender, senderAddress } = useSelector(
+		getProcessingDetailsSelector,
+	);
 
 	const dispatch = useDispatch();
 
@@ -41,44 +42,46 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 					<Pencil />
 				</InfoPanel>
 			)}
-			{senderAdress && (
+			{senderAddress && (
 				<InfoPanel>
 					<InfoPanelTitle>Откуда забрать</InfoPanelTitle>
 					<InfoPanelElement label="Адрес">
-						{senderAdress.street}, {senderAdress.house}, {senderAdress.apartment}
+						{senderAddress.street}, {senderAddress.house}, {senderAddress.apartment}
 					</InfoPanelElement>
-					<InfoPanelElement label="Заметка">{senderAdress.comment}</InfoPanelElement>
+					<InfoPanelElement label="Заметка">{senderAddress.comment}</InfoPanelElement>
 					<Pencil />
 				</InfoPanel>
 			)}
-			{receiverAdress && (
+			{receiverAddress && (
 				<InfoPanel>
 					<InfoPanelTitle>Куда доставить</InfoPanelTitle>
 					<InfoPanelElement label="Адрес">
-						{receiverAdress.street}, {receiverAdress.house}, {receiverAdress.apartment}
+						{receiverAddress.street}, {receiverAddress.house}, {receiverAddress.apartment}
 					</InfoPanelElement>
-					<InfoPanelElement label="Заметка">{receiverAdress.comment}</InfoPanelElement>
+					<InfoPanelElement label="Заметка">{receiverAddress.comment}</InfoPanelElement>
 					<Pencil />
 				</InfoPanel>
 			)}
-			{method && (
+			{option && (
 				<div className={styles.method}>
-					<Typography variant="h3">Итого: {method.price}</Typography>
+					<Typography variant="h3">Итого: {option.price}</Typography>
 					<div>
 						<Typography variant="p_16_regular" color="secondary">
-							Тариф: {capitalizeFirstLetter(method.name)}
+							Тариф: {capitalizeFirstLetter(option.name)}
 						</Typography>
 						<Typography variant="p_16_regular" color="secondary">
-							Срок: {method.days} {declensionWorkingDays(method.days)}
+							Срок: {option.days} {declensionWorkingDays(option.days)}
 						</Typography>
 					</div>
 				</div>
 			)}
-			<ButtonGroup>
-				<Button variant="outlined" onClick={() => dispatch(decrementStep())}>
+			<ButtonGroup className={styles.button_group}>
+				<Button size="lg" variant="outlined" onClick={() => dispatch(decrementStep())}>
 					Назад
 				</Button>
-				<Button type="submit">Продолжить</Button>
+				<Button size="lg" type="submit">
+					Продолжить
+				</Button>
 			</ButtonGroup>
 		</Form>
 	);

@@ -38,17 +38,17 @@ export const calculationDeliverySlice = createSlice({
 	reducers: {
 		changeSelectedSenderPoint: (state, { payload }: PayloadAction<{ pointId: string }>) => {
 			const selectedPoint = state.points.data.find((point) => point.id === payload.pointId);
-			state.selectedSenderPoint = selectedPoint;
+			state.selectedSenderPoint = selectedPoint ?? null;
 		},
 		changeSelectedReiceiverPoint: (state, { payload }: PayloadAction<{ pointId: string }>) => {
 			const selectedPoint = state.points.data.find((point) => point.id === payload.pointId);
-			state.selectedReiceiverPoint = selectedPoint;
+			state.selectedReiceiverPoint = selectedPoint ?? null;
 		},
 		changeSelectedPackageType: (state, { payload }: PayloadAction<{ packageTypeId: string }>) => {
 			const selectedPackageType = state.packageTypes.data.find(
 				(packageType) => packageType.id === payload.packageTypeId,
 			);
-			state.selectedPackageType = selectedPackageType;
+			state.selectedPackageType = selectedPackageType ?? null;
 		},
 		setSelectedPackageType: (state, { payload }: PayloadAction<PackageType>) => {
 			state.selectedPackageType = payload;
@@ -65,7 +65,7 @@ export const calculationDeliverySlice = createSlice({
 			})
 			.addCase(getPointsThunk.rejected, (state, action) => {
 				state.points.isLoading = false;
-				state.points.error = action.error.message;
+				state.points.error = action.error.message ?? '';
 			})
 			.addCase(getPointsThunk.fulfilled, (state, action: PayloadAction<GetPointsResponse>) => {
 				state.points.isLoading = false;
@@ -77,7 +77,7 @@ export const calculationDeliverySlice = createSlice({
 			})
 			.addCase(getPackageTypesThunk.rejected, (state, action) => {
 				state.packageTypes.isLoading = false;
-				state.packageTypes.error = action.error.message;
+				state.packageTypes.error = action.error.message ?? '';
 			})
 			.addCase(
 				getPackageTypesThunk.fulfilled,
@@ -92,7 +92,7 @@ export const calculationDeliverySlice = createSlice({
 			})
 			.addCase(calculateDeliveryThunk.rejected, (state, action) => {
 				state.deliveryOptions.isLoading = false;
-				state.deliveryOptions.error = action.error.message;
+				state.deliveryOptions.error = action.error.message ?? '';
 			})
 			.addCase(
 				calculateDeliveryThunk.fulfilled,

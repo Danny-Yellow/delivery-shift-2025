@@ -1,6 +1,6 @@
-import type { AdressField } from '../types/adressForm';
+import type { AddressField } from '../types/addressForm';
 
-export const adressFields: AdressField[] = [
+export const addressFields: AddressField[] = [
 	{
 		label: 'Улица',
 		placeholder: 'Улица',
