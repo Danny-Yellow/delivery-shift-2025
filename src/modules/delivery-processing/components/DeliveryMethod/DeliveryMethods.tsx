@@ -7,14 +7,14 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { dispatchMethodIconsMap } from '../../constants/dispatchMethodIconsMap';
-import { getDeliveryMethodsSelector, incrementStep, setDeliveryMethod } from '../../store';
+import { incrementStep, selectDeliveryMethods, setDeliveryMethod } from '../../store';
 
 import styles from './styles.module.scss';
 
 export const DeliveryMethods = () => {
 	const dispatch = useDispatch();
 
-	const { data } = useSelector(getDeliveryMethodsSelector);
+	const { data } = useSelector(selectDeliveryMethods);
 
 	function handleMethodClick(method: DeliveryOption) {
 		dispatch(setDeliveryMethod(method));

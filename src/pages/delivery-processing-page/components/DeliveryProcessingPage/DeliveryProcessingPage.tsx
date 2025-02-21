@@ -1,6 +1,6 @@
 import type { Address, Person } from '@src/shared/types';
 
-import { getSelectedPointsSelector } from '@src/modules/calculation';
+import { selectSelectedPoints } from '@src/modules/calculation';
 import {
 	AddressForm,
 	DeliveryMethods,
@@ -10,11 +10,11 @@ import {
 } from '@src/modules/delivery-processing';
 import { CheckOrderDetails } from '@src/modules/delivery-processing/components/CheckOrderDetails/CheckOrderDetails';
 import {
-	getCurrentStepSelector,
-	getPersonsSelector,
 	getProcessingDetailsSelector,
-	getSenderAddressSelector,
 	reset,
+	selectCurrentStep,
+	selectPersons,
+	selectSenderAddress,
 	setReceiver,
 	setSender,
 	setSenderAddress,
@@ -29,16 +29,16 @@ import styles from './styles.module.scss';
 export const DeliveryProcessingPage = () => {
 	const dispatch = useDispatch();
 
-	const currentStep = useSelector(getCurrentStepSelector);
+	const currentStep = useSelector(selectCurrentStep);
 
 	useEffect(() => {
 		dispatch(reset());
 	}, []);
 
 	const details = useSelector(getProcessingDetailsSelector);
-	const points = useSelector(getSelectedPointsSelector);
-	const persons = useSelector(getPersonsSelector);
-	const senderAddress = useSelector(getSenderAddressSelector);
+	const points = useSelector(selectSelectedPoints);
+	const persons = useSelector(selectPersons);
+	const senderAddress = useSelector(selectSenderAddress);
 
 	const stepsMap = [
 		{

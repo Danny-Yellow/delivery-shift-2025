@@ -1,18 +1,18 @@
 import type { RootState } from '@src/store';
 
-export const getPointsSelector = (state: RootState) => state.calculationDelivery.points;
+export const selectPoints = (state: RootState) => state.calculationDelivery.points;
 
-export const getSelectedPointsSelector = (state: RootState) => {
+export const selectSelectedPoints = (state: RootState) => {
 	return {
 		receiverPoint: state.calculationDelivery.selectedReiceiverPoint,
 		senderPoint: state.calculationDelivery.selectedSenderPoint,
 	};
 };
 
-export const getPackageTypesSelector = (state: RootState) => state.calculationDelivery.packageTypes;
+export const selectPackageTypes = (state: RootState) => state.calculationDelivery.packageTypes;
 
-export const getSelectedPackageTypeSelector = (state: RootState) =>
+export const selectSelectedPackageType = (state: RootState) =>
 	state.calculationDelivery.selectedPackageType;
 
-export const getIsOpenPackageTypeSelector = (state: RootState) =>
+export const selectIsOpenPackageType = (state: RootState) =>
 	state.calculationDelivery.isOpenPackageType;

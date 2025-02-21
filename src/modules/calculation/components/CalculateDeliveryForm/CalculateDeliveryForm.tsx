@@ -19,15 +19,15 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
 import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
-import { getPackageTypesSelector, getPointsSelector } from '../../store';
+import { selectPackageTypes, selectPoints } from '../../store';
 import { ApproximatePackageSizeList } from '../ApproximatePackageSizeList/ApproximatePackageSizeList';
 import { ExactPackageSizeForm } from '../ExactPackageSizeForm/ExactPackageSizeForm';
 
 import styles from './styles.module.scss';
 
 export const CalculateDeliveryForm = () => {
-	const { data: points } = useSelector(getPointsSelector);
-	const { data: packageTypes } = useSelector(getPackageTypesSelector);
+	const { data: points } = useSelector(selectPoints);
+	const { data: packageTypes } = useSelector(selectPackageTypes);
 
 	const {
 		isOpenPackageType,

@@ -14,10 +14,7 @@ import {
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-	getReceiverAddressSelector,
-	setReceiverAddress,
-} from '../../store';
+import { selectReceiverAddress, setReceiverAddress } from '../../store';
 import { AddressForm } from '../AddressForm/AddressForm';
 
 import styles from './styles.module.scss';
@@ -29,7 +26,7 @@ export const ReceiverAddressForm = () => {
 		isNonContact: false,
 	});
 
-	const receiverAddress = useSelector(getReceiverAddressSelector);
+	const receiverAddress = useSelector(selectReceiverAddress);
 
 	return (
 		<>

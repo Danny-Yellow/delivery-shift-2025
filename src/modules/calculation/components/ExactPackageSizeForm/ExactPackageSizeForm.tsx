@@ -7,14 +7,14 @@ import { useForm } from '@tanstack/react-form';
 import type { ExactPackageSizeField } from '../../types/ExactPackageSizeForm';
 
 import { exactPackageSizeFields } from '../../constants/exactPackageSizeFields';
-import { getSelectedPackageTypeSelector, setSelectedPackageType } from '../../store';
+import { selectSelectedPackageType, setSelectedPackageType } from '../../store';
 
 import styles from './styles.module.scss';
 
 export const ExactPackageSizeForm = ({ onSubmit }: { onSubmit?: () => void }) => {
 	const dispatch = useDispatch();
 
-	const packageSize = useSelector(getSelectedPackageTypeSelector);
+	const packageSize = useSelector(selectSelectedPackageType);
 
 	const defaultValues = exactPackageSizeFields.reduce(
 		(prevField, curField) => ({

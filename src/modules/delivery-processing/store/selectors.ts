@@ -2,21 +2,19 @@ import type { RootState } from '@src/store';
 
 import { createSelector } from '@reduxjs/toolkit';
 
-export const getDeliveryMethodsSelector = (state: RootState) =>
+export const selectDeliveryMethods = (state: RootState) =>
 	state.calculationDelivery.deliveryOptions;
 
-export const getCurrentStepSelector = (state: RootState) => state.deliveryProcessing.currentStep;
+export const selectCurrentStep = (state: RootState) => state.deliveryProcessing.currentStep;
 
-export const getReceiverAddressSelector = (state: RootState) =>
-	state.deliveryProcessing.receiverAddress;
+export const selectReceiverAddress = (state: RootState) => state.deliveryProcessing.receiverAddress;
 
-export const getSenderAddressSelector = (state: RootState) =>
-	state.deliveryProcessing.senderAddress;
+export const selectSenderAddress = (state: RootState) => state.deliveryProcessing.senderAddress;
 
-const getDeliveryProcessingSelector = (state: RootState) => state.deliveryProcessing;
+const selectDeliveryProcessing = (state: RootState) => state.deliveryProcessing;
 
 export const getProcessingDetailsSelector = createSelector(
-	[getDeliveryProcessingSelector],
+	[selectDeliveryProcessing],
 	(deliveryProcessing) => ({
 		receiver: deliveryProcessing.receiver,
 		sender: deliveryProcessing.sender,
@@ -27,10 +25,7 @@ export const getProcessingDetailsSelector = createSelector(
 	}),
 );
 
-export const getPersonsSelector = createSelector(
-	[getDeliveryProcessingSelector],
-	(deliveryProcessing) => ({
-		receiver: deliveryProcessing.receiver,
-		sender: deliveryProcessing.sender,
-	}),
-);
+export const selectPersons = createSelector([selectDeliveryProcessing], (deliveryProcessing) => ({
+	receiver: deliveryProcessing.receiver,
+	sender: deliveryProcessing.sender,
+}));

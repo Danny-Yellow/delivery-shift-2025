@@ -7,9 +7,9 @@ import {
 	changeSelectedPackageType,
 	changeSelectedReiceiverPoint,
 	changeSelectedSenderPoint,
-	getIsOpenPackageTypeSelector,
-	getSelectedPackageTypeSelector,
-	getSelectedPointsSelector,
+	selectIsOpenPackageType,
+	selectSelectedPackageType,
+	selectSelectedPoints,
 	setIsOpenPackageTypeSelecting,
 } from '../store';
 
@@ -18,9 +18,9 @@ export const useCalculateDeliveryForm = () => {
 
 	const navigate = useNavigate();
 
-	const selectedPoints = useSelector(getSelectedPointsSelector);
-	const selectedPackageType = useSelector(getSelectedPackageTypeSelector);
-	const isOpenPackageType = useSelector(getIsOpenPackageTypeSelector);
+	const selectedPoints = useSelector(selectSelectedPoints);
+	const selectedPackageType = useSelector(selectSelectedPackageType);
+	const isOpenPackageType = useSelector(selectIsOpenPackageType);
 
 	function handleSenderPointSelect(pointId: string) {
 		dispatch(changeSelectedSenderPoint({ pointId }));
