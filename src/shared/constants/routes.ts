@@ -1,7 +1,7 @@
 export const ROUTES = {
-	HISTORY: '/history',
+	ORDER_HISTORY: '/order-history',
 	PROFILE: '/profile',
 	SIGNIN: '/signin',
 	PROCESSING: '/processing',
-	ORDER: '/order',
+	ORDER_REQUEST: '/order-request',
 };

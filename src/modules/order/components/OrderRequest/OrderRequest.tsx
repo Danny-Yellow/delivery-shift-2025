@@ -1,9 +1,17 @@
 import { Success } from '@src/shared/components';
-import { Button, ButtonGroup, Card, InfoRow, Typography } from '@src/shared/ui';
+import { Button, ButtonGroup, Typography } from '@src/shared/ui';
+import { useSelector } from '@src/store';
+
+import { selectOrder } from '../../store';
+import { OrderCard } from '../OrderCard/OrderCard';
 
 import styles from './styles.module.scss';
 
-export const Order = () => {
+export const OrderRequest = () => {
+	const { data: order } = useSelector(selectOrder);
+
+	if (!order) return null;
+
 	return (
 		<div className={styles.order}>
 			<div className={styles.status}>
@@ -15,15 +23,18 @@ export const Order = () => {
 			<Typography variant="p_16_regular">
 				Вы можете оплатить ваш заказ в разделе «Профиль»
 			</Typography>
-			<Card className={styles.card} outlined>
-				<InfoRow label="Номер заказа">1234567</InfoRow>
-				<InfoRow label="Статус">Создан</InfoRow>
-				<InfoRow label="Адресс доставки">Россия, г. Новосибирск, ул. Кирова, д. 86</InfoRow>
-				<InfoRow label="Тип доставки">Экспресс доставка</InfoRow>
+			<OrderCard
+				_id={order._id}
+				status="Создан"
+				street={order.receiverAddress.street}
+				type="Тип не приходит с сервера"
+				house={order.receiverAddress.house}
+				point={order.receiverPoint.name}
+			>
 				<Typography variant="p_14_regular" color="tertiary">
 					Вся информация была продубирована в SMS
 				</Typography>
-			</Card>
+			</OrderCard>
 			<ButtonGroup className={styles.buttons}>
 				<Button variant="outlined">Посмотреть статс</Button>
 				<Button>На главную</Button>

@@ -19,6 +19,7 @@ export interface OrderWithOption extends baseOrder {
 }
 
 export interface OrderWithStatus extends baseOrder {
+	_id: string;
 	cancellable: boolean;
 	status: number;
 }

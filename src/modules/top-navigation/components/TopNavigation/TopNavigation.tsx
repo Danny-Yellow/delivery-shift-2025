@@ -17,7 +17,7 @@ export const TopNavigation = () => {
 							<Link startIcon={<User />} to={ROUTES.PROFILE}>
 								Профиль
 							</Link>
-							<Link startIcon={<Time />} to={ROUTES.HISTORY}>
+							<Link startIcon={<Time />} to={ROUTES.ORDER_HISTORY}>
 								История
 							</Link>
 						</div>

@@ -1,7 +1,9 @@
 import { InfoPanel, InfoPanelTitle, Pencil } from '@src/shared/components';
+import { ROUTES } from '@src/shared/constants';
 import { capitalizeFirstLetter, declensionWorkingDays } from '@src/shared/helpers';
 import { Button, ButtonGroup, Form, IconButton, InfoRow, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
+import { useNavigate } from 'react-router';
 
 import { decrementStep, getProcessingDetailsSelector, setStep } from '../../store';
 
@@ -11,6 +13,8 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 	const { option, receiver, receiverAddress, sender, senderAddress } = useSelector(
 		getProcessingDetailsSelector,
 	);
+
+	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
 
@@ -87,7 +91,7 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 				<Button size="lg" variant="outlined" onClick={() => dispatch(decrementStep())}>
 					Назад
 				</Button>
-				<Button size="lg" type="submit">
+				<Button size="lg" type="submit" onClick={() => navigate(ROUTES.ORDER_REQUEST)}>
 					Продолжить
 				</Button>
 			</ButtonGroup>
