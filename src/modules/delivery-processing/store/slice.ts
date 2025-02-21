@@ -43,6 +43,9 @@ export const deliveryProcessingSlice = createSlice({
 		setPayer: (state, { payload }: PayloadAction<Payer>) => {
 			state.payer = payload;
 		},
+		setStep: (state, { payload }: PayloadAction<number>) => {
+			state.currentStep = payload;
+		},
 		reset: () => initialState,
 	},
 	// extraReducers: (builder) => {
@@ -74,5 +77,6 @@ export const {
 	setReceiverAddress,
 	setSenderAddress,
 	setPayer,
+	setStep,
 	reset,
 } = deliveryProcessingSlice.actions;

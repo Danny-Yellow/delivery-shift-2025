@@ -1,9 +1,9 @@
-import { InfoPanel, InfoPanelElement, InfoPanelTitle, Pencil } from '@src/shared/components';
+import { InfoPanel, InfoPanelTitle, Pencil } from '@src/shared/components';
 import { capitalizeFirstLetter, declensionWorkingDays } from '@src/shared/helpers';
-import { Button, ButtonGroup, Form, Typography } from '@src/shared/ui';
+import { Button, ButtonGroup, Form, IconButton, InfoRow, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 
-import { decrementStep, getProcessingDetailsSelector } from '../../store';
+import { decrementStep, getProcessingDetailsSelector, setStep } from '../../store';
 
 import styles from './styles.module.scss';
 
@@ -25,41 +25,49 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 			{receiver && (
 				<InfoPanel>
 					<InfoPanelTitle>Получатель</InfoPanelTitle>
-					<InfoPanelElement label="ФИО">
+					<InfoRow label="ФИО" size="md">
 						{receiver.lastname} {receiver.firstname} {receiver.middlename}
-					</InfoPanelElement>
-					<InfoPanelElement label="Телефон">{receiver.phone}</InfoPanelElement>
-					<Pencil />
+					</InfoRow>
+					<InfoRow label="Телефон">{receiver.phone}</InfoRow>
+					<IconButton>
+						<Pencil onClick={() => dispatch(setStep(2))} />
+					</IconButton>
 				</InfoPanel>
 			)}
 			{sender && (
 				<InfoPanel>
 					<InfoPanelTitle>Отправитель</InfoPanelTitle>
-					<InfoPanelElement label="ФИО">
+					<InfoRow label="ФИО" size="md">
 						{sender.lastname} {sender.firstname} {sender.middlename}
-					</InfoPanelElement>
-					<InfoPanelElement label="Телефон">{sender.phone}</InfoPanelElement>
-					<Pencil />
+					</InfoRow>
+					<InfoRow label="Телефон">{sender.phone}</InfoRow>
+					<IconButton>
+						<Pencil onClick={() => dispatch(setStep(3))} />
+					</IconButton>
 				</InfoPanel>
 			)}
 			{senderAddress && (
 				<InfoPanel>
 					<InfoPanelTitle>Откуда забрать</InfoPanelTitle>
-					<InfoPanelElement label="Адрес">
+					<InfoRow label="Адрес" size="md">
 						{senderAddress.street}, {senderAddress.house}, {senderAddress.apartment}
-					</InfoPanelElement>
-					<InfoPanelElement label="Заметка">{senderAddress.comment}</InfoPanelElement>
-					<Pencil />
+					</InfoRow>
+					<InfoRow label="Заметка">{senderAddress.comment}</InfoRow>
+					<IconButton>
+						<Pencil onClick={() => dispatch(setStep(4))} />
+					</IconButton>
 				</InfoPanel>
 			)}
 			{receiverAddress && (
 				<InfoPanel>
 					<InfoPanelTitle>Куда доставить</InfoPanelTitle>
-					<InfoPanelElement label="Адрес">
+					<InfoRow label="Адрес" size="md">
 						{receiverAddress.street}, {receiverAddress.house}, {receiverAddress.apartment}
-					</InfoPanelElement>
-					<InfoPanelElement label="Заметка">{receiverAddress.comment}</InfoPanelElement>
-					<Pencil />
+					</InfoRow>
+					<InfoRow label="Заметка">{receiverAddress.comment}</InfoRow>
+					<IconButton>
+						<Pencil onClick={() => dispatch(setStep(5))} />
+					</IconButton>
 				</InfoPanel>
 			)}
 			{option && (

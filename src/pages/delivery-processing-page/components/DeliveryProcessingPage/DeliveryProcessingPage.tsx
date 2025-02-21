@@ -11,7 +11,9 @@ import {
 import { CheckOrderDetails } from '@src/modules/delivery-processing/components/CheckOrderDetails/CheckOrderDetails';
 import {
 	getCurrentStepSelector,
+	getPersonsSelector,
 	getProcessingDetailsSelector,
+	getSenderAddressSelector,
 	reset,
 	setReceiver,
 	setSender,
@@ -35,6 +37,8 @@ export const DeliveryProcessingPage = () => {
 
 	const details = useSelector(getProcessingDetailsSelector);
 	const points = useSelector(getSelectedPointsSelector);
+	const persons = useSelector(getPersonsSelector);
+	const senderAddress = useSelector(getSenderAddressSelector);
 
 	const stepsMap = [
 		{
@@ -44,16 +48,31 @@ export const DeliveryProcessingPage = () => {
 		{
 			title: 'Получатель',
 			component: (
-				<PersonalForm key={1} onSubmit={(value: Person) => dispatch(setReceiver(value))} />
+				<PersonalForm
+					key={1}
+					defaultValues={persons.receiver}
+					onSubmit={(value: Person) => dispatch(setReceiver(value))}
+				/>
 			),
 		},
 		{
 			title: 'Отправитель',
-			component: <PersonalForm key={2} onSubmit={(value: Person) => dispatch(setSender(value))} />,
+			component: (
+				<PersonalForm
+					key={2}
+					defaultValues={persons.sender}
+					onSubmit={(value: Person) => dispatch(setSender(value))}
+				/>
+			),
 		},
 		{
 			title: 'Откуда забрать',
-			component: <AddressForm onSubmit={(value: Address) => dispatch(setSenderAddress(value))} />,
+			component: (
+				<AddressForm
+					defaultValues={senderAddress}
+					onSubmit={(value: Address) => dispatch(setSenderAddress(value))}
+				/>
+			),
 		},
 		{
 			title: 'Куда доставить',

@@ -1,2 +1,2 @@
-export * from './calculation-page/components/CalculationLayout/CalculationLayout';
-export * from './calculation-page/components/CalculationPage/CalculactionPage';
+export * from './calculation-page';
+export * from './order-page';

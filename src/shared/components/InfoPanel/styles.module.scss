@@ -17,19 +17,3 @@
 	font-weight: $font-medium;
 }
 
-.element {
-	display: grid;
-	width: 100%;
-	max-width: 284px;
-	gap: 0.125rem;
-}
-
-.label {
-	color: $text-tertiary;
-	font-size: $text-xs;
-	line-height: $lh-xs;
-}
-
-.content { 
-	line-height: $lh-base;
-}

@@ -8,24 +8,27 @@ import { PatternFormat } from 'react-number-format';
 import { useDispatch } from 'react-redux';
 
 import { personalFields } from '../../constants/reiceiverFields';
-import { PersonalFormSchema } from '../../lib/ReceiverFormSchema';
+import { PersonalFormSchema } from '../../lib/PersonalFormSchema';
 import { decrementStep, incrementStep } from '../../store';
 
-export const PersonalForm = ({ onSubmit }: { onSubmit: (value: Person) => void }) => {
+export const PersonalForm = ({
+	onSubmit,
+	defaultValues,
+}: {
+	onSubmit: (value: Person) => void;
+	defaultValues: Person;
+}) => {
 	const [continueIsClicked, setContinueIsClicked] = useState(false);
 
 	const dispatch = useDispatch();
 
-	const defaultValues = personalFields.reduce(
-		(prevField, curField) => ({
-			...prevField,
-			[curField.name]: '',
-		}),
-		{} as Person,
-	);
-
-	const { Field, Subscribe, handleSubmit } = useForm({
-		defaultValues,
+	const { Field, Subscribe, handleSubmit } = useForm<Person>({
+		defaultValues: {
+			firstname: defaultValues?.firstname ?? '',
+			lastname: defaultValues?.lastname ?? '',
+			middlename: defaultValues?.middlename ?? '',
+			phone: defaultValues?.phone ?? '',
+		},
 		onSubmit: ({ value }) => {
 			onSubmit({ ...value, phone: formatPhone(value.phone) });
 			dispatch(incrementStep());

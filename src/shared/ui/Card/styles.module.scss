@@ -1,0 +1,20 @@
+@use '@src/styles/vars' as *;
+
+.card {
+	display: grid;
+	padding: 1rem;
+	border-radius: $rounded-xl;
+	gap: 1.5rem;
+}
+
+.outlined {
+	outline: 1px solid $border-light;
+}
+
+.primary {
+	background-color: $bg-primary;
+}
+
+.transparent {
+	background-color: transparent;
+}

@@ -12,9 +12,12 @@ import {
 	Typography,
 } from '@src/shared/ui';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { setReceiverAddress } from '../../store';
+import {
+	getReceiverAddressSelector,
+	setReceiverAddress,
+} from '../../store';
 import { AddressForm } from '../AddressForm/AddressForm';
 
 import styles from './styles.module.scss';
@@ -26,9 +29,14 @@ export const ReceiverAddressForm = () => {
 		isNonContact: false,
 	});
 
+	const receiverAddress = useSelector(getReceiverAddressSelector);
+
 	return (
 		<>
-			<AddressForm onSubmit={(value) => dispatch(setReceiverAddress({ ...value, ...options }))}>
+			<AddressForm
+				defaultValues={receiverAddress}
+				onSubmit={(value) => dispatch(setReceiverAddress({ ...value, ...options }))}
+			>
 				<CheckboxLabel>
 					<Checkbox
 						checked={options.isNonContact}

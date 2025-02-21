@@ -9,6 +9,7 @@ export * from './Location';
 export * from './Pencil';
 export * from './Plane';
 export * from './Question';
+export * from './Success';
 export * from './Time';
 export * from './Train';
 export * from './Travel';

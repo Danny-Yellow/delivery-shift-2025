@@ -1,11 +1,10 @@
-// import { validName } from '@src/shared/helpers/validation/validName';
 import {
 	containsUppercaseNotAtStart,
+	formatPhone,
 	validCyrillicOrLatin,
 	validFirstLetterCapitalised,
 	validHyphenAndApostrophe,
 	validInvalidChars,
-	validPhone,
 } from '@src/shared/helpers';
 import * as v from 'valibot';
 
@@ -44,7 +43,8 @@ export const PersonalFormSchema = v.object({
 	),
 	phone: v.pipe(
 		v.string('Некорректный формат'),
+		v.transform(formatPhone),
 		v.nonEmpty('Поле является обязательным'),
-		v.check(validPhone, 'Некорректный формат'),
+		v.length(11, 'Некорректный формат'),
 	),
 });

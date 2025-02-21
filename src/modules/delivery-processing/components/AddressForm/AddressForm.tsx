@@ -12,25 +12,24 @@ import { decrementStep, incrementStep } from '../../store';
 
 export const AddressForm = ({
 	onSubmit,
+	defaultValues,
 	children,
 }: {
 	onSubmit: (value: Address) => void;
+	defaultValues: Address;
 	children?: ReactNode;
 }) => {
 	const [continueIsClicked, setContinueIsClicked] = useState(false);
 
 	const dispatch = useDispatch();
 
-	const defaultValues = addressFields.reduce(
-		(prevField, curField) => ({
-			...prevField,
-			[curField.name]: '',
-		}),
-		{} as Address,
-	);
-
 	const { Field, Subscribe, handleSubmit } = useForm({
-		defaultValues,
+		defaultValues: {
+			apartment: defaultValues?.apartment ?? '',
+			comment: defaultValues?.comment ?? '',
+			house: defaultValues?.house ?? '',
+			street: defaultValues?.street ?? '',
+		},
 		onSubmit: ({ value }) => {
 			onSubmit(value);
 			dispatch(incrementStep());
