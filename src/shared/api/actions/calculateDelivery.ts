@@ -6,5 +6,5 @@ export interface CalculateDeliveryResponse extends DefaultResponse {
 	options: DeliveryOption[];
 }
 
-export const calculateDelivery = async ({ data, config }: AxiosRequestConfig<DeliveryInfo>) =>
+export const calculateDelivery = ({ data, config }: AxiosRequestConfig<DeliveryInfo>) =>
 	api.post<CalculateDeliveryResponse>('/delivery/calc', data, config);

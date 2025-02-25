@@ -67,8 +67,6 @@ export const PersonalForm = ({
 										placeholder={placeholder}
 									/>
 								) : (
-									//
-
 									<Input
 										value={state.value}
 										hasError={errorIsShown}
