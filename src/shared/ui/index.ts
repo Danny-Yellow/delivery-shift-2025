@@ -6,6 +6,7 @@ export * from './Form/Form';
 export * from './IconButton/IconButton';
 export * from './InfoRow/InfoRow';
 export * from './Input/Input'; //!
+export * from './InputOTP/InputOTP';
 export * from './Link/Link';
 export * from './Progress/Progress';
 export * from './RadioGroup/RadioGroup';

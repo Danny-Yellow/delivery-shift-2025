@@ -1,0 +1,49 @@
+@use '@src/styles/vars' as *;
+
+.slots {
+	display: flex;
+	gap: 12px;
+}
+
+.slot {
+	display: flex;
+	width: 40px;
+	height: 48px;
+	align-items: center;
+	justify-content: center;
+	border-radius: $rounded-sm;
+	outline: 1px solid $border-light;
+}
+
+.slot_char {
+	background-color: $bg-secondary;
+}
+
+.slot_active {
+	outline: 2px solid $bg-brand;
+}
+
+@keyframes blink {
+    
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
+
+.caret {
+	width: 1px;
+	height: 20px;
+	animation: blink 1s infinite;
+	background-color: $text-primary;
+}
+
+.dash {
+	width: 12px;
+	height: 1px;
+	background-color: $text-primary;
+}

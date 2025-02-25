@@ -4,4 +4,5 @@ export const ROUTES = {
 	SIGNIN: '/signin',
 	PROCESSING: '/processing',
 	ORDER_REQUEST: '/order-request',
+	AUTH: '/auth',
 };

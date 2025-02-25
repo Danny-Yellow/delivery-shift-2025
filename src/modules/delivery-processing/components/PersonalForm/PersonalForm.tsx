@@ -1,10 +1,10 @@
 import type { Person } from '@src/shared/types';
 
+import { PhoneInput } from '@src/shared/components/PhoneInput/PhoneInput';
 import { formatPhone } from '@src/shared/helpers';
 import { Button, ButtonGroup, Form, Input, InputLabel, Typography } from '@src/shared/ui';
 import { useForm } from '@tanstack/react-form';
 import { useState } from 'react';
-import { PatternFormat } from 'react-number-format';
 import { useDispatch } from 'react-redux';
 
 import { personalFields } from '../../constants/reiceiverFields';
@@ -58,11 +58,8 @@ export const PersonalForm = ({
 									{label}
 								</Typography>
 								{name === 'phone' ? (
-									<PatternFormat
-										mask="_"
+									<PhoneInput
 										value={state.value}
-										customInput={Input}
-										format="+7 (###) ### ##-##"
 										hasError={errorIsShown}
 										onChange={(event) => {
 											handleChange(event.target.value);
@@ -70,6 +67,8 @@ export const PersonalForm = ({
 										placeholder={placeholder}
 									/>
 								) : (
+									//
+
 									<Input
 										value={state.value}
 										hasError={errorIsShown}
