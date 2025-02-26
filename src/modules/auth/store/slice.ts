@@ -8,30 +8,39 @@ import type { AuthState } from './types';
 import { createOtpThunk } from './thunks';
 
 const initialState: AuthState = {
-	code: null,
+	retryDelay: {
+		data: null,
+		error: '',
+		isLoading: false,
+	},
 	phone: null,
+	isContinued: false,
 };
 
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
+		setPhone: (state, { payload }: PayloadAction<string>) => {
+			state.phone = payload;
+		},
 		reset: () => initialState,
 	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(createOtpThunk.pending, (state) => {
-				state.code.isLoading = true;
+				state.retryDelay.isLoading = true;
 			})
 			.addCase(createOtpThunk.rejected, (state, action) => {
-				state.code.isLoading = false;
-				state.code.error = action.error.message ?? '';
+				state.retryDelay.isLoading = false;
+				state.retryDelay.error = action.error.message ?? '';
 			})
 			.addCase(createOtpThunk.fulfilled, (state, action: PayloadAction<CreateOtpResponse>) => {
-				state.code.isLoading = false;
-				state.code.data = action.payload.retryDelay;
+				state.retryDelay.isLoading = false;
+				state.isContinued = true;
+				state.retryDelay.data = action.payload.retryDelay;
 			});
 	},
 });
 
-export const { reset } = authSlice.actions;
+export const { setPhone, reset } = authSlice.actions;

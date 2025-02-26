@@ -1,7 +1,7 @@
-import type { SlotProps } from 'input-otp';
 import type { ComponentProps } from 'react';
 
 import clsx from 'clsx';
+import { OTPInput, type SlotProps } from 'input-otp';
 
 import styles from './styles.module.scss';
 
@@ -38,3 +38,5 @@ export const Slot = ({
 export const Group = ({ className, ...props }: ComponentProps<'div'>) => (
 	<div className={clsx(className, styles.slots)} {...props} />
 );
+
+export const InputOtp = OTPInput;

@@ -1,8 +1,9 @@
 export interface AuthState {
+	isContinued: boolean;
 	phone: string | null;
-	code: {
+	retryDelay: {
 		isLoading: boolean;
 		error: string;
-		data: number;
-	} | null;
+		data: number | null;
+	};
 }

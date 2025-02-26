@@ -1,7 +1,8 @@
 @use '@src/styles/vars' as *;
 
 .slots {
-	display: flex;
+    display: flex;
+	align-items: center;
 	gap: 12px;
 }
 

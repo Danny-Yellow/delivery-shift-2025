@@ -2,4 +2,6 @@ import type { RootState } from '@src/store';
 
 export const selectPhone = (state: RootState) => state.auth.phone;
 
-export const selectCode = (state: RootState) => state.auth.code;
+export const selectRetryDelay = (state: RootState) => state.auth.retryDelay;
+
+export const selectIsContinued = (state: RootState) => state.auth.isContinued;
