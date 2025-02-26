@@ -1,5 +1,9 @@
 import { Auth } from '@src/modules/auth';
+import { signinThunk } from '@src/modules/session';
+import { useDispatch } from '@src/store';
 
 export const AuthPage = () => {
-	return <Auth />;
+	const dispatch = useDispatch();
+
+	return <Auth signin={(data) => dispatch(signinThunk(data))} />;
 };

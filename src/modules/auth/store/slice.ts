@@ -24,6 +24,9 @@ export const authSlice = createSlice({
 		setPhone: (state, { payload }: PayloadAction<string>) => {
 			state.phone = payload;
 		},
+		setIsContinued: (state, { payload }: PayloadAction<boolean>) => {
+			state.isContinued = payload;
+		},
 		reset: () => initialState,
 	},
 	extraReducers: (builder) => {
@@ -43,4 +46,4 @@ export const authSlice = createSlice({
 	},
 });
 
-export const { setPhone, reset } = authSlice.actions;
+export const { setPhone, setIsContinued, reset } = authSlice.actions;

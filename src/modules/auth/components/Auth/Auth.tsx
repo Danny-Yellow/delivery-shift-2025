@@ -1,25 +1,29 @@
-import { PhoneInput } from '@src/shared/components';
-import { OTPCode } from '@src/shared/components/OTPCode/OTPCode';
+import type { Signin } from '@src/shared/types';
+
+import { OTPCode, PhoneInput } from '@src/shared/components';
 import { formatPhone } from '@src/shared/helpers';
 import { Button, ButtonGroup, Form, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useForm } from '@tanstack/react-form';
 
-import { createOtpThunk, selectIsContinued } from '../../store';
+import { createOtpThunk, selectIsContinued, selectRetryDelay, setIsContinued } from '../../store';
+import { ResendCodeManager } from '../ResendCodeManager/ResendCodeManager';
 
-export const Auth = () => {
+export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
+	const isContinued = useSelector(selectIsContinued);
+	const retryDelay = useSelector(selectRetryDelay);
+
 	const dispatch = useDispatch();
 
-	const isContinued = useSelector(selectIsContinued);
-
-	const { Field, Subscribe, handleSubmit } = useForm({
+	const { Field, Subscribe, handleSubmit, state } = useForm({
 		defaultValues: {
 			phone: '',
 			code: '',
 		},
 		onSubmit: ({ value }) => {
 			if (isContinued) {
-				return '';
+				signin({ code: +value.code, phone: value.phone });
+				return;
 			}
 
 			dispatch(createOtpThunk({ phone: value.phone }));
@@ -39,7 +43,13 @@ export const Auth = () => {
 			</Typography>
 			<Field
 				children={({ state, handleChange }) => (
-					<PhoneInput value={state.value} onChange={(event) => handleChange(event.target.value)} />
+					<PhoneInput
+						value={state.value}
+						onChange={(event) => {
+							dispatch(setIsContinued(false));
+							handleChange(event.target.value);
+						}}
+					/>
 				)}
 				name="phone"
 			/>
@@ -61,7 +71,7 @@ export const Auth = () => {
 				<>
 					<Field
 						children={({ state, handleChange }) => (
-							<OTPCode value={state.value} onChange={(event) => handleChange(event)} />
+							<OTPCode value={state.value} onChange={(value: string) => handleChange(value)} />
 						)}
 						name="code"
 					/>
@@ -78,6 +88,10 @@ export const Auth = () => {
 							}}
 						></Subscribe>
 					</ButtonGroup>
+					<ResendCodeManager
+						delay={retryDelay.data / 1000}
+						retry={() => dispatch(createOtpThunk({ phone: state.values.phone }))}
+					/>
 				</>
 			)}
 		</Form>

@@ -1,20 +1,6 @@
-import type { InputOTPRenderFn, OTPInputBaseProps } from 'input-otp';
-
 import { FakeDash, Group, InputOtp, Slot } from '@src/shared/ui';
 
-type OTPInputProps = OTPInputBaseProps &
-	(
-		| {
-				render?: InputOTPRenderFn;
-				children?: never;
-		  }
-		| {
-				render?: never;
-				children: React.ReactNode;
-		  }
-	) & {
-		maxLength?: number;
-	};
+import type { OTPInputProps } from './types';
 
 export const OTPCode = (props: OTPInputProps) => {
 	if ('children' in props) {
