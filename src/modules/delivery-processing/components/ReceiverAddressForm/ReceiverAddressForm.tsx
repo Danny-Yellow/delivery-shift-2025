@@ -22,11 +22,11 @@ import styles from './styles.module.scss';
 export const ReceiverAddressForm = () => {
 	const dispatch = useDispatch();
 
-	const [options, setOptions] = useState<Omit<ReceiverAddress, keyof Address>>({
-		isNonContact: false,
-	});
-
 	const receiverAddress = useSelector(selectReceiverAddress);
+
+	const [options, setOptions] = useState<Omit<ReceiverAddress, keyof Address>>({
+		isNonContact: receiverAddress?.isNonContact ?? false,
+	});
 
 	return (
 		<>
