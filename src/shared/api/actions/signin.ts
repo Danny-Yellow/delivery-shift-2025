@@ -3,6 +3,7 @@ import type { Signin, User } from '@src/shared/types';
 import { api } from '../instance';
 
 export interface SigninResponse extends DefaultResponse {
+	token: string;
 	user: User;
 }
 

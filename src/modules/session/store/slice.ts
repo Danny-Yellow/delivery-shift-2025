@@ -1,11 +1,12 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { SigninResponse } from '@src/shared/api';
+import type { GetSessionResponse, SigninResponse } from '@src/shared/api';
 
 import { createSlice } from '@reduxjs/toolkit';
+import { LOCAL_STORAGE_KEYS } from '@src/shared/constants/localStorage';
 
 import type { SessionState } from './types';
 
-import { signinThunk } from './thunks';
+import { getSessionThunk, signinThunk } from './thunks';
 
 const initialState: SessionState = {
 	isAuth: false,
@@ -21,6 +22,10 @@ const initialState: SessionState = {
 		error: '',
 		isLoading: false,
 	},
+	session: {
+		error: '',
+		isLoading: false,
+	},
 };
 
 export const sessionSlice = createSlice({
@@ -31,6 +36,7 @@ export const sessionSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
+			// Signin
 			.addCase(signinThunk.pending, (state) => {
 				state.signin.isLoading = true;
 			})
@@ -40,6 +46,20 @@ export const sessionSlice = createSlice({
 			})
 			.addCase(signinThunk.fulfilled, (state, action: PayloadAction<SigninResponse>) => {
 				state.signin.isLoading = false;
+				state.isAuth = true;
+				state.user = action.payload.user;
+				localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, action.payload.token);
+			})
+			// Get session
+			.addCase(getSessionThunk.pending, (state) => {
+				state.session.isLoading = true;
+			})
+			.addCase(getSessionThunk.rejected, (state, action) => {
+				state.session.isLoading = false;
+				state.session.error = action.error.message ?? '';
+			})
+			.addCase(getSessionThunk.fulfilled, (state, action: PayloadAction<GetSessionResponse>) => {
+				state.session.isLoading = false;
 				state.isAuth = true;
 				state.user = action.payload.user;
 			});

@@ -1,6 +1,8 @@
 import { Success } from '@src/shared/components';
+import { ROUTES } from '@src/shared/constants';
 import { Button, ButtonGroup, Typography } from '@src/shared/ui';
 import { useSelector } from '@src/store';
+import { useNavigate } from 'react-router';
 
 import { selectOrder } from '../../store';
 import { OrderCard } from '../OrderCard/OrderCard';
@@ -9,6 +11,8 @@ import styles from './styles.module.scss';
 
 export const OrderRequest = () => {
 	const { data: order } = useSelector(selectOrder);
+
+	const navigate = useNavigate();
 
 	if (!order) return null;
 
@@ -36,8 +40,10 @@ export const OrderRequest = () => {
 				</Typography>
 			</OrderCard>
 			<ButtonGroup className={styles.buttons}>
-				<Button variant="outlined">Посмотреть статс</Button>
-				<Button>На главную</Button>
+				<Button variant="outlined" onClick={() => navigate(ROUTES.ORDER_HISTORY)}>
+					Посмотреть статс
+				</Button>
+				<Button onClick={() => navigate('/')}>На главную</Button>
 			</ButtonGroup>
 		</div>
 	);

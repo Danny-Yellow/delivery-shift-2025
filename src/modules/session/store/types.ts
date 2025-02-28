@@ -1,5 +1,9 @@
 export interface SessionState {
 	isAuth: boolean;
+	session: {
+		isLoading: boolean;
+		error: string;
+	};
 	signin: {
 		isLoading: boolean;
 		error: string;

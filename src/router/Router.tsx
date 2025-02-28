@@ -5,17 +5,31 @@ import { RootLayout } from '@src/shared/components';
 import { ROUTES } from '@src/shared/constants';
 import { BrowserRouter, Route, Routes } from 'react-router';
 
+import { ProtectedRoute } from './ProtectedRoute';
+
 export const Router = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route element={<CalculationLayout />}>
-					<Route element={<CalculationPage />} path="/" />
+				<Route element={<ProtectedRoute access="forAll" />}>
+					<Route element={<CalculationLayout />}>
+						<Route element={<CalculationPage />} path="/" />
+					</Route>
+					<Route element={<RootLayout header={<TopNavigation />} />}>
+						<Route element={<DeliveryProcessingPage />} path={ROUTES.PROCESSING} />
+						<Route element={<OrderRequestPage />} path={ROUTES.ORDER_REQUEST} />
+					</Route>
 				</Route>
-				<Route element={<RootLayout header={<TopNavigation />} />}>
-					<Route element={<DeliveryProcessingPage />} path={ROUTES.PROCESSING} />
-					<Route element={<OrderRequestPage />} path={ROUTES.ORDER_REQUEST} />
-					<Route element={<AuthPage />} path={ROUTES.AUTH} />
+				<Route element={<ProtectedRoute access="onlyUnAuth" />}>
+					<Route element={<RootLayout header={<TopNavigation />} />}>
+						<Route element={<AuthPage />} path={ROUTES.AUTH} />
+					</Route>
+				</Route>
+				<Route element={<ProtectedRoute access="onlyAuth" />}>
+					<Route element={<RootLayout header={<TopNavigation />} />}>
+						<Route element={<div>History</div>} path={ROUTES.ORDER_HISTORY} />
+						<Route element={<div>Profile</div>} path={ROUTES.PROFILE} />
+					</Route>
 				</Route>
 			</Routes>
 		</BrowserRouter>
