@@ -1,4 +1,4 @@
-import { TopNavigation } from '@src/modules/top-navigation';
+import { AuthTopNavigation } from '@src/modules/session';
 import { AuthPage, CalculationLayout, CalculationPage, OrderRequestPage } from '@src/pages';
 import { DeliveryProcessingPage } from '@src/pages/delivery-processing-page/components/DeliveryProcessingPage/DeliveryProcessingPage';
 import { RootLayout } from '@src/shared/components';
@@ -15,18 +15,18 @@ export const Router = () => {
 					<Route element={<CalculationLayout />}>
 						<Route element={<CalculationPage />} path="/" />
 					</Route>
-					<Route element={<RootLayout header={<TopNavigation />} />}>
+					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
 						<Route element={<DeliveryProcessingPage />} path={ROUTES.PROCESSING} />
 						<Route element={<OrderRequestPage />} path={ROUTES.ORDER_REQUEST} />
 					</Route>
 				</Route>
 				<Route element={<ProtectedRoute access="onlyUnAuth" />}>
-					<Route element={<RootLayout header={<TopNavigation />} />}>
+					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
 						<Route element={<AuthPage />} path={ROUTES.AUTH} />
 					</Route>
 				</Route>
 				<Route element={<ProtectedRoute access="onlyAuth" />}>
-					<Route element={<RootLayout header={<TopNavigation />} />}>
+					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
 						<Route element={<div>History</div>} path={ROUTES.ORDER_HISTORY} />
 						<Route element={<div>Profile</div>} path={ROUTES.PROFILE} />
 					</Route>

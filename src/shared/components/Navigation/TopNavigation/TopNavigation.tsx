@@ -4,7 +4,7 @@ import { Container, Link } from '@src/shared/ui/index';
 
 import styles from './styles.module.scss';
 
-export const TopNavigation = () => {
+export const TopNavigation = ({ isAuth, logout }: { isAuth: boolean; logout: () => void }) => {
 	return (
 		<div className={styles.navigation}>
 			<div className={styles.wrapper}>
@@ -21,9 +21,13 @@ export const TopNavigation = () => {
 								История
 							</Link>
 						</div>
-						<Link startIcon={<Exit />} to={ROUTES.SIGNIN}>
-							Войти
-						</Link>
+						{isAuth ? (
+							<Link onClick={() => logout()} startIcon={<Exit />} to={''}>
+								Выйти
+							</Link>
+						) : (
+							<Link to={ROUTES.AUTH}>Войти</Link>
+						)}
 					</div>
 				</Container>
 			</div>
