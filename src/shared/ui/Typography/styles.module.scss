@@ -85,3 +85,9 @@
 .error {
 	color: $error-color;
 }
+
+.underline {
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+	text-underline-offset: 2px;
+}

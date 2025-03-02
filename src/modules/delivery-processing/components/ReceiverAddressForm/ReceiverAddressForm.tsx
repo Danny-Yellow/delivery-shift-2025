@@ -11,8 +11,8 @@ import {
 	TooltipTrigger,
 	Typography,
 } from '@src/shared/ui';
+import { useDispatch, useSelector } from '@src/store';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { selectReceiverAddress, setReceiverAddress } from '../../store';
 import { AddressForm } from '../AddressForm/AddressForm';

@@ -3,9 +3,9 @@ import type { Person } from '@src/shared/types';
 import { PhoneInput } from '@src/shared/components/PhoneInput/PhoneInput';
 import { formatPhone } from '@src/shared/helpers';
 import { Button, ButtonGroup, Form, Input, InputLabel, Typography } from '@src/shared/ui';
+import { useDispatch } from '@src/store';
 import { useForm } from '@tanstack/react-form';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { personalFields } from '../../constants/reiceiverFields';
 import { PersonalFormSchema } from '../../lib/PersonalFormSchema';

@@ -1,5 +1,11 @@
 import { AuthTopNavigation } from '@src/modules/session';
-import { AuthPage, CalculationLayout, CalculationPage, OrderRequestPage } from '@src/pages';
+import {
+	AuthPage,
+	CalculationLayout,
+	CalculationPage,
+	HistoryPage,
+	OrderRequestPage,
+} from '@src/pages';
 import { DeliveryProcessingPage } from '@src/pages/delivery-processing-page/components/DeliveryProcessingPage/DeliveryProcessingPage';
 import { RootLayout } from '@src/shared/components';
 import { ROUTES } from '@src/shared/constants';
@@ -27,7 +33,7 @@ export const Router = () => {
 				</Route>
 				<Route element={<ProtectedRoute access="onlyAuth" />}>
 					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
-						<Route element={<div>History</div>} path={ROUTES.ORDER_HISTORY} />
+						<Route element={<HistoryPage />} path={ROUTES.ORDER_HISTORY} />
 						<Route element={<div>Profile</div>} path={ROUTES.PROFILE} />
 					</Route>
 				</Route>

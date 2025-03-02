@@ -2,9 +2,9 @@ import type { Address } from '@src/shared/types';
 import type { ReactNode } from 'react';
 
 import { Button, ButtonGroup, Form, InputLabel, InputWithPrefix, Typography } from '@src/shared/ui';
+import { useDispatch } from '@src/store';
 import { useForm } from '@tanstack/react-form';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { addressFields } from '../../constants/addressFields';
 import { AddressFormSchema } from '../../lib/AddressFormSchema';

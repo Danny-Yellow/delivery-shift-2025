@@ -4,7 +4,7 @@ import { FreeDelivery } from '@src/shared/components';
 import { capitalizeFirstLetter, declensionWorkingDays } from '@src/shared/helpers';
 import { Form } from '@src/shared/ui';
 import { Typography } from '@src/shared/ui/Typography/Typography';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from '@src/store';
 
 import { dispatchMethodIconsMap } from '../../constants/dispatchMethodIconsMap';
 import { incrementStep, selectDeliveryMethods, setDeliveryMethod } from '../../store';
