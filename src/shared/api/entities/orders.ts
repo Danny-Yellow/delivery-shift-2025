@@ -2,9 +2,9 @@ import type { OrderWithStatus } from '@src/shared/types';
 
 import { api } from '../instance';
 
-export interface getOrdersResponse extends DefaultResponse {
+export interface GetOrdersResponse extends DefaultResponse {
 	orders: OrderWithStatus[];
 }
 
 export const getOrders = async ({ config }: AxiosRequestConfig) =>
-	api.get<getOrdersResponse>('/delivery/orders', config);
+	api.get<GetOrdersResponse>('/delivery/orders', config);

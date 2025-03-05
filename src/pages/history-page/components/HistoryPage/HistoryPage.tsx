@@ -1,5 +1,4 @@
-import { OrderHistory } from '@src/modules/order-history';
-import { getOrdersThunk, selectOrderHistory } from '@src/modules/order-history/store';
+import { getOrdersThunk, OrderHistory, selectOrderHistory } from '@src/modules/order/';
 import { useDispatch } from '@src/store';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';

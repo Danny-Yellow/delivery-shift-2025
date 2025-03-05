@@ -1,16 +1,24 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { CreateDeliveryOrderResponse } from '@src/shared/api/actions/createDeliveryOrder';
+import type { GetOrdersResponse } from '@src/shared/api/entities/orders';
 
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { OrderState } from './types';
 
-import { createDeliveryOrderThunk } from './thunks';
+import { createDeliveryOrderThunk, getOrdersThunk } from './thunks';
 
 const initialState: OrderState = {
-	isLoading: false,
-	error: '',
-	data: null,
+	orderHistory: {
+		isLoading: false,
+		error: '',
+		data: null,
+	},
+	orderRequest: {
+		isLoading: false,
+		error: '',
+		data: null,
+	},
 };
 
 export const orderSlice = createSlice({
@@ -21,20 +29,33 @@ export const orderSlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
+			// Create order
 			.addCase(createDeliveryOrderThunk.pending, (state) => {
-				state.isLoading = true;
+				state.orderRequest.isLoading = true;
 			})
 			.addCase(createDeliveryOrderThunk.rejected, (state, action) => {
-				state.isLoading = false;
-				state.error = action.error.message ?? '';
+				state.orderRequest.isLoading = false;
+				state.orderRequest.error = action.error.message ?? '';
 			})
 			.addCase(
 				createDeliveryOrderThunk.fulfilled,
 				(state, action: PayloadAction<CreateDeliveryOrderResponse>) => {
-					state.isLoading = false;
-					state.data = action.payload.order;
+					state.orderRequest.isLoading = false;
+					state.orderRequest.data = action.payload.order;
 				},
-			);
+			)
+			// Get orders
+			.addCase(getOrdersThunk.pending, (state) => {
+				state.orderHistory.isLoading = true;
+			})
+			.addCase(getOrdersThunk.rejected, (state, action) => {
+				state.orderHistory.isLoading = false;
+				state.orderHistory.error = action.error.message ?? '';
+			})
+			.addCase(getOrdersThunk.fulfilled, (state, action: PayloadAction<GetOrdersResponse>) => {
+				state.orderHistory.isLoading = false;
+				state.orderHistory.data = action.payload.orders;
+			});
 	},
 });
 

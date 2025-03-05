@@ -1,3 +1,7 @@
 import type { RootState } from '@src/store';
 
-export const selectOrder = (state: RootState) => state.order;
+export const selectOrderRequest = (state: RootState) => state.order.orderRequest;
+
+export const selectOrderHistory = (state: RootState) => state.order.orderHistory;
+
+export const selectOrderHistoryData = (state: RootState) => state.order.orderHistory.data;

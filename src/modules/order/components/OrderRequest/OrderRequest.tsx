@@ -4,13 +4,13 @@ import { Button, ButtonGroup, Typography } from '@src/shared/ui';
 import { useSelector } from '@src/store';
 import { useNavigate } from 'react-router';
 
-import { selectOrder } from '../../store';
+import { selectOrderRequest } from '../../store';
 import { OrderCard } from '../OrderCard/OrderCard';
 
 import styles from './styles.module.scss';
 
 export const OrderRequest = () => {
-	const { data: order } = useSelector(selectOrder);
+	const { data: order } = useSelector(selectOrderRequest);
 
 	const navigate = useNavigate();
 
