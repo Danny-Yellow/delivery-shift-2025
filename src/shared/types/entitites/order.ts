@@ -18,8 +18,10 @@ export interface OrderWithOption extends baseOrder {
 	option: DeliveryOption;
 }
 
+export type OrderStatus = 0 | 1 | 2 | 3 | 4;
+
 export interface OrderWithStatus extends baseOrder {
 	_id: string;
 	cancellable: boolean;
-	status: number;
+	status: OrderStatus;
 }

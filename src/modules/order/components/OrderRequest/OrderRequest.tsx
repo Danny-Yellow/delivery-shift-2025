@@ -29,7 +29,7 @@ export const OrderRequest = () => {
 			</Typography>
 			<OrderCard
 				_id={order._id}
-				status="Создан"
+				status={0}
 				street={order.receiverAddress.street}
 				type="Тип не приходит с сервера"
 				house={order.receiverAddress.house}
@@ -41,7 +41,7 @@ export const OrderRequest = () => {
 			</OrderCard>
 			<ButtonGroup className={styles.buttons}>
 				<Button variant="outlined" onClick={() => navigate(ROUTES.ORDER_HISTORY)}>
-					Посмотреть статс
+					Посмотреть статус
 				</Button>
 				<Button onClick={() => navigate('/')}>На главную</Button>
 			</ButtonGroup>

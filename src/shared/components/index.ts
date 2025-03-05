@@ -5,3 +5,4 @@ export * from './Navigation';
 export * from './OTPCode/OTPCode';
 export * from './PhoneInput/PhoneInput';
 export * from './RootLayout/RootLayout';
+export * from './StatusWrapper/StatusWrapper';

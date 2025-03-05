@@ -21,12 +21,14 @@ export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
 			code: '',
 		},
 		onSubmit: ({ value }) => {
+			const phone = formatPhone(value.phone);
+
 			if (isContinued) {
-				signin({ code: +value.code, phone: value.phone });
+				signin({ code: +value.code, phone });
 				return;
 			}
 
-			dispatch(createOtpThunk({ phone: value.phone }));
+			dispatch(createOtpThunk({ phone }));
 		},
 	});
 

@@ -1,4 +1,9 @@
+import type { OrderWithStatus } from '@src/shared/types';
+
+import { StatusWrapper } from '@src/shared/components';
+import { STATUS_CODE, STATUS_INDICATOR } from '@src/shared/constants/status';
 import {
+	Indicator,
 	Link,
 	Table,
 	TableBody,
@@ -11,7 +16,7 @@ import {
 
 import styles from './styles.module.scss';
 
-export const OrderHistory = () => {
+export const OrderHistory = ({ orders }: { orders: OrderWithStatus[] }) => {
 	return (
 		<>
 			<Typography tag="h2" variant="h2">
@@ -26,30 +31,28 @@ export const OrderHistory = () => {
 					</TableRow>
 				</TableHeader>
 				<TableBody>
-					<TableRow>
-						<TableCell>123456789123</TableCell>
-						<TableCell>Россия, г. Новосибирск, ул. Кирова, д. 86</TableCell>
-						<TableCell>Вручен</TableCell>
-						<TableCell>
-							<Link to="">
-								<Typography underline variant="p_12_regular" color="tertiary">
-									Подробнее
-								</Typography>
-							</Link>
-						</TableCell>
-					</TableRow>
-					<TableRow>
-						<TableCell>123456789123</TableCell>
-						<TableCell>Россия, г. Новосибирск, ул. Кирова, д. 86</TableCell>
-						<TableCell>Вручен</TableCell>
-						<TableCell>
-							<Link to="">
-								<Typography underline variant="p_12_regular" color="tertiary">
-									Подробнее
-								</Typography>
-							</Link>
-						</TableCell>
-					</TableRow>
+					{orders?.map((order) => (
+						<TableRow key={order._id}>
+							<TableCell>{order._id}</TableCell>
+							<TableCell>
+								Россия, г. {order.receiverPoint.name}, {order.receiverAddress.street},{' '}
+								{order.receiverAddress.house}
+							</TableCell>
+							<TableCell>
+								<StatusWrapper>
+									<Indicator color={STATUS_INDICATOR[order.status]} />
+									<span>{STATUS_CODE[order.status]}</span>
+								</StatusWrapper>
+							</TableCell>
+							<TableCell>
+								<Link to="">
+									<Typography underline variant="p_12_regular" color="tertiary">
+										Подробнее
+									</Typography>
+								</Link>
+							</TableCell>
+						</TableRow>
+					))}
 				</TableBody>
 			</Table>
 		</>
