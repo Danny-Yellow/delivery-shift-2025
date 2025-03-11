@@ -4,6 +4,7 @@ import {
 	CalculationLayout,
 	CalculationPage,
 	HistoryPage,
+	OrderDetailsPage,
 	OrderRequestPage,
 } from '@src/pages';
 import { DeliveryProcessingPage } from '@src/pages/delivery-processing-page/components/DeliveryProcessingPage/DeliveryProcessingPage';
@@ -35,6 +36,7 @@ export const Router = () => {
 					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
 						<Route element={<HistoryPage />} path={ROUTES.ORDER_HISTORY} />
 						<Route element={<div>Profile</div>} path={ROUTES.PROFILE} />
+						<Route element={<OrderDetailsPage />} path={ROUTES.ORDER_DETAILS} />
 					</Route>
 				</Route>
 			</Routes>

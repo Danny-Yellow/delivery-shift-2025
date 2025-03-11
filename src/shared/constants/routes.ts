@@ -4,4 +4,5 @@ export const ROUTES = {
 	PROCESSING: '/processing',
 	ORDER_REQUEST: '/order-request',
 	AUTH: '/auth',
+	ORDER_DETAILS: '/orders/:id',
 };

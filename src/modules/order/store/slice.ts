@@ -1,12 +1,12 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { CreateDeliveryOrderResponse } from '@src/shared/api/actions/createDeliveryOrder';
-import type { GetOrdersResponse } from '@src/shared/api/entities/orders';
+import type { GetOrderResponse, GetOrdersResponse } from '@src/shared/api/entities/orders';
 
 import { createSlice } from '@reduxjs/toolkit';
 
 import type { OrderState } from './types';
 
-import { createDeliveryOrderThunk, getOrdersThunk } from './thunks';
+import { createDeliveryOrderThunk, getOrdersThunk, getOrderThunk } from './thunks';
 
 const initialState: OrderState = {
 	orderHistory: {
@@ -15,6 +15,11 @@ const initialState: OrderState = {
 		data: null,
 	},
 	orderRequest: {
+		isLoading: false,
+		error: '',
+		data: null,
+	},
+	orderDetails: {
 		isLoading: false,
 		error: '',
 		data: null,
@@ -44,7 +49,7 @@ export const orderSlice = createSlice({
 					state.orderRequest.data = action.payload.order;
 				},
 			)
-			// Get orders
+			// Get order history
 			.addCase(getOrdersThunk.pending, (state) => {
 				state.orderHistory.isLoading = true;
 			})
@@ -55,6 +60,18 @@ export const orderSlice = createSlice({
 			.addCase(getOrdersThunk.fulfilled, (state, action: PayloadAction<GetOrdersResponse>) => {
 				state.orderHistory.isLoading = false;
 				state.orderHistory.data = action.payload.orders;
+			})
+			// Get order details
+			.addCase(getOrderThunk.pending, (state) => {
+				state.orderDetails.isLoading = true;
+			})
+			.addCase(getOrderThunk.rejected, (state, action) => {
+				state.orderDetails.isLoading = false;
+				state.orderDetails.error = action.error.message ?? '';
+			})
+			.addCase(getOrderThunk.fulfilled, (state, action: PayloadAction<GetOrderResponse>) => {
+				state.orderDetails.isLoading = false;
+				state.orderDetails.data = action.payload.order;
 			});
 	},
 });
