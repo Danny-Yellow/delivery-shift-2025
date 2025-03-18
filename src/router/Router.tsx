@@ -6,6 +6,7 @@ import {
 	HistoryPage,
 	OrderDetailsPage,
 	OrderRequestPage,
+	ProfilePage,
 } from '@src/pages';
 import { DeliveryProcessingPage } from '@src/pages/delivery-processing-page/components/DeliveryProcessingPage/DeliveryProcessingPage';
 import { RootLayout } from '@src/shared/components';
@@ -25,6 +26,7 @@ export const Router = () => {
 					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
 						<Route element={<DeliveryProcessingPage />} path={ROUTES.PROCESSING} />
 						<Route element={<OrderRequestPage />} path={ROUTES.ORDER_REQUEST} />
+						<Route element={<ProfilePage />} path={ROUTES.PROFILE} />
 					</Route>
 				</Route>
 				<Route element={<ProtectedRoute access="onlyUnAuth" />}>

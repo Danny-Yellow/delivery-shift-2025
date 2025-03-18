@@ -1,3 +1,4 @@
+export * from './CitySelect/CitySelect';
 export * from './FreeDelivery/FreeDelivery';
 export * from './Icons/index';
 export * from './InfoPanel/InfoPanel';

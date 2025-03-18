@@ -1,14 +1,12 @@
-import { Email, Location, Travel } from '@src/shared/components';
+import { Email } from '@src/shared/components';
+import { CitySelect } from '@src/shared/components/CitySelect/CitySelect';
 import {
 	InputLabel,
 	Select,
 	SelectButton,
 	SelectButtonGroup,
 	SelectContent,
-	SelectItem,
 	SelectTrigger,
-	SelectValue,
-	SelectViewport,
 	Tabs,
 	TabsContent,
 	TabsList,
@@ -81,20 +79,12 @@ export const CalculateDeliveryForm = () => {
 				</InputLabel>
 				<InputLabel>
 					<Typography variant="p_14_medium">Город отправки</Typography>
-					<Select value={selectedPoints.senderPoint?.id} onValueChange={handleSenderPointSelect}>
-						<SelectTrigger startIcon={<Location />}>
-							<SelectValue placeholder="Выберите город" />
-						</SelectTrigger>
-						<SelectContent className={styles.cities_content}>
-							<SelectViewport className={styles.cities_viewport}>
-								{points.map((point) => (
-									<SelectItem key={point.id} value={point.id}>
-										{point.name}
-									</SelectItem>
-								))}
-							</SelectViewport>
-						</SelectContent>
-					</Select>
+					<CitySelect
+						value={selectedPoints.senderPoint?.id}
+						icon="sender"
+						onChange={handleSenderPointSelect}
+						points={points}
+					/>
 					<SelectButtonGroup>
 						{points.slice(0, 3).map((point) => (
 							<SelectButton
@@ -109,23 +99,12 @@ export const CalculateDeliveryForm = () => {
 				</InputLabel>
 				<InputLabel>
 					<Typography variant="p_14_medium">Город назначения</Typography>
-					<Select
+					<CitySelect
 						value={selectedPoints.receiverPoint?.id}
-						onValueChange={handleReiceiverPointSelect}
-					>
-						<SelectTrigger startIcon={<Travel />}>
-							<SelectValue placeholder="Выберите город" />
-						</SelectTrigger>
-						<SelectContent className={styles.cities_content}>
-							<SelectViewport className={styles.cities_viewport}>
-								{points.map((point) => (
-									<SelectItem key={point.id} value={point.id}>
-										{point.name}
-									</SelectItem>
-								))}
-							</SelectViewport>
-						</SelectContent>
-					</Select>
+						icon="receiver"
+						onChange={handleReiceiverPointSelect}
+						points={points}
+					/>
 					<SelectButtonGroup>
 						{points.slice(0, 3).map((point) => (
 							<SelectButton
