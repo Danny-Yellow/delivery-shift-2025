@@ -1,3 +1,5 @@
+import type { Point } from '@src/shared/types';
+
 import { ROUTES } from '@src/shared/constants';
 import { useDispatch, useSelector } from '@src/store';
 import { useNavigate } from 'react-router';
@@ -22,12 +24,12 @@ export const useCalculateDeliveryForm = () => {
 	const selectedPackageType = useSelector(selectSelectedPackageType);
 	const isOpenPackageType = useSelector(selectIsOpenPackageType);
 
-	function handleSenderPointSelect(pointId: string) {
-		dispatch(changeSelectedSenderPoint({ pointId }));
+	function handleSenderPointSelect(point: Point) {
+		dispatch(changeSelectedSenderPoint({ point }));
 	}
 
-	function handleReiceiverPointSelect(pointId: string) {
-		dispatch(changeSelectedReiceiverPoint({ pointId }));
+	function handleReiceiverPointSelect(point: Point) {
+		dispatch(changeSelectedReiceiverPoint({ point }));
 	}
 
 	function handlePackageTypeOpenChange(isOpen: boolean) {

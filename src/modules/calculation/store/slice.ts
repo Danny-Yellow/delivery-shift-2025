@@ -2,7 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { GetPointsResponse } from '@src/shared/api';
 import type { CalculateDeliveryResponse } from '@src/shared/api/actions/calculateDelivery';
 import type { GetPackageTypesResponse } from '@src/shared/api/entities/packageTypes';
-import type { PackageType } from '@src/shared/types';
+import type { PackageType, Point } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -36,13 +36,11 @@ export const calculationDeliverySlice = createSlice({
 	name: 'calculationDelivery',
 	initialState,
 	reducers: {
-		changeSelectedSenderPoint: (state, { payload }: PayloadAction<{ pointId: string }>) => {
-			const selectedPoint = state.points.data.find((point) => point.id === payload.pointId);
-			state.selectedSenderPoint = selectedPoint ?? null;
+		changeSelectedSenderPoint: (state, { payload }: PayloadAction<{ point: Point }>) => {
+			state.selectedSenderPoint = payload.point;
 		},
-		changeSelectedReiceiverPoint: (state, { payload }: PayloadAction<{ pointId: string }>) => {
-			const selectedPoint = state.points.data.find((point) => point.id === payload.pointId);
-			state.selectedReiceiverPoint = selectedPoint ?? null;
+		changeSelectedReiceiverPoint: (state, { payload }: PayloadAction<{ point: Point }>) => {
+			state.selectedReiceiverPoint = payload.point;
 		},
 		changeSelectedPackageType: (state, { payload }: PayloadAction<{ packageTypeId: string }>) => {
 			const selectedPackageType = state.packageTypes.data.find(

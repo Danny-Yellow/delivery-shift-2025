@@ -1,3 +1,5 @@
+import type { Point } from '@src/shared/types';
+
 import { Email } from '@src/shared/components';
 import { CitySelect } from '@src/shared/components/CitySelect/CitySelect';
 import {
@@ -17,14 +19,13 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
 import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
-import { selectPackageTypes, selectPoints } from '../../store';
+import { selectPackageTypes } from '../../store';
 import { ApproximatePackageSizeList } from '../ApproximatePackageSizeList/ApproximatePackageSizeList';
 import { ExactPackageSizeForm } from '../ExactPackageSizeForm/ExactPackageSizeForm';
 
 import styles from './styles.module.scss';
 
-export const CalculateDeliveryForm = () => {
-	const { data: points } = useSelector(selectPoints);
+export const CalculateDeliveryForm = ({ points }: { points: Point[] }) => {
 	const { data: packageTypes } = useSelector(selectPackageTypes);
 
 	const {
@@ -80,7 +81,7 @@ export const CalculateDeliveryForm = () => {
 				<InputLabel>
 					<Typography variant="p_14_medium">Город отправки</Typography>
 					<CitySelect
-						value={selectedPoints.senderPoint?.id}
+						value={selectedPoints.senderPoint?.name}
 						icon="sender"
 						onChange={handleSenderPointSelect}
 						points={points}
@@ -90,7 +91,7 @@ export const CalculateDeliveryForm = () => {
 							<SelectButton
 								key={point.id}
 								value={point.id}
-								onClick={() => handleSenderPointSelect(point.id)}
+								onClick={() => handleSenderPointSelect(point)}
 							>
 								{point.name}
 							</SelectButton>
@@ -100,7 +101,7 @@ export const CalculateDeliveryForm = () => {
 				<InputLabel>
 					<Typography variant="p_14_medium">Город назначения</Typography>
 					<CitySelect
-						value={selectedPoints.receiverPoint?.id}
+						value={selectedPoints.receiverPoint?.name}
 						icon="receiver"
 						onChange={handleReiceiverPointSelect}
 						points={points}
@@ -110,7 +111,7 @@ export const CalculateDeliveryForm = () => {
 							<SelectButton
 								key={point.id}
 								value={point.id}
-								onClick={() => handleReiceiverPointSelect(point.id)}
+								onClick={() => handleReiceiverPointSelect(point)}
 							>
 								{point.name}
 							</SelectButton>

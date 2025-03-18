@@ -8,15 +8,13 @@ interface OrderDetailsProps {
 
 export const OrderDetails = ({ order }: OrderDetailsProps) => {
 	return (
-		<div>
-			<OrderCard
-				_id={order._id}
-				status={order.status}
-				street={order.receiverAddress.street}
-				type="Тип доставки"
-				house={order.receiverAddress.house}
-				point={order.receiverPoint.name}
-			/>
-		</div>
+		<OrderCard
+			_id={order._id}
+			status={order.status}
+			street={order.receiverAddress.street}
+			type="Тип доставки"
+			house={order.receiverAddress.house}
+			point={order.receiverPoint.name}
+		/>
 	);
 };

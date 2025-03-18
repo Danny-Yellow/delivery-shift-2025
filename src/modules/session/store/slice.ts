@@ -59,9 +59,18 @@ export const sessionSlice = createSlice({
 				state.session.error = action.error.message ?? '';
 			})
 			.addCase(getSessionThunk.fulfilled, (state, action: PayloadAction<GetSessionResponse>) => {
+				const user = action.payload.user;
+
 				state.session.isLoading = false;
 				state.isAuth = true;
-				state.user = action.payload.user;
+				state.user = {
+					city: user.city ?? '',
+					email: user.email ?? '',
+					firstname: user.firstname ?? '',
+					lastname: user.lastname ?? '',
+					middlename: user.middlename ?? '',
+					phone: user.phone ?? '',
+				};
 			});
 	},
 });
