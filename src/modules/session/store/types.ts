@@ -8,6 +8,10 @@ export interface SessionState {
 		isLoading: boolean;
 		error: string;
 	};
+	updating: {
+		isLoading: boolean;
+		error: string;
+	};
 	user: {
 		phone: string;
 		firstname: string;

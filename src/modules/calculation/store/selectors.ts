@@ -1,4 +1,4 @@
-import type { RootState } from '@src/store';
+import type { RootState } from '@src/store/types';
 
 export const selectPoints = (state: RootState) => state.calculationDelivery.points;
 

@@ -1,12 +1,12 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { GetSessionResponse, SigninResponse } from '@src/shared/api';
+import type { GetSessionResponse, SigninResponse, UpdateProfileResponse } from '@src/shared/api';
 
 import { createSlice } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_KEYS } from '@src/shared/constants/localStorage';
 
 import type { SessionState } from './types';
 
-import { getSessionThunk, signinThunk } from './thunks';
+import { getSessionThunk, signinThunk, updateProfileThunk } from './thunks';
 
 const initialState: SessionState = {
 	isAuth: false,
@@ -23,6 +23,10 @@ const initialState: SessionState = {
 		isLoading: false,
 	},
 	session: {
+		error: '',
+		isLoading: false,
+	},
+	updating: {
 		error: '',
 		isLoading: false,
 	},
@@ -71,7 +75,22 @@ export const sessionSlice = createSlice({
 					middlename: user.middlename ?? '',
 					phone: user.phone ?? '',
 				};
-			});
+			})
+			// Update profile
+			.addCase(updateProfileThunk.pending, (state) => {
+				state.updating.isLoading = true;
+			})
+			.addCase(updateProfileThunk.rejected, (state, action) => {
+				state.updating.isLoading = false;
+				state.updating.error = action.error.message ?? '';
+			})
+			.addCase(
+				updateProfileThunk.fulfilled,
+				(state, action: PayloadAction<UpdateProfileResponse>) => {
+					state.updating.isLoading = false;
+					state.user = action.payload.user;
+				},
+			);
 	},
 });
 

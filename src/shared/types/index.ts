@@ -6,6 +6,7 @@ export * from './entitites/order';
 export * from './entitites/packageType';
 export * from './entitites/payer';
 export * from './entitites/point';
+export * from './entitites/profile';
 export * from './entitites/receiver';
 export * from './entitites/signin';
 export * from './entitites/user';
