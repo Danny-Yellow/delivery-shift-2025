@@ -26,7 +26,6 @@ export const Router = () => {
 					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
 						<Route element={<DeliveryProcessingPage />} path={ROUTES.PROCESSING} />
 						<Route element={<OrderRequestPage />} path={ROUTES.ORDER_REQUEST} />
-						<Route element={<ProfilePage />} path={ROUTES.PROFILE} />
 					</Route>
 				</Route>
 				<Route element={<ProtectedRoute access="onlyUnAuth" />}>
@@ -37,8 +36,8 @@ export const Router = () => {
 				<Route element={<ProtectedRoute access="onlyAuth" />}>
 					<Route element={<RootLayout header={<AuthTopNavigation />} />}>
 						<Route element={<HistoryPage />} path={ROUTES.ORDER_HISTORY} />
-						<Route element={<div>Profile</div>} path={ROUTES.PROFILE} />
 						<Route element={<OrderDetailsPage />} path={ROUTES.ORDER_DETAILS} />
+						<Route element={<ProfilePage />} path={ROUTES.PROFILE} />
 					</Route>
 				</Route>
 			</Routes>

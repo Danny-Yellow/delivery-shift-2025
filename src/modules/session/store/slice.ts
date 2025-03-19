@@ -1,5 +1,6 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { GetSessionResponse, SigninResponse, UpdateProfileResponse } from '@src/shared/api';
+import type { User } from '@src/shared/types';
 
 import { createSlice } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_KEYS } from '@src/shared/constants/localStorage';
@@ -86,9 +87,17 @@ export const sessionSlice = createSlice({
 			})
 			.addCase(
 				updateProfileThunk.fulfilled,
-				(state, action: PayloadAction<UpdateProfileResponse>) => {
+				(state, action: PayloadAction<{ response: UpdateProfileResponse; newUser: User }>) => {
+					const user = action.payload.newUser;
 					state.updating.isLoading = false;
-					state.user = action.payload.user;
+					state.user = {
+						city: user.city ?? '',
+						email: user.email ?? '',
+						firstname: user.firstname ?? '',
+						lastname: user.lastname ?? '',
+						middlename: user.middlename ?? '',
+						phone: user.phone ?? '',
+					};
 				},
 			);
 	},

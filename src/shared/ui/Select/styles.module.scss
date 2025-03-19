@@ -5,7 +5,6 @@
 	width: 100%;
 	align-items: center;
 	justify-content: space-between;
-	padding: 0.5rem 0.5rem 0.5rem 0.75rem;
 	border: 1px solid $border-light;
 	border-radius: 8px;
 	background-color: $bg-primary;
@@ -13,6 +12,14 @@
 	cursor: pointer;
 	font-size: $text-base;
 	outline: none;
+}
+
+.trigger_padding_base {
+	padding: 0.5rem 0.5rem 0.5rem 0.75rem;
+}
+
+.trigger_padding_xl {
+	padding: 0.75rem;
 }
 
 .trigger_content {

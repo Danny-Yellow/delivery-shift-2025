@@ -14,5 +14,9 @@ export const getSessionThunk = createAsyncThunk('sessionSlice/getSessionThunk', 
 
 export const updateProfileThunk = createAsyncThunk(
 	'sessionSlice/updateProfileThunk',
-	(data: UpdateProfile) => updateProfile({ data }).then((res) => res.data),
+	(data: UpdateProfile) =>
+		updateProfile({ data }).then((res) => ({
+			response: res.data,
+			newUser: { phone: data.phone, ...data.profile },
+		})),
 );
