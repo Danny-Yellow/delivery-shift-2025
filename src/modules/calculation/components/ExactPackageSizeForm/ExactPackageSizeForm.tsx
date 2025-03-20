@@ -1,3 +1,4 @@
+import { handleOnlyNumbers } from '@src/shared/helpers';
 import { Button } from '@src/shared/ui/Button/Button';
 import { Input } from '@src/shared/ui/Input/Input';
 import { Typography } from '@src/shared/ui/Typography/Typography';
@@ -61,8 +62,7 @@ export const ExactPackageSizeForm = ({ onSubmit }: { onSubmit?: () => void }) =>
 								value={state.value}
 								onChange={(event) => {
 									const value = event.target.value;
-
-									if (/^\d*$/.test(value)) handleChange(value);
+									handleOnlyNumbers(value, () => handleChange(value));
 								}}
 								placeholder={placeholder}
 							/>

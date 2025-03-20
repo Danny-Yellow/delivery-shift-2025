@@ -6,7 +6,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { DeliveryProcessingState } from './types';
 
 const initialState: DeliveryProcessingState = {
-	currentStep: 1,
+	currentStep: 5,
 	selectedDeliveryMethod: null,
 	receiver: null,
 	sender: null,

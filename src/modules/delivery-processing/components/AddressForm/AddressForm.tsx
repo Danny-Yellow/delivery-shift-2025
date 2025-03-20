@@ -1,6 +1,7 @@
 import type { Address } from '@src/shared/types';
 import type { ReactNode } from 'react';
 
+import { handleOnlyNumbers } from '@src/shared/helpers';
 import { Button, ButtonGroup, Form, InputLabel, InputWithPrefix, Typography } from '@src/shared/ui';
 import { useDispatch } from '@src/store';
 import { useForm } from '@tanstack/react-form';
@@ -62,7 +63,8 @@ export const AddressForm = ({
 									prefix={format ?? ''}
 									value={state.value}
 									onChange={(event) => {
-										handleChange(event.target.value);
+										const valueWithoutPrefix = event.target.value.split(' ')[1] ?? '';
+										handleOnlyNumbers(valueWithoutPrefix, () => handleChange(event.target.value));
 									}}
 									placeholder={placeholder}
 								/>

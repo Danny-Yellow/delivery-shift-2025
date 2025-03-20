@@ -41,7 +41,7 @@ export const InputWithPrefix = ({
 
 		const selectedAll = startCursorPosition === 0 && endCursorPosition === value.length;
 
-		if (startCursorPosition < prefix.length + 1 && value.length !== 1 && !selectedAll) {
+		if (startCursorPosition < prefix.length && value.length !== 1 && !selectedAll) {
 			return;
 		}
 
