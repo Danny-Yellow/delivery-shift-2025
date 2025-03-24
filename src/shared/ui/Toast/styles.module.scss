@@ -1,0 +1,93 @@
+@use '@src/styles/vars' as *;
+
+$viewport-padding: 24px;
+
+.viewport {
+	position: fixed;
+	z-index: 10;
+	right: 0;
+	bottom: 0;
+	max-width: 390px;
+	padding: $viewport-padding;
+}
+
+.root {
+	display: flex;
+	align-items: stretch;
+	border-radius: 0 $rounded-sm $rounded-sm 0;
+	background-color: $bg-primary;
+	box-shadow:
+		hsl(206deg 22% 7% / 35%) 0 10px 38px -10px,
+		hsl(206deg 22% 7% / 20%) 0 10px 20px -15px;
+	color: $text-primary;
+
+	&[data-state='open'] {
+		animation: slidein 200ms cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	&[data-state='closed'] {
+		animation: hide 150ms ease-in;
+	}
+
+	&[data-swipe='move'] {
+		transform: translateX(var(--radix-toast-swipe-move-x));
+	}
+
+	&[data-swipe='cancel'] {
+		transform: translateX(0);
+		transition: transform 200ms ease-out;
+	}
+
+	&[data-swipe='end'] {
+		animation: swipeout 100ms ease-out;
+	}
+}
+
+@keyframes hide {
+    
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes slidein {
+    
+	from {
+		transform: translateX(calc(100% + $viewport-padding));
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes swipeout {
+    
+	from {
+		transform: translateX(var(--radix-toast-swipe-end-x));
+	}
+
+	to {
+		transform: translateX(calc(100% + $viewport-padding));
+	}
+}
+
+.indicator {
+	width: 4px;
+}
+
+.content {
+	padding: 16px;
+}
+
+.success {
+	background-color: $bg-positive;
+}
+
+.error {
+	background-color: $bg-error;
+}

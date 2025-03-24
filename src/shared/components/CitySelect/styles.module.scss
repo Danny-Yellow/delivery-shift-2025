@@ -1,0 +1,14 @@
+@use '@src/styles/vars' as *;
+
+.cities_content {
+	overflow: hidden;
+	max-height: 185px;
+	border-radius: $rounded-sm;
+	box-shadow: 0 0 12px #0000001a;
+}
+
+.cities_viewport {
+	padding: 0.25rem;
+	border: 1px solid $border-light;
+	background-color: $bg-primary;
+}
