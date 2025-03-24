@@ -50,9 +50,18 @@ export const sessionSlice = createSlice({
 				state.signin.error = action.error.message ?? '';
 			})
 			.addCase(signinThunk.fulfilled, (state, action: PayloadAction<SigninResponse>) => {
+				const user = action.payload.user;
+
 				state.signin.isLoading = false;
 				state.isAuth = true;
-				state.user = action.payload.user;
+				state.user = {
+					city: user.city ?? '',
+					email: user.email ?? '',
+					firstname: user.firstname ?? '',
+					lastname: user.lastname ?? '',
+					middlename: user.middlename ?? '',
+					phone: user.phone ?? '',
+				};
 				localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, action.payload.token);
 			})
 			// Get session
