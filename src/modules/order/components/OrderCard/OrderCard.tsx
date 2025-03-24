@@ -29,7 +29,7 @@ export const OrderCard = ({
 	return (
 		<Card className={styles.card} outlined {...props}>
 			<InfoRow label="Номер заказа">{_id}</InfoRow>
-			<InfoRow label="Статус">
+			<InfoRow asChild label="Статус">
 				<StatusWrapper>
 					<Indicator color={STATUS_INDICATOR[status]} />
 					<span>{STATUS_CODE[status]}</span>

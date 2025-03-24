@@ -48,6 +48,7 @@ export const ProfileForm = ({
 			case 'phone':
 				return (
 					<PhoneInput
+						disabled
 						value={state.value}
 						hasError={errorIsShown}
 						onChange={(event) => handleChange(event.target.value)}

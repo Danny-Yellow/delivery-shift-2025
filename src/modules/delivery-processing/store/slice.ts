@@ -6,7 +6,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { DeliveryProcessingState } from './types';
 
 const initialState: DeliveryProcessingState = {
-	currentStep: 5,
+	currentStep: 1,
 	selectedDeliveryMethod: null,
 	receiver: null,
 	sender: null,
@@ -48,24 +48,6 @@ export const deliveryProcessingSlice = createSlice({
 		},
 		reset: () => initialState,
 	},
-	// extraReducers: (builder) => {
-	// 	builder
-	// 		// Способы отправки
-	// 		.addCase(calculateDeliveryThunk.pending, (state) => {
-	// 			state.deliveryOptions.isLoading = true;
-	// 		})
-	// 		.addCase(calculateDeliveryThunk.rejected, (state, action) => {
-	// 			state.deliveryOptions.isLoading = false;
-	// 			state.deliveryOptions.error = action.error.message;
-	// 		})
-	// 		.addCase(
-	// 			calculateDeliveryThunk.fulfilled,
-	// 			(state, action: PayloadAction<CalculateDeliveryResponse>) => {
-	// 				state.deliveryOptions.isLoading = false;
-	// 				state.deliveryOptions.data = action.payload.options;
-	// 			},
-	// 		);
-	// },
 });
 
 export const {
