@@ -15,12 +15,14 @@ type TypographyVariant =
 	| 'p_14_regular'
 	| 'p_16_medium'
 	| 'p_16_regular'
-	| 'p_24_light';
+	| 'p_24_light'
+	| 'p_24_medium';
 
 type TypographyProps<Tag extends TypographyTag> = ComponentProps<Tag> & {
-	color?: 'primary' | 'secondary' | 'tertiary';
+	color?: 'error' | 'invert' | 'primary' | 'secondary' | 'tertiary';
 	tag?: TypographyTag;
 	variant: TypographyVariant;
+	underline?: boolean;
 };
 
 export const Typography = <Tag extends TypographyTag = 'p'>({
@@ -28,11 +30,18 @@ export const Typography = <Tag extends TypographyTag = 'p'>({
 	variant,
 	color = 'primary',
 	className,
+	underline = false,
 	children,
 }: TypographyProps<Tag>) => {
 	const Component = tag;
 
 	return (
-		<Component className={clsx(className, styles[color], styles[variant])}>{children}</Component>
+		<>
+			<Component
+				className={clsx(className, styles[color], styles[variant], underline && styles.underline)}
+			>
+				{children}
+			</Component>
+		</>
 	);
 };

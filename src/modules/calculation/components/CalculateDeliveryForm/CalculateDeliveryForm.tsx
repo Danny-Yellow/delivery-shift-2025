@@ -1,14 +1,14 @@
-import { Email, Location, Travel } from '@src/shared/components';
+import type { Point } from '@src/shared/types';
+
+import { Email } from '@src/shared/components';
+import { CitySelect } from '@src/shared/components/CitySelect/CitySelect';
 import {
-	Label,
+	InputLabel,
 	Select,
 	SelectButton,
 	SelectButtonGroup,
 	SelectContent,
-	SelectItem,
 	SelectTrigger,
-	SelectValue,
-	SelectViewport,
 	Tabs,
 	TabsContent,
 	TabsList,
@@ -19,105 +19,108 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import { useSelector } from '@src/store';
 
 import { useCalculateDeliveryForm } from '../../hooks/useCalculateDeliveryForm';
-import {
-	getPointsSelector,
-	getSelectedPoints,
-} from '../../store';
+import { selectPackageTypes } from '../../store';
+import { ApproximatePackageSizeList } from '../ApproximatePackageSizeList/ApproximatePackageSizeList';
+import { ExactPackageSizeForm } from '../ExactPackageSizeForm/ExactPackageSizeForm';
 
 import styles from './styles.module.scss';
 
-export const CalculateDeliveryForm = () => {
-	const { data: points } = useSelector(getPointsSelector);
-	const selectedPoints = useSelector(getSelectedPoints);
+export const CalculateDeliveryForm = ({ points }: { points: Point[] }) => {
+	const { data: packageTypes } = useSelector(selectPackageTypes);
 
-	const { handleSenderPointSelect, handleReiceiverPointSelect } = useCalculateDeliveryForm();
+	const {
+		isOpenPackageType,
+		selectedPackageType,
+		selectedPoints,
+		handleSenderPointSelect,
+		handleReiceiverPointSelect,
+		handlePackageTypeSelect,
+		handlePackageTypeOpenChange,
+		handleCalculateDeliverySubmit,
+	} = useCalculateDeliveryForm();
+
+	const buttonIsDisabled = [
+		selectedPackageType,
+		selectedPoints.receiverPoint,
+		selectedPoints.senderPoint,
+	].includes(null);
 
 	return (
-		<form className={styles.form}>
+		<form className={styles.form} onSubmit={handleCalculateDeliverySubmit}>
 			<div className={styles.header}>
 				<Typography variant="h2">Рассчитать доставку</Typography>
 			</div>
 			<div className={styles.content}>
-				<Label>
+				<InputLabel>
 					<Typography variant="p_14_medium">Размер посылки</Typography>
-					<Select>
+					<Select
+						value={selectedPackageType?.id}
+						onOpenChange={(isOpen) => handlePackageTypeOpenChange(isOpen)}
+						onValueChange={handlePackageTypeSelect}
+						open={isOpenPackageType}
+					>
 						<SelectTrigger startIcon={<Email />}>
-							<SelectValue placeholder="Конверт" />
+							{selectedPackageType?.name ?? 'Выберите размер'}
 						</SelectTrigger>
 						<SelectContent>
-							<SelectViewport>
-								<Tabs defaultValue="approximate">
-									<TabsList>
-										<TabsTrigger value="approximate">Примерные</TabsTrigger>
-										<TabsTrigger value="exact">Точные</TabsTrigger>
-									</TabsList>
-									<TabsContent value="approximate">Контент точных размеров</TabsContent>
-									<TabsContent value="exact">Контент примерных размеров</TabsContent>
-								</Tabs>
-							</SelectViewport>
+							<Tabs defaultValue="approximate">
+								<TabsList className={styles.tabs_list}>
+									<TabsTrigger value="approximate">Примерные</TabsTrigger>
+									<TabsTrigger value="exact">Точные</TabsTrigger>
+								</TabsList>
+								<TabsContent className={styles.tabs_content} value="approximate">
+									<ApproximatePackageSizeList packageTypes={packageTypes} />
+								</TabsContent>
+								<TabsContent className={styles.tabs_content} value="exact">
+									<ExactPackageSizeForm onSubmit={() => handlePackageTypeOpenChange(false)} />
+								</TabsContent>
+							</Tabs>
 						</SelectContent>
 					</Select>
-				</Label>
-				<Label>
+				</InputLabel>
+				<InputLabel>
 					<Typography variant="p_14_medium">Город отправки</Typography>
-					<Select value={selectedPoints.senderPoint?.id} onValueChange={handleSenderPointSelect}>
-						<SelectTrigger startIcon={<Location />}>
-							<SelectValue placeholder="Выберите город" />
-						</SelectTrigger>
-						<SelectContent className={styles.cities_content}>
-							<SelectViewport className={styles.cities_viewport}>
-								{points.map((point) => (
-									<SelectItem key={point.id} value={point.id}>
-										{point.name}
-									</SelectItem>
-								))}
-							</SelectViewport>
-						</SelectContent>
-					</Select>
+					<CitySelect
+						value={selectedPoints.senderPoint?.name}
+						icon="sender"
+						onChange={handleSenderPointSelect}
+						points={points}
+					/>
 					<SelectButtonGroup>
 						{points.slice(0, 3).map((point) => (
 							<SelectButton
 								key={point.id}
 								value={point.id}
-								onClick={() => handleSenderPointSelect(point.id)}
+								onClick={() => handleSenderPointSelect(point)}
 							>
 								{point.name}
 							</SelectButton>
 						))}
 					</SelectButtonGroup>
-				</Label>
-				<Label>
+				</InputLabel>
+				<InputLabel>
 					<Typography variant="p_14_medium">Город назначения</Typography>
-					<Select
-						value={selectedPoints.reiceiverPoint?.id}
-						onValueChange={handleReiceiverPointSelect}
-					>
-						<SelectTrigger startIcon={<Travel />}>
-							<SelectValue placeholder="Выберите город" />
-						</SelectTrigger>
-						<SelectContent className={styles.cities_content}>
-							<SelectViewport className={styles.cities_viewport}>
-								{points.map((point) => (
-									<SelectItem key={point.id} value={point.id}>
-										{point.name}
-									</SelectItem>
-								))}
-							</SelectViewport>
-						</SelectContent>
-					</Select>
+					<CitySelect
+						value={selectedPoints.receiverPoint?.name}
+						icon="receiver"
+						onChange={handleReiceiverPointSelect}
+						points={points}
+					/>
 					<SelectButtonGroup>
 						{points.slice(0, 3).map((point) => (
 							<SelectButton
 								key={point.id}
 								value={point.id}
-								onClick={() => handleReiceiverPointSelect(point.id)}
+								onClick={() => handleReiceiverPointSelect(point)}
 							>
 								{point.name}
 							</SelectButton>
 						))}
 					</SelectButtonGroup>
-				</Label>
-				<Button type="submit">Рассчитать</Button>
+				</InputLabel>
+				<Button disabled={buttonIsDisabled} type="submit">
+					Рассчитать
+				</Button>
 			</div>
 		</form>
 	);

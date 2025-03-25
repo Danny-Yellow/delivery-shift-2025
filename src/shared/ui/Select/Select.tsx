@@ -15,12 +15,17 @@ export const SelectTrigger = ({
 	withChevron = true,
 	startIcon = null,
 	children,
+	padding = 'base',
 	...props
 }: ComponentProps<typeof RadixSelect.Trigger> & {
 	withChevron?: boolean;
 	startIcon?: ReactNode;
+	padding?: 'base' | 'xl';
 }) => (
-	<RadixSelect.Trigger className={clsx(className, styles.trigger)} {...props}>
+	<RadixSelect.Trigger
+		className={clsx(className, styles.trigger, styles[`trigger_padding_${padding}`])}
+		{...props}
+	>
 		<div className={styles.trigger_content}>
 			{startIcon}
 			{children}
@@ -48,12 +53,7 @@ export const SelectContent = ({
 	</RadixSelect.Portal>
 );
 
-export const SelectViewport = ({
-	className,
-	...props
-}: ComponentProps<typeof RadixSelect.Viewport>) => (
-	<RadixSelect.Viewport className={clsx(styles.viewport, className)} {...props} />
-);
+export const SelectViewport = RadixSelect.Viewport;
 
 export const SelectItem = ({
 	children,

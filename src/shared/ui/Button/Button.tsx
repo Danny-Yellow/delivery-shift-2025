@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 interface ButtonProps extends ComponentProps<'button'> {
-	size?: 'full';
+	size?: 'full' | 'lg' | 'sm';
 	variant?: 'contained' | 'outlined';
 }
 
@@ -13,7 +13,7 @@ export const Button = ({
 	className,
 	type = 'button',
 	variant = 'contained',
-	size,
+	size = 'full',
 	...props
 }: ButtonProps) => (
 	<button
@@ -21,4 +21,8 @@ export const Button = ({
 		type={type}
 		{...props}
 	/>
+);
+
+export const ButtonGroup = ({ className, ...props }: ComponentProps<'div'>) => (
+	<div className={clsx(className, styles.group)} {...props} />
 );

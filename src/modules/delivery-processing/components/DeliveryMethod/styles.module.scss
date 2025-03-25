@@ -1,0 +1,32 @@
+@use '@src/styles/vars' as *;
+
+.list {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.method {
+	display: flex;
+	width: 100%;
+	height: 120px;
+	padding: 1rem;
+	border: 1px solid $border-light;
+	border-radius: $rounded-xl;
+	background-color: transparent;
+	cursor: pointer;
+	gap: 1rem;
+	text-align: start;
+
+	&:hover {
+		background-color: $bg-tertiary;
+	}
+}
+
+.price {
+	margin-top: 0.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.gifts {
+	position: relative;
+}

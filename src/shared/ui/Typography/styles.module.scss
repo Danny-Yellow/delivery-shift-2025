@@ -9,11 +9,13 @@
 .h2 {
 	font-size: $text-2xl;
 	font-weight: $font-bold;
+	line-height: $lh-2xl;
 }
 
 .h3 {
 	font-size: $text-xl;
 	font-weight: $font-semibold;
+	line-height: $lh-base;
 }
 
 .p_12_regular {
@@ -58,6 +60,12 @@
 	line-height: $lh-2xl;
 }
 
+.p_24_medium {
+	font-size: $text-2xl;
+	font-weight: $font-medium;
+	line-height: $lh-2xl;
+}
+
 .primary {
 	color: $text-primary;
 }
@@ -68,4 +76,18 @@
 
 .tertiary {
 	color: $text-tertiary;
+}
+
+.invert {
+	color: $text-invert;
+}
+
+.error {
+	color: $error-color;
+}
+
+.underline {
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+	text-underline-offset: 2px;
 }

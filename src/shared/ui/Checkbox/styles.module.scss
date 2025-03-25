@@ -1,0 +1,21 @@
+@use '@src/styles/vars' as *;
+
+.root {
+	position: relative;
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 2px solid $border-light;
+	border-radius: 6px;
+	background-color: $bg-primary;
+
+	&[data-state='checked'] {
+		border: 2px solid $bg-brand;
+		background-color: $bg-brand;
+	}
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}

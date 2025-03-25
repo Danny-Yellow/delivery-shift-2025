@@ -19,6 +19,8 @@ $text-secondary: #344051;
 $text-tertiary: #637083;
 $text-invert: #fff;
 $text-quartenery: #97a1af;
+
+// Border
 $border-light: #ced2da;
 
 // Line height
@@ -33,6 +35,10 @@ $bg-primary: #fff;
 $bg-secondary: #f3f4f6;
 $bg-tertiary: #f0f6ff;
 $bg-brand: #1975ff;
+$bg-error: #e74646;
+$bg-attention: #ffb219;
+$bg-positive: #40bf7f;
+$bg-indicator: #ced2da;
 
 // Header
 $header-height: 84px;
@@ -41,3 +47,11 @@ $header-height: 84px;
 $rounded-sm: 8px;
 $rounded-m: 16px;
 $rounded-xl: 24px;
+
+// z-index
+$z-base: 0;
+$z-modal: 100;
+$z-toast: 200;
+
+// Other
+$error-color: #ff3939;

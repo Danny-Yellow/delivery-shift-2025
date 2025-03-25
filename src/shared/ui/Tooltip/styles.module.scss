@@ -1,0 +1,29 @@
+@use '@src/styles/vars' as *;
+
+.content {
+	max-width: 15rem;
+	padding: 0.375rem 0.5rem;
+	border-radius: $rounded-sm;
+	background-color: $bg-primary;
+	box-shadow:
+		#0e121659 0 10px 38px -10px,
+		#0e121633 0 10px 20px -15px;
+	user-select: none;
+}
+
+.arrow {
+	fill: $bg-primary;
+}
+
+.header {
+	margin-bottom: 0.25rem;
+	color: $text-primary;
+	font-size: $text-xs;
+	font-weight: $font-semibold;
+}
+
+.body {
+	color: $text-tertiary;
+	font-size: $text-xs;
+	font-weight: $font-normal;
+}

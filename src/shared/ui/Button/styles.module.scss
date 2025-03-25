@@ -5,8 +5,14 @@
 	border-radius: $rounded-m;
 	cursor: pointer;
 	font-size: $text-base;
-	font-weight: $font-normal;
+	font-weight: $font-semibold;
+	line-height: $lh-base;
 	text-align: center;
+
+	&:disabled {
+		cursor: not-allowed;
+		opacity: 0.5;
+	}
 }
 
 .contained {
@@ -17,8 +23,25 @@
 .outlined {
 	background-color: $bg-primary;
 	color: $text-secondary;
+	outline: 1px solid $border-light;
 }
 
 .full {
 	width: 100%;
+}
+
+.lg {
+	width: 100%;
+	max-width: 328px;
+}
+
+.sm {
+	width: 192px;
+}
+
+.group {
+	display: flex;
+	width: 100%;
+	padding: 1rem 0;
+	gap: 1.5rem;
 }

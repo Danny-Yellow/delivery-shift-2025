@@ -1,0 +1,37 @@
+@use '@src/styles/vars.scss' as *;
+
+.banner {
+	position: relative;
+	display: flex;
+	overflow: hidden;
+	width: 100%;
+	justify-content: space-between;
+	padding: 1rem;
+	border-radius: $rounded-m;
+	background: linear-gradient(-60deg, #92beff 0%, #1975ff 100%);
+}
+
+.text {
+	display: grid;
+	gap: 0.25rem;
+}
+
+.free {
+	opacity: 0.6;
+}
+
+.gifts {
+	width: 136px;
+}
+
+.gift_m {
+	position: absolute;
+	top: 12px;
+	right: 13px;
+}
+
+.gift_xs {
+	position: absolute;
+	top: 0;
+	right: -10px;
+}

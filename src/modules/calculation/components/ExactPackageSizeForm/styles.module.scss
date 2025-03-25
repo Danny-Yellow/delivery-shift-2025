@@ -1,0 +1,16 @@
+.form {
+	display: grid;
+	padding: 0 0.5rem;
+	gap: 1rem;
+}
+
+.label {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.description {
+	width: 72px;
+	flex-shrink: 0;
+}

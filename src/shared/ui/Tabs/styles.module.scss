@@ -1,7 +1,6 @@
 @use '@src/styles/vars' as *;
 
 .root {
-	margin-top: -4px;
 	background-color: transparent;
 }
 
@@ -16,7 +15,7 @@
 .trigger {
 	width: 100%;
 	padding: 0.625rem 1rem;
-	border-radius: calc($rounded-m - 0.125rem); // radius - list padding
+	border-radius: calc($rounded-m - 0.125rem); // list-radius - list padding
 	margin-top: 0;
 	background-color: $bg-secondary;
 	color: $text-tertiary;
@@ -30,7 +29,5 @@
 
 .content {
 	padding: 0.5rem;
-	border-radius: $rounded-sm;
-	margin-top: 0.5rem;
 	background-color: $bg-primary;
 }

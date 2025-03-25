@@ -1,0 +1,23 @@
+@use '@src/styles/vars' as *;
+
+.list {
+	display: grid;
+	gap: 0.5rem;
+}
+
+.item {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	padding: 1rem;
+	border-radius: 8px;
+	background-color: $bg-secondary;
+	cursor: pointer;
+	gap: 1rem;
+	outline: none;
+}
+
+.info {
+	display: grid;
+	gap: 0.5rem;
+}

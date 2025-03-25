@@ -1,17 +1,68 @@
-import { useDispatch } from '@src/store';
+import type { Point } from '@src/shared/types';
 
-import { changeSelectedReiceiverPoint, changeSelectedSenderPoint } from '../store';
+import { ROUTES } from '@src/shared/constants';
+import { useDispatch, useSelector } from '@src/store';
+import { useNavigate } from 'react-router';
+
+import {
+	calculateDeliveryThunk,
+	changeSelectedPackageType,
+	changeSelectedReiceiverPoint,
+	changeSelectedSenderPoint,
+	selectIsOpenPackageType,
+	selectSelectedPackageType,
+	selectSelectedPoints,
+	setIsOpenPackageTypeSelecting,
+} from '../store';
 
 export const useCalculateDeliveryForm = () => {
 	const dispatch = useDispatch();
 
-	function handleSenderPointSelect(pointId: string) {
-		dispatch(changeSelectedSenderPoint({ pointId }));
+	const navigate = useNavigate();
+
+	const selectedPoints = useSelector(selectSelectedPoints);
+	const selectedPackageType = useSelector(selectSelectedPackageType);
+	const isOpenPackageType = useSelector(selectIsOpenPackageType);
+
+	function handleSenderPointSelect(point: Point) {
+		dispatch(changeSelectedSenderPoint({ point }));
 	}
 
-	function handleReiceiverPointSelect(pointId: string) {
-		dispatch(changeSelectedReiceiverPoint({ pointId }));
+	function handleReiceiverPointSelect(point: Point) {
+		dispatch(changeSelectedReiceiverPoint({ point }));
 	}
 
-	return { handleSenderPointSelect, handleReiceiverPointSelect };
+	function handlePackageTypeOpenChange(isOpen: boolean) {
+		dispatch(setIsOpenPackageTypeSelecting(isOpen));
+	}
+
+	function handlePackageTypeSelect(packageTypeId: string) {
+		dispatch(changeSelectedPackageType({ packageTypeId }));
+	}
+
+	async function handleCalculateDeliverySubmit(event: React.FormEvent<HTMLFormElement>) {
+		event.preventDefault();
+		const resultAction = await dispatch(
+			calculateDeliveryThunk({
+				package: selectedPackageType,
+				receiverPoint: selectedPoints.receiverPoint,
+				senderPoint: selectedPoints.senderPoint,
+			}),
+		);
+
+		if (calculateDeliveryThunk.fulfilled.match(resultAction)) {
+			navigate(ROUTES.PROCESSING);
+		}
+	}
+
+	return {
+		selectedPoints,
+		selectedPackageType,
+		isOpenPackageType,
+		handleSenderPointSelect,
+		handleReiceiverPointSelect,
+		handlePackageTypeSelect,
+		handlePackageTypeOpenChange,
+		handleCalculateDeliverySubmit,
+	};
 };

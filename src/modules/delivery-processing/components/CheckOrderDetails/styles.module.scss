@@ -1,0 +1,15 @@
+.form {
+	max-width: 100%;
+}
+
+.method {
+	display: grid;
+	width: 100%;
+	gap: 1rem;
+	text-align: right;
+}
+
+.button_group {
+	justify-content: space-between;
+	gap: 0;
+}

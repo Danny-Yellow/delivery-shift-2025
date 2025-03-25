@@ -1,4 +1,4 @@
-import { TopNavigation } from '@src/modules/top-navigation';
+import { AuthTopNavigation } from '@src/modules/session';
 import { Container } from '@src/shared/ui/index';
 import clsx from 'clsx';
 import { Outlet } from 'react-router';
@@ -9,7 +9,7 @@ export const CalculationLayout = () => {
 	return (
 		<>
 			<header>
-				<TopNavigation />
+				<AuthTopNavigation />
 			</header>
 			<main className={clsx(styles.main)}>
 				<Container>

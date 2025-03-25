@@ -1,1 +1,1 @@
-yarn lint-staged
+exec < /dev/tty && yarn lint-staged

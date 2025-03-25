@@ -1,9 +1,9 @@
-import type { PackageTypes } from '@src/shared/types';
+import type { PackageType } from '@src/shared/types';
 
 import { api } from '../instance';
 
 export interface GetPackageTypesResponse extends DefaultResponse {
-	packages: PackageTypes;
+	packages: PackageType[];
 }
 
 export const getPackageTypes = async ({ config }: AxiosRequestConfig) =>

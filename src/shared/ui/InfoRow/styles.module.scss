@@ -1,0 +1,25 @@
+@use '@src/styles/vars' as *;
+
+.element {
+	display: grid;
+	width: 100%;
+	gap: 0.125rem;
+}
+
+.label {
+	color: $text-tertiary;
+	font-size: $text-xs;
+	line-height: $lh-xs;
+}
+
+.content {
+	line-height: $lh-base;
+}
+
+.full {
+	max-width: 100%;
+}
+
+.md {
+	max-width: 284px;
+}

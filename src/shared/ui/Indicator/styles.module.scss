@@ -1,0 +1,19 @@
+@use '@src/styles/vars' as *;
+
+.indicator {
+	width: 8px;
+	height: 8px;
+	border-radius: 100%;
+}
+
+.error {
+	background-color: $bg-error;
+}
+
+.attention {
+	background-color: $bg-attention;
+}
+
+.success {
+	background-color: $bg-positive;
+}
