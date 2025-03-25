@@ -1,6 +1,14 @@
 import type { OrderWithStatus } from '@src/shared/types';
 
 export interface OrderState {
+	cancelOrder: {
+		error: string;
+		isLoading: boolean;
+		isSuccess: boolean | null;
+	};
+	cancelOrderModal: {
+		isOpen: boolean;
+	};
 	orderDetails: {
 		data: OrderWithStatus | null;
 		error: string;

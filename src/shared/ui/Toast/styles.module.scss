@@ -4,7 +4,7 @@ $viewport-padding: 24px;
 
 .viewport {
 	position: fixed;
-	z-index: 10;
+	z-index: $z-toast;
 	right: 0;
 	bottom: 0;
 	max-width: 390px;
@@ -44,7 +44,7 @@ $viewport-padding: 24px;
 }
 
 @keyframes hide {
-    
+	
 	from {
 		opacity: 1;
 	}
@@ -55,7 +55,7 @@ $viewport-padding: 24px;
 }
 
 @keyframes slidein {
-    
+	
 	from {
 		transform: translateX(calc(100% + $viewport-padding));
 	}
@@ -66,7 +66,7 @@ $viewport-padding: 24px;
 }
 
 @keyframes swipeout {
-    
+	
 	from {
 		transform: translateX(var(--radix-toast-swipe-end-x));
 	}

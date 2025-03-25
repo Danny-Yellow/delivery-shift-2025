@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import type { Variant } from './types';
+import type { ToastVariant } from './types';
 
 export const useToast = () => {
 	const [toastIsOpened, setToastIsOpened] = useState(false);
-	const [toastVariant, setToastVariant] = useState<Variant | null>(null);
+	const [toastVariant, setToastVariant] = useState<ToastVariant | null>(null);
 	const [toastMessage, settoastMessage] = useState('');
 
-	function openToast(variant: Variant, message: string) {
+	function openToast(variant: ToastVariant, message: string) {
 		setToastVariant(variant);
 		setToastIsOpened(true);
 		settoastMessage(message);

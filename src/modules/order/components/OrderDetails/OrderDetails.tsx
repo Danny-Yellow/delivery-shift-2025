@@ -1,17 +1,19 @@
 import type { OrderWithStatus } from '@src/shared/types';
 
 import { Button, ButtonGroup } from '@src/shared/ui';
+import { useDispatch } from '@src/store';
 import { useNavigate } from 'react-router';
 
+import { openModal } from '../../store';
 import { OrderCard } from '../OrderCard/OrderCard';
 
 interface OrderDetailsProps {
 	order: OrderWithStatus;
-	onCancelClick: () => void;
 }
 
-export const OrderDetails = ({ order, onCancelClick }: OrderDetailsProps) => {
+export const OrderDetails = ({ order }: OrderDetailsProps) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	return (
 		<OrderCard
@@ -26,7 +28,7 @@ export const OrderDetails = ({ order, onCancelClick }: OrderDetailsProps) => {
 				<Button size="sm" variant="outlined" onClick={() => navigate(-1)}>
 					Назад
 				</Button>
-				<Button size="sm" onClick={onCancelClick}>
+				<Button size="sm" onClick={() => dispatch(openModal())}>
 					Отменить заказ
 				</Button>
 			</ButtonGroup>

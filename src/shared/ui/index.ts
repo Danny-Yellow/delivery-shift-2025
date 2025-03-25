@@ -16,7 +16,6 @@ export * from './RadioGroup/RadioGroup';
 export * from './Select/Select';
 export * from './Table/Table';
 export * from './Tabs/Tabs';
-export * from './Toast/Toast';
-export * from './Toast/useToast';
+export * from './Toast';
 export * from './Tooltip/Tooltip';
 export * from './Typography/Typography'; //!

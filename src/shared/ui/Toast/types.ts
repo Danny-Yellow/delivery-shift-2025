@@ -1,1 +1,1 @@
-export type Variant = 'error' | 'success';
+export type ToastVariant = 'error' | 'success';

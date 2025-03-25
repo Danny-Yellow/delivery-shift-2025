@@ -1,19 +1,15 @@
 import { getOrderThunk, OrderDetails, selectOrderDetails } from '@src/modules/order';
-import { Cross, Question } from '@src/shared/components';
 import {
-	Button,
-	IconButton,
-	Modal,
-	ModalBody,
-	ModalContent,
-	ModalHeader,
-	ModalViewport,
+	Toast,
+	ToastProvider,
 	Typography,
-	useModal,
+	useToast,
 } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useEffect } from 'react';
 import { useParams } from 'react-router';
+
+import { CancelOrderModal } from '../CancelOrderModal/CancelOrderModal';
 
 import styles from './styles.module.scss';
 
@@ -21,9 +17,9 @@ export const OrderDetailsPage = () => {
 	const dispatch = useDispatch();
 	const { id } = useParams();
 
-	const { modalIsOpen, openModal, closeModal } = useModal();
-
 	const { data: order, isLoading, error } = useSelector(selectOrderDetails);
+
+	const { closeToast, toastIsOpened, toastVariant, toastMessage, openToast } = useToast();
 
 	useEffect(() => {
 		dispatch(getOrderThunk(id));
@@ -39,30 +35,13 @@ export const OrderDetailsPage = () => {
 				<Typography tag="h2" variant="h2">
 					Детали заказа
 				</Typography>
-				<OrderDetails onCancelClick={openModal} order={order} />
-				<Modal isOpen={modalIsOpen}>
-					<ModalViewport onClose={closeModal}>
-						<ModalContent className={styles.modal_content}>
-							<ModalHeader>
-								<IconButton onClick={closeModal}>
-									<Cross />
-								</IconButton>
-							</ModalHeader>
-							<ModalBody className={styles.modal_body}>
-								<Question />
-								<Typography className={styles.modal_title} variant="h2">
-									Отменить заказ?
-								</Typography>
-								<div className={styles.modal_buttons}>
-									<Button variant="outlined" onClick={closeModal}>
-										Не отменять
-									</Button>
-									<Button>Отменить</Button>
-								</div>
-							</ModalBody>
-						</ModalContent>
-					</ModalViewport>
-				</Modal>
+				<OrderDetails order={order} />
+				<CancelOrderModal openToast={openToast} orderId={id} />
+				<ToastProvider>
+					<Toast variant={toastVariant} onOpenChange={closeToast} open={toastIsOpened}>
+						{toastMessage}
+					</Toast>
+				</ToastProvider>
 			</div>
 		);
 	}

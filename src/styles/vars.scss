@@ -48,5 +48,10 @@ $rounded-sm: 8px;
 $rounded-m: 16px;
 $rounded-xl: 24px;
 
+// z-index
+$z-base: 0;
+$z-modal: 100;
+$z-toast: 200;
+
 // Other
 $error-color: #ff3939;

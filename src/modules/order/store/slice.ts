@@ -6,7 +6,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { OrderState } from './types';
 
-import { createDeliveryOrderThunk, getOrdersThunk, getOrderThunk } from './thunks';
+import {
+	cancelOrderThunk,
+	createDeliveryOrderThunk,
+	getOrdersThunk,
+	getOrderThunk,
+} from './thunks';
 
 const initialState: OrderState = {
 	orderHistory: {
@@ -24,12 +29,26 @@ const initialState: OrderState = {
 		error: '',
 		data: null,
 	},
+	cancelOrder: {
+		isLoading: false,
+		error: '',
+		isSuccess: null,
+	},
+	cancelOrderModal: {
+		isOpen: false,
+	},
 };
 
 export const orderSlice = createSlice({
 	name: 'order',
 	initialState,
 	reducers: {
+		openModal: (state) => {
+			state.cancelOrderModal.isOpen = true;
+		},
+		closeModal: (state) => {
+			state.cancelOrderModal.isOpen = false;
+		},
 		reset: () => initialState,
 	},
 	extraReducers: (builder) => {
@@ -72,8 +91,22 @@ export const orderSlice = createSlice({
 			.addCase(getOrderThunk.fulfilled, (state, action: PayloadAction<GetOrderResponse>) => {
 				state.orderDetails.isLoading = false;
 				state.orderDetails.data = action.payload.order;
+			})
+			// Cancel order
+			.addCase(cancelOrderThunk.pending, (state) => {
+				state.cancelOrder.isSuccess = null;
+				state.cancelOrder.isLoading = true;
+			})
+			.addCase(cancelOrderThunk.rejected, (state, action) => {
+				state.cancelOrder.isLoading = false;
+				state.cancelOrder.isSuccess = false;
+				state.cancelOrder.error = action.error.message ?? '';
+			})
+			.addCase(cancelOrderThunk.fulfilled, (state, action: PayloadAction<DefaultResponse>) => {
+				state.cancelOrder.isLoading = false;
+				state.cancelOrder.isSuccess = action.payload.success;
 			});
 	},
 });
 
-export const { reset } = orderSlice.actions;
+export const { reset, openModal, closeModal } = orderSlice.actions;
