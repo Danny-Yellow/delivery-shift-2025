@@ -9,6 +9,8 @@ export * from './InfoRow/InfoRow';
 export * from './Input/Input'; //!
 export * from './InputOTP/InputOTP';
 export * from './Link/Link';
+export * from './Modal/Modal';
+export * from './Modal/useModal';
 export * from './Progress/Progress';
 export * from './RadioGroup/RadioGroup';
 export * from './Select/Select';

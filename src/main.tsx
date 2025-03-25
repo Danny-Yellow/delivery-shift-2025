@@ -5,6 +5,7 @@ import { Provider as StoreProvider } from 'react-redux';
 
 import { Router } from './router/Router';
 import { LOCAL_STORAGE_KEYS } from './shared/constants/localStorage';
+import { ModalProvider } from './shared/ui/Modal/Modal';
 import { store } from './store/store';
 
 import './styles/main.scss';
@@ -19,7 +20,9 @@ const init = async () => {
 	createRoot(document.getElementById('root')!).render(
 		<StrictMode>
 			<StoreProvider store={store}>
-				<Router />
+				<ModalProvider>
+					<Router />
+				</ModalProvider>
 			</StoreProvider>
 		</StrictMode>,
 	);

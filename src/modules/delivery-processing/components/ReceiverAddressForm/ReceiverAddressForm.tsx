@@ -1,6 +1,6 @@
 import type { Address, ReceiverAddress } from '@src/shared/types';
 
-import { Question } from '@src/shared/components';
+import { InfoQuestion } from '@src/shared/components';
 import {
 	Checkbox,
 	CheckboxLabel,
@@ -51,7 +51,7 @@ export const ReceiverAddressForm = () => {
 						<Typography variant="p_16_regular">Оставить заказ у двери</Typography>
 						<Tooltip>
 							<TooltipTrigger>
-								<Question />
+								<InfoQuestion />
 							</TooltipTrigger>
 							<TooltipContent>
 								<TooltipHeader>Бесконтактная доставка</TooltipHeader>

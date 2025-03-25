@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 interface ButtonProps extends ComponentProps<'button'> {
-	size?: 'full' | 'lg';
+	size?: 'full' | 'lg' | 'sm';
 	variant?: 'contained' | 'outlined';
 }
 
