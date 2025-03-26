@@ -63,8 +63,13 @@ export const AddressForm = ({
 									prefix={format ?? ''}
 									value={state.value}
 									onChange={(event) => {
-										const valueWithoutPrefix = event.target.value.split(' ')[1] ?? '';
-										handleOnlyNumbers(valueWithoutPrefix, () => handleChange(event.target.value));
+										if (format) {
+											const valueWithoutPrefix = event.target.value.split(' ')[1] ?? '';
+											handleOnlyNumbers(valueWithoutPrefix, () => handleChange(event.target.value));
+											return;
+										}
+
+										handleChange(event.target.value);
 									}}
 									placeholder={placeholder}
 								/>
