@@ -16,11 +16,13 @@ export const SelectTrigger = ({
 	startIcon = null,
 	children,
 	padding = 'base',
+	asChild = false,
 	...props
 }: ComponentProps<typeof RadixSelect.Trigger> & {
 	withChevron?: boolean;
 	startIcon?: ReactNode;
 	padding?: 'base' | 'xl';
+	asChild?: boolean;
 }) => (
 	<RadixSelect.Trigger
 		className={clsx(className, styles.trigger, styles[`trigger_padding_${padding}`])}
@@ -28,7 +30,7 @@ export const SelectTrigger = ({
 	>
 		<div className={styles.trigger_content}>
 			{startIcon}
-			{children}
+			{asChild ? children : <p className={styles.trigger_p}>{children}</p>}
 		</div>
 
 		{withChevron && (

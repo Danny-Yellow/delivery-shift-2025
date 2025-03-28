@@ -2,7 +2,7 @@
 
 .card {
 	max-width: 380px;
-	flex: 1 1 380px;
+	flex: 1 1 320px;
 }
 
 .title {
@@ -13,11 +13,33 @@
 	margin-bottom: 2.5rem;
 }
 
-.qr {
+.banner {
 	display: flex;
 	align-items: center;
+	justify-content: center;
 	padding: 1rem;
 	border-radius: $rounded-m;
 	background-color: $bg-primary;
 	gap: 1rem;
+}
+
+.box {
+	flex: 0 0 64px;
+}
+
+@media (max-width: $breakpoint-sm) {
+
+	.banner_paragraph {
+		max-width: 160px;
+	}
+
+	.box {
+		height: 56px;
+		flex-basis: 56px;
+	}
+
+	.qr {
+		height: 56px;
+		flex-basis: 56px;
+	}
 }

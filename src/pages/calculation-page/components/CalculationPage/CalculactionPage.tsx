@@ -1,8 +1,8 @@
 import { CalculateDeliveryForm, getPackageTypesThunk } from '@src/modules/calculation';
 import { getPointsThunk, selectPoints } from '@src/modules/points';
-import { useDispatch } from '@src/store';
+import { BottomNavigation } from '@src/shared/components';
+import { useDispatch, useSelector } from '@src/store';
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import { DeliveryPromo } from '../DeliveryPromo/DeliveryPromo';
 
@@ -22,6 +22,7 @@ export const CalculationPage = () => {
 		<div className={styles.page}>
 			<DeliveryPromo />
 			<CalculateDeliveryForm points={points} />
+			<BottomNavigation />
 		</div>
 	);
 };
