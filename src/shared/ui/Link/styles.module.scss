@@ -1,11 +1,32 @@
 @use '@src/styles/vars' as *;
 
 .link {
+	position: relative;
 	display: flex;
 	align-items: center;
 	font-weight: 500;
 	gap: 16px;
 	text-decoration: none;
+	transition: color 0.2s ease-in-out;
+
+	&:after {
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background-color: currentcolor;
+		content: '';
+		opacity: 0.9;
+		transition: width 0.2s ease-in-out;
+	}
+
+	&:hover {
+
+		&:after {
+			width: 100%;
+		}
+	}
 }
 
 .primary {
@@ -14,4 +35,8 @@
 
 .secondary {
 	color: $text-quartenery;
+}
+
+.active {
+	color: $bg-brand;
 }

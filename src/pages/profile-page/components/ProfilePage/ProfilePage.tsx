@@ -2,10 +2,11 @@ import type { UpdateProfile } from '@src/shared/api';
 
 import { getPointsThunk, selectPoints } from '@src/modules/points';
 import { ProfileForm, updateProfileThunk } from '@src/modules/session';
-import { AdaptivePageHeader } from '@src/shared/components';
-import { Toast, ToastProvider, Typography, useToast } from '@src/shared/ui';
+import { AdaptivePageHeader, ArrowLeft, BottomNavigation } from '@src/shared/components';
+import { IconButton, Toast, ToastProvider, Typography, useToast } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import styles from './styles.module.scss';
 
@@ -13,6 +14,7 @@ export const ProfilePage = () => {
 	const { toastIsOpened, toastVariant, openToast, closeToast, toastMessage } = useToast();
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const { data: points } = useSelector(selectPoints);
 
@@ -29,12 +31,19 @@ export const ProfilePage = () => {
 
 	return (
 		<div className={styles.page}>
-			<AdaptivePageHeader>
+			<AdaptivePageHeader
+				mobileButton={
+					<IconButton onClick={() => navigate(-1)}>
+						<ArrowLeft />
+					</IconButton>
+				}
+			>
 				<Typography tag="h2" variant="h2">
 					Профиль
 				</Typography>
 			</AdaptivePageHeader>
 			<ProfileForm onSubmit={handleSubmitProfile} points={points} />
+			<BottomNavigation />
 			<ToastProvider>
 				<Toast variant={toastVariant} onOpenChange={closeToast} open={toastIsOpened}>
 					{toastMessage}

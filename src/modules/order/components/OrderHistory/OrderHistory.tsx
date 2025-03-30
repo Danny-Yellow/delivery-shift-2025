@@ -6,7 +6,6 @@ import { STATUS_CODE, STATUS_INDICATOR } from '@src/shared/constants/status';
 import { useDeviceDetect } from '@src/shared/hooks';
 import {
 	Indicator,
-	Link,
 	Table,
 	TableBody,
 	TableCell,
@@ -15,6 +14,7 @@ import {
 	TableRow,
 	Typography,
 } from '@src/shared/ui';
+import { Link } from 'react-router';
 
 import { OrderCard } from '../OrderCard/OrderCard';
 
