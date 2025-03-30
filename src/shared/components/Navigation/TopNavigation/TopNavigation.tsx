@@ -14,15 +14,15 @@ export const TopNavigation = ({ isAuth, logout }: { isAuth: boolean; logout: () 
 							<Link to={'/'}>
 								<DeliveryIcon />
 							</Link>
-							<Link startIcon={<User />} to={ROUTES.PROFILE}>
+							<Link className={styles.link} startIcon={<User />} to={ROUTES.PROFILE}>
 								Профиль
 							</Link>
-							<Link startIcon={<Time />} to={ROUTES.ORDER_HISTORY}>
+							<Link className={styles.link} startIcon={<Time />} to={ROUTES.ORDER_HISTORY}>
 								История
 							</Link>
 						</div>
 						{isAuth ? (
-							<Link onClick={() => logout()} startIcon={<Exit />} to={''}>
+							<Link className={styles.link} onClick={() => logout()} startIcon={<Exit />} to={''}>
 								Выйти
 							</Link>
 						) : (

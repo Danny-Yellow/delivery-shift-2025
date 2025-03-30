@@ -1,4 +1,5 @@
 import { getOrdersThunk, OrderHistory, selectOrderHistory } from '@src/modules/order/';
+import { BottomNavigation } from '@src/shared/components';
 import { useDispatch } from '@src/store';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -18,7 +19,18 @@ export const HistoryPage = () => {
 
 	if (error) return <div>error :(</div>;
 
-	if (!orders?.length) return <EmptyPage />;
+	if (!orders?.length)
+		return (
+			<>
+				<EmptyPage />
+				<BottomNavigation />
+			</>
+		);
 
-	return <OrderHistory orders={orders} />;
+	return (
+		<>
+			<OrderHistory orders={orders} />
+			<BottomNavigation />
+		</>
+	);
 };

@@ -2,6 +2,7 @@ import type { UpdateProfile } from '@src/shared/api';
 
 import { getPointsThunk, selectPoints } from '@src/modules/points';
 import { ProfileForm, updateProfileThunk } from '@src/modules/session';
+import { AdaptivePageHeader } from '@src/shared/components';
 import { Toast, ToastProvider, Typography, useToast } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useEffect } from 'react';
@@ -28,9 +29,11 @@ export const ProfilePage = () => {
 
 	return (
 		<div className={styles.page}>
-			<Typography tag="h2" variant="h2">
-				Профиль
-			</Typography>
+			<AdaptivePageHeader>
+				<Typography tag="h2" variant="h2">
+					Профиль
+				</Typography>
+			</AdaptivePageHeader>
 			<ProfileForm onSubmit={handleSubmitProfile} points={points} />
 			<ToastProvider>
 				<Toast variant={toastVariant} onOpenChange={closeToast} open={toastIsOpened}>

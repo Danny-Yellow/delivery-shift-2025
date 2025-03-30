@@ -3,6 +3,12 @@
 	gap: 1.5rem;
 }
 
+.header {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
 .progress {
 	display: grid;
 	max-width: 464px;

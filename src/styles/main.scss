@@ -1,9 +1,5 @@
 @use './fonts';
 
-html {
-	font-size: clamp(11px, 2.5vw, 16px);
-}
-
 * {
 	box-sizing: border-box;
 	padding: 0;

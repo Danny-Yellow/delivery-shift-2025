@@ -18,6 +18,14 @@ export const CalculationPage = () => {
 		dispatch(getPackageTypesThunk());
 	}, []);
 
+	useEffect(() => {
+		document.documentElement.style.fontSize = 'clamp(11px, 2.5vw, 16px)';
+
+		return () => {
+			document.documentElement.style.fontSize = '';
+		};
+	}, []);
+
 	return (
 		<div className={styles.page}>
 			<DeliveryPromo />

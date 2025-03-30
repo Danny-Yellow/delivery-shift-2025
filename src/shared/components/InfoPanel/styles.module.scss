@@ -3,17 +3,74 @@
 .panel {
 	display: flex;
 	width: 100%;
-	height: 90px;
-	align-items: center;
 	justify-content: space-between;
 	padding: 1.5rem 3rem;
 	border-radius: $rounded-xl;
 	background-color: $bg-secondary;
 }
 
+.group {
+	display: flex;
+	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.5rem;
+}
+
 .title {
 	width: 100%;
 	max-width: 200px;
+	flex-shrink: 1;
 	font-weight: $font-medium;
+}
+
+
+.item {
+	display: grid;
+	width: 100%;
+	gap: 0.125rem;
+}
+
+.label {
+	color: $text-tertiary;
+	font-size: $text-xs;
+	line-height: $lh-xs;
+}
+
+.item_content {
+	line-height: $lh-base;
+}
+
+.item_full {
+	max-width: 100%;
+}
+
+.item_md {
+	max-width: 284px;
+}
+
+
+@media (max-width: $breakpoint-md) {
+
+	.panel {
+		padding: 1.5rem;
+	}
+
+}
+
+
+@media (max-width: $breakpoint-sm) {
+
+	.panel {
+		padding: 1.5rem 1rem;
+	}
+
+	.group {
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: flex-start;
+		gap: 1rem;
+	}
+	
 }
 

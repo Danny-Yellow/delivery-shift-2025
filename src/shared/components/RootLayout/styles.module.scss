@@ -12,3 +12,11 @@
 .secondary {
 	background-color: $bg-secondary;
 }
+
+@media (max-width: $breakpoint-sm) {
+	
+	.main {
+		padding-top: 0;
+	}
+}
+

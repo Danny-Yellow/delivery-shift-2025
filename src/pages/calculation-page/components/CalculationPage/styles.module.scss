@@ -5,7 +5,9 @@
 	height: 100%;
 	align-items: center;
 	justify-content: center;
+	font-size: clamp(11px, 2.5vw, 16px);
 	gap: 1.5rem 5rem;
+
 }
 
 @media (max-width: $breakpoint-md) {

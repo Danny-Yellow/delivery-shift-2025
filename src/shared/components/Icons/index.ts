@@ -1,3 +1,4 @@
+export * from './ArrowLeft';
 export * from './Box';
 export * from './Calculator';
 export * from './Check';
