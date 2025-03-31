@@ -4,8 +4,6 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const selectCalculationDelivery = (state: RootState) => state.calculationDelivery;
 
-export const selectPoints = (state: RootState) => state.calculationDelivery.points;
-
 export const selectSelectedPoints = createSelector(
 	[selectCalculationDelivery],
 	(calculationDelivery) => ({
@@ -21,3 +19,6 @@ export const selectSelectedPackageType = (state: RootState) =>
 
 export const selectIsOpenPackageType = (state: RootState) =>
 	state.calculationDelivery.isOpenPackageType;
+
+export const selectDeliveryOptions = (state: RootState) =>
+	state.calculationDelivery.deliveryOptions;

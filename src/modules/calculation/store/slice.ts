@@ -1,5 +1,4 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { GetPointsResponse } from '@src/shared/api';
 import type { CalculateDeliveryResponse } from '@src/shared/api/actions/calculateDelivery';
 import type { GetPackageTypesResponse } from '@src/shared/api/entities/packageTypes';
 import type { PackageType, Point } from '@src/shared/types';
@@ -8,7 +7,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import type { CalculationDeliveryState } from './types';
 
-import { calculateDeliveryThunk, getPackageTypesThunk, getPointsThunk } from './thunks';
+import { calculateDeliveryThunk, getPackageTypesThunk } from './thunks';
 
 const initialState: CalculationDeliveryState = {
 	selectedReiceiverPoint: null,
@@ -16,11 +15,6 @@ const initialState: CalculationDeliveryState = {
 	selectedPackageType: null,
 	isOpenPackageType: false,
 	deliveryOptions: {
-		isLoading: false,
-		error: '',
-		data: [],
-	},
-	points: {
 		isLoading: false,
 		error: '',
 		data: [],
@@ -57,18 +51,6 @@ export const calculationDeliverySlice = createSlice({
 	},
 	extraReducers: (builder) => {
 		builder
-			// Точки получения/отправки
-			.addCase(getPointsThunk.pending, (state) => {
-				state.points.isLoading = true;
-			})
-			.addCase(getPointsThunk.rejected, (state, action) => {
-				state.points.isLoading = false;
-				state.points.error = action.error.message ?? '';
-			})
-			.addCase(getPointsThunk.fulfilled, (state, action: PayloadAction<GetPointsResponse>) => {
-				state.points.isLoading = false;
-				state.points.data = action.payload.points;
-			})
 			// Типы упаковок
 			.addCase(getPackageTypesThunk.pending, (state) => {
 				state.packageTypes.isLoading = true;

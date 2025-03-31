@@ -9,6 +9,7 @@ import {
 	SelectButtonGroup,
 	SelectContent,
 	SelectTrigger,
+	Spinner,
 	Tabs,
 	TabsContent,
 	TabsList,
@@ -25,13 +26,20 @@ import { ExactPackageSizeForm } from '../ExactPackageSizeForm/ExactPackageSizeFo
 
 import styles from './styles.module.scss';
 
-export const CalculateDeliveryForm = ({ points }: { points: Point[] }) => {
+export const CalculateDeliveryForm = ({
+	points,
+	isLoading,
+}: {
+	points: Point[];
+	isLoading: boolean;
+}) => {
 	const { data: packageTypes } = useSelector(selectPackageTypes);
 
 	const {
 		isOpenPackageType,
 		selectedPackageType,
 		selectedPoints,
+		deliveryOptions,
 		handleSenderPointSelect,
 		handleReiceiverPointSelect,
 		handlePackageTypeSelect,
@@ -51,76 +59,82 @@ export const CalculateDeliveryForm = ({ points }: { points: Point[] }) => {
 				<Typography variant="h2">Рассчитать доставку</Typography>
 			</div>
 			<div className={styles.content}>
-				<InputLabel>
-					<Typography variant="p_14_medium">Размер посылки</Typography>
-					<Select
-						value={selectedPackageType?.id}
-						onOpenChange={(isOpen) => handlePackageTypeOpenChange(isOpen)}
-						onValueChange={handlePackageTypeSelect}
-						open={isOpenPackageType}
-					>
-						<SelectTrigger startIcon={<Email />}>
-							{selectedPackageType?.name ?? 'Выберите размер'}
-						</SelectTrigger>
-						<SelectContent>
-							<Tabs defaultValue="approximate">
-								<TabsList className={styles.tabs_list}>
-									<TabsTrigger value="approximate">Примерные</TabsTrigger>
-									<TabsTrigger value="exact">Точные</TabsTrigger>
-								</TabsList>
-								<TabsContent className={styles.tabs_content} value="approximate">
-									<ApproximatePackageSizeList packageTypes={packageTypes} />
-								</TabsContent>
-								<TabsContent className={styles.tabs_content} value="exact">
-									<ExactPackageSizeForm onSubmit={() => handlePackageTypeOpenChange(false)} />
-								</TabsContent>
-							</Tabs>
-						</SelectContent>
-					</Select>
-				</InputLabel>
-				<InputLabel>
-					<Typography variant="p_14_medium">Город отправки</Typography>
-					<CitySelect
-						value={selectedPoints.senderPoint?.name}
-						icon="sender"
-						onChange={handleSenderPointSelect}
-						points={points}
-					/>
-					<SelectButtonGroup>
-						{points.slice(0, 3).map((point) => (
-							<SelectButton
-								key={point.id}
-								value={point.id}
-								onClick={() => handleSenderPointSelect(point)}
+				{isLoading ? (
+					<Spinner className={styles.spinner} />
+				) : (
+					<>
+						<InputLabel>
+							<Typography variant="p_14_medium">Размер посылки</Typography>
+							<Select
+								value={selectedPackageType?.id}
+								onOpenChange={(isOpen) => handlePackageTypeOpenChange(isOpen)}
+								onValueChange={handlePackageTypeSelect}
+								open={isOpenPackageType}
 							>
-								{point.name}
-							</SelectButton>
-						))}
-					</SelectButtonGroup>
-				</InputLabel>
-				<InputLabel>
-					<Typography variant="p_14_medium">Город назначения</Typography>
-					<CitySelect
-						value={selectedPoints.receiverPoint?.name}
-						icon="receiver"
-						onChange={handleReiceiverPointSelect}
-						points={points}
-					/>
-					<SelectButtonGroup>
-						{points.slice(0, 3).map((point) => (
-							<SelectButton
-								key={point.id}
-								value={point.id}
-								onClick={() => handleReiceiverPointSelect(point)}
-							>
-								{point.name}
-							</SelectButton>
-						))}
-					</SelectButtonGroup>
-				</InputLabel>
-				<Button disabled={buttonIsDisabled} type="submit">
-					Рассчитать
-				</Button>
+								<SelectTrigger startIcon={<Email />}>
+									{selectedPackageType?.name ?? 'Выберите размер'}
+								</SelectTrigger>
+								<SelectContent>
+									<Tabs defaultValue="approximate">
+										<TabsList className={styles.tabs_list}>
+											<TabsTrigger value="approximate">Примерные</TabsTrigger>
+											<TabsTrigger value="exact">Точные</TabsTrigger>
+										</TabsList>
+										<TabsContent className={styles.tabs_content} value="approximate">
+											<ApproximatePackageSizeList packageTypes={packageTypes} />
+										</TabsContent>
+										<TabsContent className={styles.tabs_content} value="exact">
+											<ExactPackageSizeForm onSubmit={() => handlePackageTypeOpenChange(false)} />
+										</TabsContent>
+									</Tabs>
+								</SelectContent>
+							</Select>
+						</InputLabel>
+						<InputLabel>
+							<Typography variant="p_14_medium">Город отправки</Typography>
+							<CitySelect
+								value={selectedPoints.senderPoint?.name}
+								icon="sender"
+								onChange={handleSenderPointSelect}
+								points={points}
+							/>
+							<SelectButtonGroup>
+								{points.slice(0, 3).map((point) => (
+									<SelectButton
+										key={point.id}
+										value={point.id}
+										onClick={() => handleSenderPointSelect(point)}
+									>
+										{point.name}
+									</SelectButton>
+								))}
+							</SelectButtonGroup>
+						</InputLabel>
+						<InputLabel>
+							<Typography variant="p_14_medium">Город назначения</Typography>
+							<CitySelect
+								value={selectedPoints.receiverPoint?.name}
+								icon="receiver"
+								onChange={handleReiceiverPointSelect}
+								points={points}
+							/>
+							<SelectButtonGroup>
+								{points.slice(0, 3).map((point) => (
+									<SelectButton
+										key={point.id}
+										value={point.id}
+										onClick={() => handleReiceiverPointSelect(point)}
+									>
+										{point.name}
+									</SelectButton>
+								))}
+							</SelectButtonGroup>
+						</InputLabel>
+						<Button disabled={buttonIsDisabled} type="submit" isLoading={deliveryOptions.isLoading}>
+							Рассчитать
+						</Button>
+					</>
+				)}
 			</div>
 		</form>
 	);

@@ -14,6 +14,7 @@ export * from './Modal/useModal';
 export * from './Progress/Progress';
 export * from './RadioGroup/RadioGroup';
 export * from './Select/Select';
+export * from './Spinner/Spinner';
 export * from './Table/Table';
 export * from './Tabs/Tabs';
 export * from './Toast';

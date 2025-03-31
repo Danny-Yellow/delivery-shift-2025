@@ -1,17 +1,54 @@
 @use '@src/styles/vars' as *;
 
 .button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	padding: 1rem 0;
 	border-radius: $rounded-m;
 	cursor: pointer;
 	font-size: $text-base;
 	font-weight: $font-semibold;
+	gap: 0.5rem;
 	line-height: $lh-base;
 	text-align: center;
 
 	&:disabled {
 		cursor: not-allowed;
 		opacity: 0.5;
+	}
+
+}
+
+.spinner {
+	display: none;
+	width: 20px;
+	height: 20px;
+	box-sizing: border-box;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	border-bottom-color: transparent;
+	animation: rotation 1s linear infinite;
+}
+
+
+@keyframes rotation {
+
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+} 
+
+.loading {
+	cursor: not-allowed;
+	opacity: 0.5;
+
+	.spinner {
+		display: inline-block;
 	}
 }
 

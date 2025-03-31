@@ -15,9 +15,4 @@ export interface CalculationDeliveryState {
 		error: string;
 		data: PackageType[];
 	};
-	points: {
-		error: string;
-		isLoading: boolean;
-		data: Point[];
-	};
 }

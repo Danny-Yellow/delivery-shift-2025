@@ -1,4 +1,8 @@
-import { CalculateDeliveryForm, getPackageTypesThunk } from '@src/modules/calculation';
+import {
+	CalculateDeliveryForm,
+	getPackageTypesThunk,
+	selectPackageTypes,
+} from '@src/modules/calculation';
 import { getPointsThunk, selectPoints } from '@src/modules/points';
 import { BottomNavigation } from '@src/shared/components';
 import { useDispatch, useSelector } from '@src/store';
@@ -11,7 +15,8 @@ import styles from './styles.module.scss';
 export const CalculationPage = () => {
 	const dispatch = useDispatch();
 
-	const { data: points } = useSelector(selectPoints);
+	const packageTypes = useSelector(selectPackageTypes);
+	const points = useSelector(selectPoints);
 
 	useEffect(() => {
 		dispatch(getPointsThunk());
@@ -29,7 +34,10 @@ export const CalculationPage = () => {
 	return (
 		<div className={styles.page}>
 			<DeliveryPromo />
-			<CalculateDeliveryForm points={points} />
+			<CalculateDeliveryForm
+				isLoading={points.isLoading || packageTypes.isLoading}
+				points={points.data}
+			/>
 			<BottomNavigation />
 		</div>
 	);

@@ -9,6 +9,7 @@ import {
 	changeSelectedPackageType,
 	changeSelectedReiceiverPoint,
 	changeSelectedSenderPoint,
+	selectDeliveryOptions,
 	selectIsOpenPackageType,
 	selectSelectedPackageType,
 	selectSelectedPoints,
@@ -23,6 +24,7 @@ export const useCalculateDeliveryForm = () => {
 	const selectedPoints = useSelector(selectSelectedPoints);
 	const selectedPackageType = useSelector(selectSelectedPackageType);
 	const isOpenPackageType = useSelector(selectIsOpenPackageType);
+	const deliveryOptions = useSelector(selectDeliveryOptions);
 
 	function handleSenderPointSelect(point: Point) {
 		dispatch(changeSelectedSenderPoint({ point }));
@@ -59,6 +61,7 @@ export const useCalculateDeliveryForm = () => {
 		selectedPoints,
 		selectedPackageType,
 		isOpenPackageType,
+		deliveryOptions,
 		handleSenderPointSelect,
 		handleReiceiverPointSelect,
 		handlePackageTypeSelect,
