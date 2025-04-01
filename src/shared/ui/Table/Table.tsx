@@ -5,7 +5,9 @@ import clsx from 'clsx';
 import styles from './styles.module.scss';
 
 export const Table = ({ className, ...props }: ComponentProps<'table'>) => (
-	<table className={clsx(className, styles.table)} {...props} />
+	<div className={styles.wrapper}>
+		<table className={clsx(className, styles.table)} {...props} />
+	</div>
 );
 
 export const TableHeader = ({ className, ...props }: ComponentProps<'thead'>) => (

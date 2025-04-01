@@ -1,5 +1,17 @@
+@use '@src/styles/vars' as *;
+
 .form {
 	display: grid;
     max-width: 100%;
+	align-items: start;
 	grid-template-columns: repeat(2, 1fr);
 }
+
+@media (max-width: $breakpoint-md) {
+
+	.form {
+		grid-template-columns: 1fr;
+	}
+}
+
+

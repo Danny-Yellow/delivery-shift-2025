@@ -45,11 +45,11 @@ export const InputWithPrefix = ({
 			return;
 		}
 
-		if (value.length === 1) {
+		if (!value.startsWith(prefix)) {
 			event.target.value = prefix + value;
 		}
 
-		if (value === prefix) event.target.value = '';
+		if (value === prefix || value === '') event.target.value = '';
 
 		onChange(event);
 	}

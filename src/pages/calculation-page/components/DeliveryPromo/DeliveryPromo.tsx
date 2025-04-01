@@ -1,5 +1,5 @@
 import qr from '@src/assets/images/QR_koronapay.png';
-import { Check } from '@src/shared/components';
+import { Box } from '@src/shared/components';
 import { Typography } from '@src/shared/ui/Typography/Typography';
 
 import styles from './styles.module.scss';
@@ -13,10 +13,10 @@ export const DeliveryPromo = () => {
 			<Typography className={styles.paragraph} variant="p_24_light" color="tertiary">
 				Отправляйте посылки в приложении Шифт Delivery
 			</Typography>
-			<div className={styles.qr}>
-				<Check />
-				<img alt="qr-code" src={qr} />
-				<Typography variant="p_16_medium" color="tertiary">
+			<div className={styles.banner}>
+				<Box className={styles.box} />
+				<img alt="qr-code" className={styles.qr} src={qr} />
+				<Typography className={styles.banner_paragraph} variant="p_16_medium" color="tertiary">
 					Наведите камеру телефона на QR‑код
 				</Typography>
 			</div>

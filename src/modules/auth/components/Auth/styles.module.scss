@@ -1,0 +1,9 @@
+@use '@src/styles/vars' as *;
+
+@media (max-width: $breakpoint-sm) {
+
+	.button {
+		max-width: 100%;
+	}
+}
+

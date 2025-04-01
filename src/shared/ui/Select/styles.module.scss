@@ -14,6 +14,10 @@
 	outline: none;
 }
 
+.trigger_p {
+	line-height: 20px;
+} 
+
 .trigger_padding_base {
 	padding: 0.5rem 0.5rem 0.5rem 0.75rem;
 }
@@ -36,9 +40,23 @@
 .content {
 	width: var(--radix-select-trigger-width);
 	margin-top: 0.5rem;
+	animation: slide_down 200ms ease-out;
 	color: $text-secondary;
 	font-size: $text-sm;
 	font-weight: $font-light;
+}
+
+@keyframes slide_down {
+
+	from {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .item {

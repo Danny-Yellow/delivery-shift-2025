@@ -1,13 +1,14 @@
 @use '@src/styles/vars' as *;
 
 .form {
+	position: relative;
 	max-width: 500px;
-	flex: 1 1 400px;
+	height: 494px;
+	flex: 1 0 420px;
 	padding: 2rem 4.5rem;
 	border-radius: $rounded-xl;
 	background-color: $bg-primary;
 }
-
 
 .header {
 	text-align: center;

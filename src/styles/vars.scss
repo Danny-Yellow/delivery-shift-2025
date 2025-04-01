@@ -23,6 +23,15 @@ $text-quartenery: #97a1af;
 // Border
 $border-light: #ced2da;
 
+// Breakpoints
+$breakpoint-sm: 520px;
+$breakpoint-md: 820px;
+$breakpoint-lg: 1004px;
+
+// Media queries
+$media-sm: '(min-width: #{$breakpoint-sm})';
+$media-lg: '(min-width: #{$breakpoint-lg})';
+
 // Line height
 $lh-xs: 1rem;
 $lh-sm: 1.25rem;

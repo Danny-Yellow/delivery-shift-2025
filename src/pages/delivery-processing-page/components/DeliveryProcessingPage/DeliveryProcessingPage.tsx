@@ -1,6 +1,6 @@
 import type { Address, Person } from '@src/shared/types';
 
-import { selectSelectedPoints } from '@src/modules/calculation';
+import { selectDeliveryOptions, selectSelectedPoints } from '@src/modules/calculation';
 import {
 	AddressForm,
 	DeliveryMethods,
@@ -10,6 +10,7 @@ import {
 } from '@src/modules/delivery-processing';
 import { CheckOrderDetails } from '@src/modules/delivery-processing/components/CheckOrderDetails/CheckOrderDetails';
 import {
+	decrementStep,
 	getProcessingDetailsSelector,
 	reset,
 	selectCurrentStep,
@@ -20,9 +21,12 @@ import {
 	setSenderAddress,
 } from '@src/modules/delivery-processing/store';
 import { createDeliveryOrderThunk } from '@src/modules/order/store';
-import { Progress, Typography } from '@src/shared/ui';
+import { AdaptivePageHeader, ArrowLeft, Cross } from '@src/shared/components';
+import { ROUTES } from '@src/shared/constants';
+import { IconButton, Progress, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router';
 
 import styles from './styles.module.scss';
 
@@ -30,6 +34,7 @@ export const DeliveryProcessingPage = () => {
 	const dispatch = useDispatch();
 
 	const currentStep = useSelector(selectCurrentStep);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(reset());
@@ -39,6 +44,11 @@ export const DeliveryProcessingPage = () => {
 	const points = useSelector(selectSelectedPoints);
 	const persons = useSelector(selectPersons);
 	const senderAddress = useSelector(selectSenderAddress);
+	const deliveryOptions = useSelector(selectDeliveryOptions);
+
+	useEffect(() => {
+		if (!deliveryOptions.data.length) navigate('/');
+	}, [deliveryOptions]);
 
 	const stepsMap = [
 		{
@@ -88,6 +98,7 @@ export const DeliveryProcessingPage = () => {
 				<CheckOrderDetails
 					onSubmit={() => {
 						dispatch(createDeliveryOrderThunk({ ...details, ...points }));
+						navigate(ROUTES.ORDER_REQUEST);
 					}}
 				/>
 			),
@@ -96,9 +107,23 @@ export const DeliveryProcessingPage = () => {
 
 	return (
 		<div className={styles.page}>
-			<Typography tag="h1" variant="h2">
-				{stepsMap[currentStep - 1].title}
-			</Typography>
+			<AdaptivePageHeader
+				mobileButton={
+					currentStep > 1 ? (
+						<IconButton onClick={() => dispatch(decrementStep())}>
+							<ArrowLeft />
+						</IconButton>
+					) : (
+						<IconButton onClick={() => navigate('/')}>
+							<Cross />
+						</IconButton>
+					)
+				}
+			>
+				<Typography tag="h1" variant="h2">
+					{stepsMap[currentStep - 1].title}
+				</Typography>
+			</AdaptivePageHeader>
 			<div className={styles.progress}>
 				<Typography variant="p_12_regular">
 					Шаг {currentStep} из {7}

@@ -1,17 +1,62 @@
+@use '@src/styles/vars' as *;
+
 .order {
+	width: 100%;
+}
+
+.body {
 	display: grid;
 	max-width: 600px;
 	gap: 1.5rem;
 }
 
+.header {
+	padding: 0.75rem 0;
+}
+
 .status {
 	display: flex;
+	flex-wrap: wrap;	
 	align-items: center;
 	padding: 0.75rem;
 	gap: 2.25rem;
 }
 
-
 .buttons {
 	max-width: 464px;
+}
+
+@media (max-width: $breakpoint-md) {
+
+	.order {
+		display: flex;
+		justify-content: center;
+	}
+}
+
+@media (max-width: $breakpoint-sm) {
+	
+	.order {
+		display: flex;
+		min-height: 100vh; // Меняем height на min-height
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.body {
+		display: flex; // Меняем grid на flex
+		flex: 1;
+		flex-direction: column; // Добавляем направление колонкой
+		align-items: center; // Центрируем по горизонтали
+		justify-content: center; // Центрируем по вертикали
+		margin-top: -5rem;
+		gap: 1rem;
+		text-align: center;
+	}
+
+	.status {
+		display: grid;
+		gap: 1rem;
+		justify-items: center;
+	}
 }

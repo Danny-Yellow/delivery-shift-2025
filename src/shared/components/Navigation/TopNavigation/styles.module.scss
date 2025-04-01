@@ -22,3 +22,14 @@
 	align-items: center;
 	gap: 32px;
 }
+
+.link {
+	font-size: 16px;
+}
+
+@media (max-width: $breakpoint-sm) {
+
+	.navigation {
+		display: none;
+	}
+}

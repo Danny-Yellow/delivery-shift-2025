@@ -1,7 +1,8 @@
-import { InfoPanel, InfoPanelTitle, Pencil } from '@src/shared/components';
+import { InfoGroup, InfoItem, InfoPanel, InfoTitle, Pencil } from '@src/shared/components';
 import { ROUTES } from '@src/shared/constants';
 import { capitalizeFirstLetter, declensionWorkingDays } from '@src/shared/helpers';
-import { Button, ButtonGroup, Form, IconButton, InfoRow, Typography } from '@src/shared/ui';
+import { useDeviceDetect } from '@src/shared/hooks';
+import { Button, ButtonGroup, Form, IconButton, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useNavigate } from 'react-router';
 
@@ -13,7 +14,7 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 	const { option, receiver, receiverAddress, sender, senderAddress } = useSelector(
 		getProcessingDetailsSelector,
 	);
-
+	const { isMobile } = useDeviceDetect();
 	const navigate = useNavigate();
 
 	const dispatch = useDispatch();
@@ -28,11 +29,13 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 		>
 			{receiver && (
 				<InfoPanel>
-					<InfoPanelTitle>Получатель</InfoPanelTitle>
-					<InfoRow label="ФИО" size="md">
-						{receiver.lastname} {receiver.firstname} {receiver.middlename}
-					</InfoRow>
-					<InfoRow label="Телефон">{receiver.phone}</InfoRow>
+					<InfoGroup>
+						<InfoTitle>Получатель</InfoTitle>
+						<InfoItem label="ФИО" size="md">
+							{receiver.lastname} {receiver.firstname} {receiver.middlename}
+						</InfoItem>
+						<InfoItem label="Телефон">{receiver.phone}</InfoItem>
+					</InfoGroup>
 					<IconButton>
 						<Pencil onClick={() => dispatch(setStep(2))} />
 					</IconButton>
@@ -40,11 +43,14 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 			)}
 			{sender && (
 				<InfoPanel>
-					<InfoPanelTitle>Отправитель</InfoPanelTitle>
-					<InfoRow label="ФИО" size="md">
-						{sender.lastname} {sender.firstname} {sender.middlename}
-					</InfoRow>
-					<InfoRow label="Телефон">{sender.phone}</InfoRow>
+					<InfoGroup>
+						<InfoTitle>Отправитель</InfoTitle>
+						<InfoItem label="ФИО" size="md">
+							{sender.lastname} {sender.firstname} {sender.middlename}
+						</InfoItem>
+						<InfoItem label="Телефон">{sender.phone}</InfoItem>
+					</InfoGroup>
+
 					<IconButton>
 						<Pencil onClick={() => dispatch(setStep(3))} />
 					</IconButton>
@@ -52,11 +58,14 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 			)}
 			{senderAddress && (
 				<InfoPanel>
-					<InfoPanelTitle>Откуда забрать</InfoPanelTitle>
-					<InfoRow label="Адрес" size="md">
-						{senderAddress.street}, {senderAddress.house}, {senderAddress.apartment}
-					</InfoRow>
-					<InfoRow label="Заметка">{senderAddress.comment}</InfoRow>
+					<InfoGroup>
+						<InfoTitle>Откуда забрать</InfoTitle>
+						<InfoItem label="Адрес" size="md">
+							{senderAddress.street}, {senderAddress.house}, {senderAddress.apartment}
+						</InfoItem>
+						<InfoItem label="Заметка">{senderAddress.comment}</InfoItem>
+					</InfoGroup>
+
 					<IconButton>
 						<Pencil onClick={() => dispatch(setStep(4))} />
 					</IconButton>
@@ -64,18 +73,20 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 			)}
 			{receiverAddress && (
 				<InfoPanel>
-					<InfoPanelTitle>Куда доставить</InfoPanelTitle>
-					<InfoRow label="Адрес" size="md">
-						{receiverAddress.street}, {receiverAddress.house}, {receiverAddress.apartment}
-					</InfoRow>
-					<InfoRow label="Заметка">{receiverAddress.comment}</InfoRow>
+					<InfoGroup>
+						<InfoTitle>Куда доставить</InfoTitle>
+						<InfoItem label="Адрес" size="md">
+							{receiverAddress.street}, {receiverAddress.house}, {receiverAddress.apartment}
+						</InfoItem>
+						<InfoItem label="Заметка">{receiverAddress.comment}</InfoItem>
+					</InfoGroup>
 					<IconButton>
 						<Pencil onClick={() => dispatch(setStep(5))} />
 					</IconButton>
 				</InfoPanel>
 			)}
 			{option && (
-				<div className={styles.method}>
+				<div className={styles.total}>
 					<Typography variant="h3">Итого: {option.price}</Typography>
 					<div>
 						<Typography variant="p_16_regular" color="secondary">
@@ -87,14 +98,25 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 					</div>
 				</div>
 			)}
-			<ButtonGroup className={styles.button_group}>
-				<Button size="lg" variant="outlined" onClick={() => dispatch(decrementStep())}>
-					Назад
+
+			{isMobile ? (
+				<Button
+					className={styles.mobile_button}
+					type="submit"
+					onClick={() => navigate(ROUTES.ORDER_REQUEST)}
+				>
+					Оформить
 				</Button>
-				<Button size="lg" type="submit" onClick={() => navigate(ROUTES.ORDER_REQUEST)}>
-					Продолжить
-				</Button>
-			</ButtonGroup>
+			) : (
+				<ButtonGroup className={styles.button_group}>
+					<Button size="lg" variant="outlined" onClick={() => dispatch(decrementStep())}>
+						Назад
+					</Button>
+					<Button size="lg" type="submit">
+						Продолжить
+					</Button>
+				</ButtonGroup>
+			)}
 		</Form>
 	);
 };

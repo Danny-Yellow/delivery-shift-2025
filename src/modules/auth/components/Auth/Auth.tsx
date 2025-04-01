@@ -1,19 +1,29 @@
 import type { Signin } from '@src/shared/types';
 
-import { OTPCode, PhoneInput } from '@src/shared/components';
+import { AdaptivePageHeader, Cross, OTPCode, PhoneInput } from '@src/shared/components';
 import { formatPhone } from '@src/shared/helpers';
-import { Button, ButtonGroup, Form, Typography } from '@src/shared/ui';
+import { Button, ButtonGroup, Form, IconButton, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useForm } from '@tanstack/react-form';
+import { useNavigate } from 'react-router';
 
 import { createOtpThunk, selectIsContinued, selectRetryDelay, setIsContinued } from '../../store';
 import { ResendCodeManager } from '../ResendCodeManager/ResendCodeManager';
 
-export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
+import styles from './styles.module.scss';
+
+export const Auth = ({
+	signin,
+	signinIsLoading,
+}: {
+	signin: (data: Signin) => void;
+	signinIsLoading: boolean;
+}) => {
 	const isContinued = useSelector(selectIsContinued);
 	const retryDelay = useSelector(selectRetryDelay);
 
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const { Field, Subscribe, handleSubmit, state } = useForm({
 		defaultValues: {
@@ -39,10 +49,19 @@ export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
 				handleSubmit();
 			}}
 		>
-			<Typography variant="h2">Авторизация</Typography>
+			<AdaptivePageHeader
+				mobileButton={
+					<IconButton onClick={() => navigate('/')}>
+						<Cross />
+					</IconButton>
+				}
+			>
+				<Typography variant="h2">Авторизация</Typography>
+			</AdaptivePageHeader>
 			<Typography variant="p_16_regular">
 				Введите номер телефона для входа в личный кабинет
 			</Typography>
+
 			<Field
 				children={({ state, handleChange }) => (
 					<PhoneInput
@@ -62,7 +81,13 @@ export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
 							const isDisabled = formatPhone(values.phone).length !== 11;
 
 							return (
-								<Button disabled={isDisabled} size="lg" type="submit">
+								<Button
+									className={styles.button}
+									disabled={isDisabled}
+									size="lg"
+									type="submit"
+									isLoading={retryDelay.isLoading}
+								>
 									Продолжить
 								</Button>
 							);
@@ -83,7 +108,13 @@ export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
 								const isDisabled = formatPhone(values.code).length !== 6;
 
 								return (
-									<Button disabled={isDisabled} size="lg" type="submit">
+									<Button
+										className={styles.button}
+										disabled={isDisabled}
+										size="lg"
+										type="submit"
+										isLoading={signinIsLoading}
+									>
 										Войти
 									</Button>
 								);

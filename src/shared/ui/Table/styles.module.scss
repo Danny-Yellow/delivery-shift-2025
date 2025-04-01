@@ -1,7 +1,13 @@
 @use '@src/styles/vars' as *;
 
+.wrapper {
+	overflow: hidden;
+	width: 100%;
+}
+
 .table {
 	width: 100%;
+	min-width: 600px;
 	border-collapse: collapse;
 }
 
