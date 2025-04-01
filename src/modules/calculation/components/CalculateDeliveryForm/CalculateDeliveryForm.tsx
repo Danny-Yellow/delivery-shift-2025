@@ -60,7 +60,7 @@ export const CalculateDeliveryForm = ({
 			</div>
 			<div className={styles.content}>
 				{isLoading ? (
-					<Spinner className={styles.spinner} />
+					<Spinner />
 				) : (
 					<>
 						<InputLabel>

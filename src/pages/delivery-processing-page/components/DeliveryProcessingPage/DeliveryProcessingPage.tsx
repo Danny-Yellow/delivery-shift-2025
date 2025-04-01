@@ -22,6 +22,7 @@ import {
 } from '@src/modules/delivery-processing/store';
 import { createDeliveryOrderThunk } from '@src/modules/order/store';
 import { AdaptivePageHeader, ArrowLeft, Cross } from '@src/shared/components';
+import { ROUTES } from '@src/shared/constants';
 import { IconButton, Progress, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useEffect } from 'react';
@@ -92,6 +93,7 @@ export const DeliveryProcessingPage = () => {
 				<CheckOrderDetails
 					onSubmit={() => {
 						dispatch(createDeliveryOrderThunk({ ...details, ...points }));
+						navigate(ROUTES.ORDER_REQUEST);
 					}}
 				/>
 			),

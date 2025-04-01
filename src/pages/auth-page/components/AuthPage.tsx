@@ -1,12 +1,14 @@
 import { Auth } from '@src/modules/auth';
-import { signinThunk } from '@src/modules/session';
+import { selectSignin, signinThunk } from '@src/modules/session';
 import { ROUTES } from '@src/shared/constants';
 import { Toast, ToastProvider, useToast } from '@src/shared/ui';
-import { useDispatch } from '@src/store';
+import { useDispatch, useSelector } from '@src/store';
 import { useNavigate } from 'react-router';
 
 export const AuthPage = () => {
 	const dispatch = useDispatch();
+
+	const signin = useSelector(selectSignin);
 
 	const { openToast, toastIsOpened, toastMessage, toastVariant } = useToast();
 
@@ -21,6 +23,7 @@ export const AuthPage = () => {
 						.then(() => navigate(ROUTES.ORDER_HISTORY))
 						.catch(() => openToast('error', 'Неверный номер телефона или код'))
 				}
+				signinIsLoading={signin.isLoading}
 			/>
 			<ToastProvider>
 				<Toast variant={toastVariant} open={toastIsOpened}>

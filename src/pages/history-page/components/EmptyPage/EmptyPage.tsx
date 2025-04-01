@@ -1,4 +1,3 @@
-import { BottomNavigation } from '@src/shared/components';
 import { Button, Typography } from '@src/shared/ui';
 import { useNavigate } from 'react-router';
 
@@ -18,7 +17,6 @@ export const EmptyPage = () => {
 					Оформить доставку
 				</Button>
 			</div>
-			<BottomNavigation />
 		</div>
 	);
 };

@@ -1,6 +1,7 @@
 import { useTimer } from '@src/shared/hooks';
-import { Link, Typography } from '@src/shared/ui';
+import { Typography } from '@src/shared/ui';
 import { useEffect } from 'react';
+import { Link } from 'react-router';
 
 export const ResendCodeManager = ({ delay, retry }: { delay: number; retry: () => void }) => {
 	const { time, start, isRunning } = useTimer();
@@ -19,7 +20,9 @@ export const ResendCodeManager = ({ delay, retry }: { delay: number; retry: () =
 
 	return (
 		<Link onClick={() => retry()} to="">
-			Отправить еще раз
+			<Typography variant="p_14_regular" color="tertiary">
+				Отправить еще раз
+			</Typography>
 		</Link>
 	);
 };

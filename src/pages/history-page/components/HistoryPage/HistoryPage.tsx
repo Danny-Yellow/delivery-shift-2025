@@ -1,5 +1,6 @@
 import { getOrdersThunk, OrderHistory, selectOrderHistory } from '@src/modules/order/';
 import { BottomNavigation } from '@src/shared/components';
+import { Spinner } from '@src/shared/ui';
 import { useDispatch } from '@src/store';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
@@ -7,7 +8,7 @@ import { useSelector } from 'react-redux';
 import { EmptyPage } from '../EmptyPage/EmptyPage';
 
 export const HistoryPage = () => {
-	const { data: orders, error, isLoading } = useSelector(selectOrderHistory);
+	const { data: orders, isLoading } = useSelector(selectOrderHistory);
 
 	const dispatch = useDispatch();
 
@@ -15,21 +16,19 @@ export const HistoryPage = () => {
 		dispatch(getOrdersThunk());
 	}, []);
 
-	if (isLoading) return <div>Loading...</div>;
+	let content = <OrderHistory orders={orders} />;
 
-	if (error) return <div>error :(</div>;
+	if (!orders?.length) {
+		content = <EmptyPage />;
+	}
 
-	if (!orders?.length)
-		return (
-			<>
-				<EmptyPage />
-				<BottomNavigation />
-			</>
-		);
+	if (isLoading) {
+		content = <Spinner />;
+	}
 
 	return (
 		<>
-			<OrderHistory orders={orders} />
+			{content}
 			<BottomNavigation />
 		</>
 	);

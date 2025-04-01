@@ -17,6 +17,7 @@ export const OrderDetailsPage = () => {
 	const { data: order, isLoading, error } = useSelector(selectOrderDetails);
 
 	const { closeToast, toastIsOpened, toastVariant, toastMessage, openToast } = useToast();
+
 	useEffect(() => {
 		dispatch(getOrderThunk(id));
 	}, []);

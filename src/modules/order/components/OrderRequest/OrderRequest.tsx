@@ -1,18 +1,16 @@
+import type { OrderWithStatus } from '@src/shared/types';
+
 import { AdaptivePageHeader, Cross, Success } from '@src/shared/components';
 import { ROUTES } from '@src/shared/constants';
 import { useDeviceDetect } from '@src/shared/hooks';
 import { Button, ButtonGroup, IconButton, Typography } from '@src/shared/ui';
-import { useSelector } from '@src/store';
 import { useNavigate } from 'react-router';
 
-import { selectOrderRequest } from '../../store';
 import { OrderCard } from '../OrderCard/OrderCard';
 
 import styles from './styles.module.scss';
 
-export const OrderRequest = () => {
-	const { data: order } = useSelector(selectOrderRequest);
-
+export const OrderRequest = ({ order }: { order: OrderWithStatus }) => {
 	const { isMobile } = useDeviceDetect();
 
 	const navigate = useNavigate();

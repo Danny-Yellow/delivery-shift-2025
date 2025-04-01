@@ -112,7 +112,7 @@ export const CheckOrderDetails = ({ onSubmit }: { onSubmit: () => void }) => {
 					<Button size="lg" variant="outlined" onClick={() => dispatch(decrementStep())}>
 						Назад
 					</Button>
-					<Button size="lg" type="submit" onClick={() => navigate(ROUTES.ORDER_REQUEST)}>
+					<Button size="lg" type="submit">
 						Продолжить
 					</Button>
 				</ButtonGroup>

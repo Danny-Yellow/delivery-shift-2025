@@ -12,7 +12,13 @@ import { ResendCodeManager } from '../ResendCodeManager/ResendCodeManager';
 
 import styles from './styles.module.scss';
 
-export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
+export const Auth = ({
+	signin,
+	signinIsLoading,
+}: {
+	signin: (data: Signin) => void;
+	signinIsLoading: boolean;
+}) => {
 	const isContinued = useSelector(selectIsContinued);
 	const retryDelay = useSelector(selectRetryDelay);
 
@@ -75,7 +81,13 @@ export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
 							const isDisabled = formatPhone(values.phone).length !== 11;
 
 							return (
-								<Button className={styles.button} disabled={isDisabled} size="lg" type="submit">
+								<Button
+									className={styles.button}
+									disabled={isDisabled}
+									size="lg"
+									type="submit"
+									isLoading={retryDelay.isLoading}
+								>
 									Продолжить
 								</Button>
 							);
@@ -96,7 +108,13 @@ export const Auth = ({ signin }: { signin: (data: Signin) => void }) => {
 								const isDisabled = formatPhone(values.code).length !== 6;
 
 								return (
-									<Button className={styles.button} disabled={isDisabled} size="lg" type="submit">
+									<Button
+										className={styles.button}
+										disabled={isDisabled}
+										size="lg"
+										type="submit"
+										isLoading={signinIsLoading}
+									>
 										Войти
 									</Button>
 								);
