@@ -64,7 +64,11 @@ export const AddressForm = ({
 									value={state.value}
 									onChange={(event) => {
 										if (format) {
-											const valueWithoutPrefix = event.target.value.split(' ')[1] ?? '';
+											const value = event.target.value;
+											const valueWithoutPrefix = value.startsWith(format)
+												? value.slice(format.length).trim()
+												: value;
+
 											handleOnlyNumbers(valueWithoutPrefix, () => handleChange(event.target.value));
 											return;
 										}
