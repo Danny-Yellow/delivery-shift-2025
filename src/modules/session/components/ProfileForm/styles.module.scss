@@ -3,6 +3,7 @@
 .form {
 	display: grid;
     max-width: 100%;
+	align-items: start;
 	grid-template-columns: repeat(2, 1fr);
 }
 

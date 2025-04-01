@@ -29,3 +29,5 @@ export const selectPersons = createSelector([selectDeliveryProcessing], (deliver
 	receiver: deliveryProcessing.receiver,
 	sender: deliveryProcessing.sender,
 }));
+
+export const selectPayer = (state: RootState) => state.deliveryProcessing.payer;

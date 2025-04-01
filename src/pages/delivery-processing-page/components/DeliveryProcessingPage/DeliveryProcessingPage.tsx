@@ -1,6 +1,6 @@
 import type { Address, Person } from '@src/shared/types';
 
-import { selectSelectedPoints } from '@src/modules/calculation';
+import { selectDeliveryOptions, selectSelectedPoints } from '@src/modules/calculation';
 import {
 	AddressForm,
 	DeliveryMethods,
@@ -44,6 +44,11 @@ export const DeliveryProcessingPage = () => {
 	const points = useSelector(selectSelectedPoints);
 	const persons = useSelector(selectPersons);
 	const senderAddress = useSelector(selectSenderAddress);
+	const deliveryOptions = useSelector(selectDeliveryOptions);
+
+	useEffect(() => {
+		if (!deliveryOptions.data.length) navigate('/');
+	}, [deliveryOptions]);
 
 	const stepsMap = [
 		{

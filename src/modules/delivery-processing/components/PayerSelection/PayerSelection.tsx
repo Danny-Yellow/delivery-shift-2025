@@ -1,16 +1,18 @@
 import { Payer } from '@src/shared/types';
 import { Button, ButtonGroup, Form, RadioGroup, RadioLabel } from '@src/shared/ui';
-import { useDispatch } from '@src/store';
+import { useDispatch, useSelector } from '@src/store';
 import { useForm } from '@tanstack/react-form';
 
-import { decrementStep, incrementStep, setPayer } from '../../store';
+import { decrementStep, incrementStep, selectPayer, setPayer } from '../../store';
 
 export const PayerSelection = () => {
 	const dispatch = useDispatch();
 
+	const payer = useSelector(selectPayer);
+
 	const { Field, Subscribe, handleSubmit } = useForm<{ payer: Payer | null }>({
 		defaultValues: {
-			payer: null,
+			payer,
 		},
 		onSubmit: ({ value }) => {
 			dispatch(setPayer(value.payer));
