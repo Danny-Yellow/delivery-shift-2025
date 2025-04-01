@@ -1,0 +1,15 @@
+@use '@src/styles/vars' as *;
+
+.header {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+
+@media (max-width: $breakpoint-sm) {
+
+	.header {
+		padding: .75rem 0 ;
+	}
+}
+

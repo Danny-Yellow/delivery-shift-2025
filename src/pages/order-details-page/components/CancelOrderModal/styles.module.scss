@@ -1,0 +1,22 @@
+.modal_content {
+	width: 100%;
+	min-width: 244px;
+	max-width: 544px;
+}
+
+.modal_body {
+	display: grid;
+	justify-items: center;
+}
+
+.modal_title {
+	margin-top: 1rem;
+}
+
+.modal_buttons {
+	display: grid;
+	width: 100%;
+	max-width: 328px;
+	margin-top: 2.5rem;
+	gap: 1rem;
+}

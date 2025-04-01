@@ -1,0 +1,60 @@
+@use '@src/styles/vars' as *;
+
+.spinner {
+	position: absolute;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	&:has(.sm) {
+		top: calc(50% - 14px);
+		left: calc(50% - 14px);
+	}
+
+	&:has(.md) {
+		top: calc(50% - 24px);
+		left: calc(50% - 24px);
+	}
+
+	&:has(.lg) {
+		top: calc(50% - 32px);
+		left: calc(50% - 32px);
+	}
+}
+
+.circle {
+	border: 3.5px solid $bg-brand;
+	border-radius: 50%;
+	border-right-color: transparent;
+	animation: spin 1s linear infinite;
+}
+
+.sm {
+	width: 28px;
+	height: 28px;
+}
+
+.md {
+	top: calc(50% - 24px);
+	left: calc(50% - 24px);
+	width: 48px;
+	height: 48px;
+}
+
+.lg {
+	top: calc(50% - 32px);
+	left: calc(50% - 32px);
+	width: 64px;
+	height: 64px;
+}
+
+@keyframes spin {
+	
+	from {
+		transform: rotate(0deg);
+	}
+
+	to {
+		transform: rotate(360deg);
+	}
+}
