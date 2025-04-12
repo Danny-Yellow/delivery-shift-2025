@@ -6,11 +6,11 @@ import { Typography } from '@src/shared/ui/Typography/Typography';
 import styles from './styles.module.scss';
 
 const packageImg = [
-	'/images/packages/envelope.svg',
-	'/images/packages/packageS.svg',
-	'/images/packages/packageM.svg',
-	'/images/packages/packageL.svg',
-	'/images/packages/packageL.svg',
+	'images/packages/envelope.svg',
+	'images/packages/packageS.svg',
+	'images/packages/packageM.svg',
+	'images/packages/packageL.svg',
+	'images/packages/packageL.svg',
 ];
 
 interface ApproximatePackageSizeListProps {

@@ -11,13 +11,13 @@ import {
 import { DeliveryProcessingPage } from '@src/pages/delivery-processing-page/components/DeliveryProcessingPage/DeliveryProcessingPage';
 import { RootLayout } from '@src/shared/components';
 import { ROUTES } from '@src/shared/constants';
-import { BrowserRouter, Route, Routes } from 'react-router';
+import { HashRouter, Route, Routes } from 'react-router';
 
 import { ProtectedRoute } from './ProtectedRoute';
 
 export const Router = () => {
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<Routes>
 				<Route element={<ProtectedRoute access="forAll" />}>
 					<Route element={<CalculationLayout />}>
@@ -41,6 +41,6 @@ export const Router = () => {
 					</Route>
 				</Route>
 			</Routes>
-		</BrowserRouter>
+		</HashRouter>
 	);
 };
