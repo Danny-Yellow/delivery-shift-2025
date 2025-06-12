@@ -5,7 +5,9 @@ export interface PackageSize {
 	width: number;
 }
 
+export type PackageTypeId = 'bag' | 'box-l' | 'box-m' | 'box-s' | 'box-xl' | 'envelope' | 'pallet';
+
 export interface PackageType extends PackageSize {
-	id: string;
+	id?: PackageTypeId;
 	name: string;
 }

@@ -1,5 +1,6 @@
 import type { ComponentProps } from 'react';
 
+import { giftM, giftXS } from '@src/assets/images/gifts';
 import { Typography } from '@src/shared/ui';
 import clsx from 'clsx';
 
@@ -17,8 +18,8 @@ export const FreeDelivery = ({ className, ...props }: ComponentProps<'div'>) => 
 				</Typography>
 			</div>
 			<div className={styles.gifts}>
-				<img alt="gift" className={styles.gift_m} src="images/gifts/gift_m.svg" />
-				<img alt="gift" className={styles.gift_xs} src="images/gifts/gift_xs.svg" />
+				<img alt="gift" className={styles.gift_m} src={giftM} />
+				<img alt="gift" className={styles.gift_xs} src={giftXS} />
 			</div>
 		</div>
 	);

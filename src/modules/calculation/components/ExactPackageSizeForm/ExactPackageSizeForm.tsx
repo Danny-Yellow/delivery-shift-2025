@@ -34,7 +34,6 @@ export const ExactPackageSizeForm = ({ onSubmit }: { onSubmit?: () => void }) =>
 					weight: +value.weight,
 					width: +value.width,
 					length: +value.length,
-					id: '',
 					name: `${value.length}x${value.height}x${value.width}`,
 				}),
 			);
