@@ -20,24 +20,22 @@ interface ApproximatePackageSizeListProps {
 	packageTypes: PackageType[];
 }
 
-export const ApproximatePackageSizeList = ({ packageTypes }: ApproximatePackageSizeListProps) => {
-	return (
-		<ul className={styles.list}>
-			{packageTypes.map((packageType) => {
-				return (
-					<SelectItem key={packageType.id} className={styles.item} value={packageType.id}>
-						<img alt={packageType.name} src={packageImg[packageType.id]} />
-						<div className={styles.info}>
-							<Typography tag="h3" variant="h3">
-								<SelectItemText>{packageType.name}</SelectItemText>
-							</Typography>
-							<Typography variant="p_12_regular" color="tertiary">
-								{packageType.length}х{packageType.width}х{packageType.height} см
-							</Typography>
-						</div>
-					</SelectItem>
-				);
-			})}
-		</ul>
-	);
-};
+export const ApproximatePackageSizeList = ({ packageTypes }: ApproximatePackageSizeListProps) => (
+	<ul className={styles.list}>
+		{packageTypes.map((packageType) => {
+			return (
+				<SelectItem key={packageType.id} className={styles.item} value={packageType.id}>
+					<img alt={packageType.name} src={packageImg[packageType.id]} />
+					<div className={styles.info}>
+						<Typography tag="h3" variant="h3">
+							<SelectItemText>{packageType.name}</SelectItemText>
+						</Typography>
+						<Typography variant="p_12_regular" color="tertiary">
+							{packageType.length}х{packageType.width}х{packageType.height} см
+						</Typography>
+					</div>
+				</SelectItem>
+			);
+		})}
+	</ul>
+);

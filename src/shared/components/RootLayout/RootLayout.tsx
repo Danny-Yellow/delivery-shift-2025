@@ -9,15 +9,13 @@ interface LayoutProps {
 	header: ReactNode;
 }
 
-export const RootLayout = ({ header }: LayoutProps) => {
-	return (
-		<>
-			<header>{header}</header>
-			<main className={styles.main}>
-				<Container>
-					<Outlet />
-				</Container>
-			</main>
-		</>
-	);
-};
+export const RootLayout = ({ header }: LayoutProps) => (
+	<>
+		<header>{header}</header>
+		<main className={styles.main}>
+			<Container>
+				<Outlet />
+			</Container>
+		</main>
+	</>
+);
