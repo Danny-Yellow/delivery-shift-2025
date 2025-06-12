@@ -1,7 +1,7 @@
 import type { Signin } from '@src/shared/types';
 
 import { AdaptivePageHeader, Cross, OTPCode, PhoneInput } from '@src/shared/components';
-import { formatPhone } from '@src/shared/helpers';
+import { stripNonDigits } from '@src/shared/helpers';
 import { Button, ButtonGroup, Form, IconButton, Typography } from '@src/shared/ui';
 import { useDispatch, useSelector } from '@src/store';
 import { useForm } from '@tanstack/react-form';
@@ -31,7 +31,7 @@ export const Auth = ({
 			code: '',
 		},
 		onSubmit: ({ value }) => {
-			const phone = formatPhone(value.phone);
+			const phone = stripNonDigits(value.phone);
 
 			if (isContinued) {
 				signin({ code: +value.code, phone });
@@ -78,7 +78,7 @@ export const Auth = ({
 				<ButtonGroup>
 					<Subscribe
 						children={({ values }) => {
-							const isDisabled = formatPhone(values.phone).length !== 11;
+							const isDisabled = stripNonDigits(values.phone).length !== 11;
 
 							return (
 								<Button
@@ -105,7 +105,7 @@ export const Auth = ({
 					<ButtonGroup>
 						<Subscribe
 							children={({ values }) => {
-								const isDisabled = formatPhone(values.code).length !== 6;
+								const isDisabled = stripNonDigits(values.code).length !== 6;
 
 								return (
 									<Button

@@ -1,3 +1,5 @@
 export function handleOnlyNumbers(value: string, action: () => void) {
-	if (/^\d*$/.test(value)) action();
+	if (value && /^\d*$/.test(value)) {
+		action();
+	}
 }

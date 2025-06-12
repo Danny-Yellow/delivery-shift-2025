@@ -8,11 +8,14 @@
 		"paths": {
 			"@src/*": ["./src/*"]
 		},
+		"resolveJsonModule": true,
 		"allowJs": true,
 		"noImplicitAny": true,
 		"outDir": "./dist/",
 		"allowSyntheticDefaultImports": true,
 		"esModuleInterop": true,
 		"plugins": [{ "name": "typescript-plugin-css-modules" }]
-	}
+	},
+	"include": ["src/**/*", "src/types/*.d.ts"],
+	"exclude": ["node_modules", "dist"]
 }

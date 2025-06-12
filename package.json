@@ -9,6 +9,7 @@
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write .",
+		"test": "jest",
 		"stylelint": "stylelint \"**/*.scss\"",
 		"build:dev": "webpack --env mode=development",
 		"build:prod": "webpack --env mode=production",
@@ -38,22 +39,28 @@
 		"valibot": "^1.0.0-rc.0"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.27.1",
+		"@babel/preset-env": "^7.27.2",
+		"@babel/preset-typescript": "^7.27.1",
 		"@eslint/js": "^9.19.0",
 		"@radix-ui/react-toast": "^1.2.6",
 		"@siberiacancode/eslint": "^2.7.0",
 		"@siberiacancode/stylelint": "^1.1.1",
 		"@types/dotenv-webpack": "^7.0.8",
+		"@types/jest": "^29.5.14",
 		"@types/node": "^22.10.10",
 		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
 		"@types/webpack": "^5.28.5",
 		"@types/webpack-dev-server": "^4.7.2",
+		"babel-jest": "^29.7.0",
 		"css-loader": "^7.1.2",
 		"dotenv-webpack": "^8.1.0",
 		"eslint-plugin-prettier": "^5.2.3",
 		"globals": "^15.14.0",
 		"html-webpack-plugin": "^5.6.3",
 		"husky": "^9.1.7",
+		"jest": "^29.7.0",
 		"lint-staged": "^15.4.3",
 		"mini-css-extract-plugin": "^2.9.2",
 		"prettier": "^3.4.2",
@@ -62,6 +69,7 @@
 		"sass-loader": "^16.0.4",
 		"style-loader": "^4.0.0",
 		"stylelint": "^16.14.1",
+		"ts-jest": "^29.4.0",
 		"ts-loader": "^9.5.2",
 		"ts-node": "^10.9.2",
 		"typescript": "^5.7.3",
@@ -74,7 +82,8 @@
 	"lint-staged": {
 		"*.{ts,tsx}": [
 			"prettier --write",
-			"eslint --fix"
+			"eslint --fix",
+			"jest --bail --findRelatedTests"
 		],
 		"*.scss": "stylelint --fix"
 	}

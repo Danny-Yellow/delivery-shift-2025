@@ -1,4 +1,4 @@
-import { cyrillicRegex, invalidCharsRegex, latinRegex } from '@src/shared/constants/regExp';
+import { cyrillicRegex, latinRegex, nonAlphabeticCharsRegex } from '@src/shared/constants/regExp';
 
 export function validCyrillicOrLatin(value: string) {
 	if (!value) return true;
@@ -10,9 +10,9 @@ export function validFirstLetterCapitalised(value: string) {
 	return value[0] === value[0].toUpperCase();
 }
 
-export function validInvalidChars(value: string) {
+export function validAlphabeticChars(value: string) {
 	if (!value) return true;
-	return !value.match(invalidCharsRegex);
+	return !value.match(nonAlphabeticCharsRegex);
 }
 
 export function validHyphenAndApostrophe(value: string) {
