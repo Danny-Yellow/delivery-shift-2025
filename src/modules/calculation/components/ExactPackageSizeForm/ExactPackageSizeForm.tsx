@@ -44,6 +44,7 @@ export const ExactPackageSizeForm = ({ onSubmit }: { onSubmit?: () => void }) =>
 		<form
 			className={styles.form}
 			onSubmit={(event) => {
+				event.stopPropagation();
 				event.preventDefault();
 				handleSubmit();
 				onSubmit();
